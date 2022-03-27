@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="ko">
+ <head>
+  <title>signup</title>
+  <meta charset="utf-8"/>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <link href="css/reset.css" rel="stylesheet" type="text/css"/>
+  <script src="js/common.js"></script>
+  <style>
+	body{font-family: 'Heebo', sans-serif;}
+	*{margin:0;padding:0;}
+	body{margin:0;padding:0;}
+	header,nav,footer,section,aside,article{display:block;}
+	div, p, ul, ul li, ol, ol li{margin:0;padding:0;}
+	li{list-style-type: none;}
+	img{border:none;}
+	a:link,a:visited{text-decoration: none;color: #000;}
+
+	i{font-style:normal;}
+
+	#wrap{max-width:1920px;width:100%;margin:0 auto;}
+	#header{width:100%;}
+	#container{width:100%;}
+	#footer{width:100%;}
+
+	/*######## 기능 클래스 ########*/
+		.slide_down{max-height:500px !important;}
+	/*##################### header 공통 #####################*/
+		#header{width:100%;height:60px;background-color:#212121;position:fixed;z-index:5;}
+		#header h1{position:absolute;left:-9999px;font-size:1px;width:1px;height:1px;overflow:hidden;}
+		.header_inner{width:1300px;margin:0 auto;position:relative;}
+		.header_inner:after{content:"";display:block;clear:both;}
+		.header_inner #logo{width:30px;height:38px;position:absolute;left:0;top:10px;}
+		.header_inner #logo a{display:block;color:#b0b0b0;}
+		.header_inner #logo a:hover{color:#fff;}
+		.header_inner #logo img{width:100%;color:#fff;}
+
+
+
+
+		#gnb{text-align:right;height:60px;margin-right:60px;line-height:60px;float:right;}
+		#gnb li{display:inline;}
+		#gnb li a{padding:0 10px;color:#f5f5f7;}
+		#gnb li a:hover{color:#fff;}
+
+
+		#info_menu{text-align:right;line-height:60px;float:right;}
+		#info_menu li{height:20px;padding:20px 0;margin-left:25px;overflow:hidden;float:left;}
+		#info_menu li a{display:block;width:100%;height:100%;}
+		#info_menu li img{height:100%;margin-bottom:30px;}
+
+
+		.search_area1{width:50%;padding:18px 0;position:absolute;left:50%;transform:translatex(-50%);}
+		#submit_btn{
+			width:21px;
+			height:24px;
+			border:none;
+			color:transparent;
+			background-color:#212121;
+			background-image:url("img/icon/magnifier.png");
+			background-repeat:no-repeat;
+			background-size:100%;
+			vertical-align:middle;margin-right:15px;}
+		#search_bar_pc{height:24px;font-size:18px;background-color:#212121;color:#ccc;border:none;}
+		#close_button{background-color:#212121;border:none;color:#ccc;font-size:20px;float:right;}
+
+		#quick_link{background-color:#fff;transform:translatey(17px);padding:30px;font-size:14px;border-radius:0 0 20px 20px;color:#777;}
+		#quick_link h3{line-height:30px;font-weight:400;}
+
+		#quick_link ul li{line-height:40px;text-indent:20px;}
+		#quick_link ul li a{color:#777;}
+		#quick_link ul li:hover{background-color:#efefef;}
+		#quick_link ul li:hover a{color:rgba(0,112,201);}
+
+		/*############# 모바일 메뉴버튼 ##############*/
+		#btn_mob_menu{display:none;}
+
+		/*############# 모바일 gnb 메뉴 ##############*/
+		#gnb2{display:none;}
+
+
+
+	/*##################### footer 공통 #####################*/
+		#footer{width:100%;height:450px;background-color:#212121;}
+		#footer a{color:#b0b0b0;}
+		#footer h3{font-size:14px;line-height:40px;color:#b0b0b0;font-weight:700;}
+		#footer h3 span{display:none;}
+		#footer_nav_menues{width:750px;height:350px;padding-top:50px;margin:0 auto;}
+		#footer_nav_menues .learn_more{width:234px;float:left;}
+		#footer_nav_menues .learn_more li{font-size:14px;line-height:40px;}
+		#footer_nav_menues .nav_menu{width:172px;float:left;}
+		#footer_nav_menues .nav_menu li{font-size:14px;line-height:40px;}
+
+	/*########### full ##########*/
+		
+		#full{width:100%;height:100%;background-color:rgba(255,255,255,0.5);position:fixed;left:0;top:0;}
+	/*############## 반응형 (일반 큰 pc) ###############*/
+	@media all and (min-width:1320px) and (max-width:1919px){
+		.header_inner{width:1000px;}
+		
+	}
+	/*############## 반응형 (작은 pc) ###############*/
+	@media all and (min-width:1025px) and (max-width:1319px){
+		.header_inner{width:900px;}
+	}  
+
+	/*############## 반응형 (태블릿) ###############*/
+	@media all and (min-width:768px) and (max-width:1024px){
+		.header_inner{width:644px;}
+	}
+	/*##############  반응형 480 ###############*/
+	@media all and (min-width:481px) and (max-width:767px){
+		
+		
+		.header_inner{width:100%;height:45px;position:relative;}
+		.header_inner #logo{width:20px;height:24px;left:50%;transform:translatex(-50%);top:50%;transform:translatey(-50%);}
+		
+
+		#info_menu{text-align:right;line-height:45px;float:right;}
+		#info_menu li{width:22px;height:20px;padding:0;float:none;overflow:visible;}
+		#info_menu li img{margin-bottom:10px;}
+		#info_menu .magnifier{display:none;}
+		#info_menu .account{position:absolute;top:50%;transform:translatey(-50%);right:3%;}
+		
+		
+		
+
+
+		#gnb{display:none !important;}
+
+		/*############# 모바일 메뉴버튼 ##############*/
+		#btn_mob_menu{display:block;width:40px;height:40px;position:absolute;left:0px;top:50%;transform:translatey(-45%);}
+		#btn_mob_menu p{width:100%;height:100%;overflow:hidden;}
+		#btn_mob_menu span{display:block;text-indent:-9999px;width:50%;height:1px;background-color:#fff;margin:8px auto 0;}
+		
+		/*############# gnb2 메뉴 (모바일버전) ##############*/
+		#gnb2{display:block;overflow:hidden;width:100%;height:0px; background-color:#000;transition:height 0.5s;}
+		#gnb2 ul{width:100%;box-sizing:border-box;padding:0 10%;}
+		#gnb2 li{font-size:17px;line-height:55px;border-bottom:1px solid #555;}
+		#gnb2 li:last-child{border-bottom:none;}
+		#gnb2 a{color:#fff;}
+
+		
+
+		/*모바일용 검색바*/
+		#gnb2 .search_area2{width:100%;border-bottom:1px solid #555;overflow:hidden;}
+		#gnb2 form{width:90%;margin:10px auto;background-color:#333;border-radius:5px;}
+		#gnb2 form img{width:5%;margin:2%;margin-left:4%;vertical-align:middle;}
+		#gnb2 form input{width:80%;border:none;padding:10px 0;text-indent:13px;background:none;font-size:17px;color:#fff;}
+
+		/*######## footer 420반응형 #########*/
+		#footer{width:100%;height:auto;}
+		/*pc버전에서 높이값이 이미 고정픽셀로 셋팅되어있어서 해제하는 방법 몰라서 auto 일단 넣어봄.*/
+		
+		#footer h3{font-size:14px;line-height:40px;color:#b0b0b0;font-weight:700;}
+		#footer h3 span{display:inline-block;float:right;}
+
+		#footer_nav_menues{width:80%;height:auto;padding:20px 0;margin:0 auto;}
+		#footer_nav_menues .learn_more{width:100%;float:none;border-bottom:1px solid #555;}
+		#footer_nav_menues .learn_more li{font-size:14px;line-height:40px;}
+		#footer_nav_menues .nav_menu{width:100%;float:none;border-bottom:1px solid #555;}
+		#footer_nav_menues .nav_menu:last-child{border-bottom:none;}
+		#footer_nav_menues .nav_menu li{font-size:14px;line-height:40px;}
+
+		#footer_nav_menues .learn_more ul, #footer_nav_menues .nav_menu ul {max-height:0px;overflow:hidden;transition:all 0.5s;}
+				
+	}
+
+	/*##############  반응형 320 ###############*/
+	@media all and (min-width:320px) and (max-width:480px){
+		#header{background-color:#212121;}
+		.header_inner{width:100%;height:45px;position:relative;}
+		.header_inner #logo{width:20px;height:24px;left:50%;transform:translatex(-50%);top:50%;transform:translatey(-50%);}
+		
+
+		#info_menu{text-align:right;line-height:45px;float:right;}
+		#info_menu li{width:22px;height:20px;padding:0;float:none;overflow:visible;}
+		#info_menu li img{margin-bottom:10px;}
+		#info_menu .magnifier{display:none;}
+		#info_menu .account{position:absolute;top:50%;transform:translatey(-50%);right:3%;}
+		
+		
+		
+
+
+		#gnb{display:none !important;}
+
+		/*############# 모바일 메뉴버튼 ##############*/
+		#btn_mob_menu{display:block;width:40px;height:40px;position:absolute;left:0px;top:50%;transform:translatey(-45%);}
+		#btn_mob_menu p{width:100%;height:100%;overflow:hidden;}
+		#btn_mob_menu span{display:block;text-indent:-9999px;width:50%;height:1px;background-color:#fff;margin:8px auto 0;}
+		
+		/*############# gnb2 메뉴 (모바일버전) ##############*/
+		#gnb2{display:block;overflow:hidden;width:100%;height:0px; background-color:#000;transition:height 0.5s;}
+		#gnb2 ul{width:100%;box-sizing:border-box;padding:0 10%;}
+		#gnb2 li{font-size:17px;line-height:55px;border-bottom:1px solid #555;}
+		#gnb2 li:last-child{border-bottom:none;}
+		#gnb2 a{color:#fff;}
+
+
+
+		/*모바일용 검색바*/
+		#gnb2 .search_area2{width:100%;border-bottom:1px solid #555;overflow:hidden;}
+		#gnb2 form{width:90%;margin:10px auto;background-color:#333;border-radius:5px;}
+		#gnb2 form img{width:5%;margin:2%;margin-left:4%;vertical-align:middle;}
+		#gnb2 form input{width:80%;border:none;padding:10px 0;text-indent:13px;background:none;font-size:17px;color:#fff;}
+
+		/*######## footer 320반응형 #########*/
+		#footer{width:100%;height:auto;}
+		/*pc버전에서 높이값이 이미 고정픽셀로 셋팅되어있어서 해제하는 방법 몰라서 auto 일단 넣어봄.*/
+		
+		#footer h3{font-size:14px;line-height:40px;color:#b0b0b0;font-weight:700;}
+		#footer h3 span{display:inline-block;float:right;}
+
+		#footer_nav_menues{width:80%;height:auto;padding:20px 0;margin:0 auto;}
+		#footer_nav_menues .learn_more{width:100%;float:none;border-bottom:1px solid #555;}
+		#footer_nav_menues .learn_more li{font-size:14px;line-height:40px;}
+		#footer_nav_menues .nav_menu{width:100%;float:none;border-bottom:1px solid #555;}
+		#footer_nav_menues .nav_menu:last-child{border-bottom:none;}
+		#footer_nav_menues .nav_menu li{font-size:14px;line-height:40px;}
+
+		#footer_nav_menues .learn_more ul, #footer_nav_menues .nav_menu ul {max-height:0px;overflow:hidden;/* transition:all 0.5s; */}
+		
+
+
+		/*############## footer_copyright ##############*/
+		.footer_copyright{display:none;width:100%;margin:0 auto;border-top:1px solid #b0b0b0;line-height:49px;color:#b0b0b0;font-size:14px;}
+
+	}
+  </style>
+  <style>
+		#accMenu{border:1px solid #ccc;}
+		
+		.title_wrapper{width:100%;height:170px;padding-top:60px;}
+		.title_wrapper .text_main{text-align:center;line-height:170px;font-size:40px;}
+		#container fieldset{border:none;}
+		#container form{width:1200px;margin:0 auto;}
+		#container form *{box-sizing:border-box;}
+		#container form .inner{width:460px;margin:0 auto;}
+		#container form .inner .one{text-align:center;}
+		#container form  input{width:100%;border:1px solid #ccc;height:50px;padding-top:12px;text-indent:13px;font-size:18px;border-radius:5px;}
+		form  .fillin{margin:15px 0;}
+		form hr{margin:18px 0;}
+
+		
+		form .inner .country select{width:100%;border:1px solid #ccc;padding:8px 0 12px;font-size:18px;border-radius:5px;}
+		.firstName{width:48%;margin-right:4%;float:left;position:relative;}
+		.lastName{width:48%;float:left;position:relative;}
+		.userid:after{content:"";display:block;clear:both;}
+		
+
+		.fillin{position:relative;}
+		.fillin label{position:absolute;top:15px;left:13px;}
+
+		.email{position:relative;}
+
+		.verify p{width:30%;float:left;}
+		.verify div{width:70%;float:left;}
+		.verify:after{content:"";display:block;clear:both;}
+		
+		.verify div input{width:auto !important;height:auto !important;border-radius:50%;margin-right:3%;}
+		.verify div label{position:static;margin-right:10%;}
+		/* .verify span{font-size:14px;} */
+
+		.agree .fillin input{width:15px !important;height:auto !important;margin-right:3%;float:left;margin-top:5px;}
+		.agree .fillin span{width:80%;margin-right:10%;float:left;}
+		.agree .fillin:after{content:"";display:block;clear:both;}
+		.agree .fillin span label{position:static;}
+		.agree .fillin span i{font-size:12px;color:#777;}
+		
+		
+		#character .inner .img_character{width:30%;height:60px;overflow:hidden;margin-right:5%;float:left;}
+		#character .inner .img_character img{width:100%;}
+		#character .inner div{width:65%;float:left;}
+		
+		#character .inner:after{content:"";display:block;clear:both;}
+		#character .inner div .fillin{margin-top:0;}
+		#character .inner div input{height:60px;}
+		#character .inner div b{font-weight:400;padding:0 10px;}
+
+		#privacy{text-align:center;}
+		#privacy i{display:block;width:35px;margin:0 auto;padding-top:18px;}
+		#privacy i img{width:100%;}
+		#privacy span{font-size:14px;}
+
+		.btn_submit{width:110px;margin:0 auto;}
+		#btn_submit{text-indent:0 !important;text-align:center;margin:30px auto 150px;color:#fff;background-color:#006dbc;border:none !important;padding:0 !important;}
+
+		/*######## id더블체크 ########*/
+		.idDblChk{width:100%;margin-top:15px;}
+		.idDblChk:after{content:"";display:block;clear:both;}
+		.idDblChk span{width:77%;text-align:right;vertical-align:middle;float:left;}
+		#idCheck{width:20% !important;text-align:center;padding:0 !important;vertical-align:middle;text-indent:0 !important;height:30px !important;cursor:pointer;float:right;border:1px solid #0070c9 !important;color:#0070c9;background-color:#fff;}
+		#idCheck:hover{background-color:#0070c9;color:#fff;}
+		/*######### country ##########*/
+		.selectionWrap{position:relative;}
+	
+		.countryWrap{position:relative;}
+		.countries{width:100%;position:absolute;z-index:1;background-color:#fff;border:1px solid #ccc;border-radius:2px;}
+		#btnCountry{width:30px;height:30px;line-height:30px;text-align:center;position:absolute;right:8px;top:8px;vertical-align:middle;padding:0;cursor:pointer;border:none;}
+
+		.add label{position:static;}
+		.add input{width:100%;margin-bottom:15px;}
+		.add input:last-child{float:right;}
+		.post input{width:77% !important;vertical-align:middle;}
+		.post input:last-child{width:19% !important;float:right;text-indent:0 !important;padding:0 !important;cursor:pointer;}
+
+		#postBtn{border:1px solid #0070c9 !important;color:#0070c9;background-color:#fff;}
+		#postBtn:hover{background-color:#0070c9;color:#fff;}
+
+		.verify label{font-size:15px	!important;}
+
+  </style>
+  <script>
+		$(function(){
+			$("input").bind("click focus", function(){
+				//$(this).css({"borderColor":"blue"});
+				$(this).siblings("label").css({"fontSize":"12px","top":"5px"});
+			});
+
+			$("#birthday").click(function(){
+				$($(this).attr("value")).hide();
+			});
+			
+
+			$(".countries").hide();
+			var clicked = 0;
+			$("#btnCountry").click(function(){
+				if(clicked == 0){
+					$(".countries").slideDown(300);
+					$("#btnCountry").attr("value","^");
+					clicked = 1;
+				}else{
+					
+					$(".countries").slideUp(300);
+					$("#btnCountry").attr("value","v");
+					clicked = 0;
+
+				}
+				console.log(clicked);
+			});
+
+			$(".countries li").click(function(){
+				$("#country").attr("value",$(this).find("a").attr("title"));
+				
+				return false;
+			});
+		});
+		
+		
+
+		function checkInputs(){
+			const userpw1 = document.getElementById("userpw1").value;
+			const userpw2 = document.getElementById("userpw2").value;
+			const characters = document.getElementById("characters").value.toUpperCase();
+			
+			
+		
+			// 첫번째로 입력했던 비번과 두번째 입력한 비번 일치하는지 확인
+			if(userpw1 !== userpw2){
+				alert("check your password again");
+				return false;
+			}
+			// 입력한 문자가 맞는지 확인
+			else if(characters !== "CS69X"){
+				alert("You should write correct code");
+				return false;
+			}
+				return true;
+			
+		}
+
+		// 패스워드 두번째 입력창에서 첫번째 입력했던 패스워드와 일치하는지 확인하는 텍스트 띄우기
+		function checkpw(){
+			var userpw1 = document.getElementById("userpw1").value;
+			var userpw2 = document.getElementById("userpw2").value;
+			var checkpw = document.getElementById("checkpw");
+
+			if(userpw2==userpw1){
+				checkpw.innerHTML = "일치합니다.";
+				checkpw.style.color="blue";
+			}else{
+				checkpw.innerHTML = "일치하지않습니다.";
+				checkpw.style.color="red";
+			}
+		}
+  </script>
+  <script>
+		//아이디 중복체크관련 script
+		function idChecks(){
+			/*
+				1) userid공간을 id객체로 만들기
+				2) ※ 아이디 중복체크 글씨를 아이디 필수 입력이라는 글자로 변경하기
+				3) userid공간이 비어있다면 IDchkDesc의 글자 변경하기
+			*/
+			var email = document.getElementById("email");
+			//console.log(email);
+
+			var idCheckText = document.getElementById("idCheckText");
+			//console.log(idCheckText);
+
+			if(email.value==""){
+				alert("아이디가 비어있습니다");
+				email.focus();
+				idCheckText.innerHTML = "<strong style='color:red'>Email is required</strong>";
+			}else{
+				/*
+					[해야 할 일]
+						1) 아이디가 중복되었다면 사용이 불가능한 아이디입니다. 띄우기
+						2) 아이디가 중복되지 않았다면 사용이 가능한 아이디 입니다. 띄우기
+					
+					[정리]
+						+ form안에 form을 사용하면 action이 서로 충돌이 발생함. 
+						+ 일부만 서버를 이용해야 할 경우 javascript나 jQuery를 사용하여 바꾸기
+				*/
+
+				xmlhttp = new XMLHttpRequest
+				xmlhttp.open("GET","idDouble.html?q="+email.value, true);
+				xmlhttp.onreadystatechange = function(){
+					
+					if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+						idCheckText.innerHTML = xmlhttp.responseText;
+					}
+				};
+				
+				xmlhttp.send();
+			}
+		}
+  </script>
+  <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <script>
+	function postcode(){
+		new daum.Postcode({
+			oncomplete: function(data) {
+				document.getElementById("post").value = data.zonecode;
+				document.getElementById("add1").value = data.address;
+				document.getElementById("add2").focus();
+			}
+		}).open();
+	}
+  </script>
+
+  <script>
+	
+	$(function(){
+		/*계정버튼 클릭시 하위메뉴 나타나게 하기*/
+		var clickedAcc = 0;
+		$("#info_menu .account").click(function(){
+			if(clickedAcc == 0){
+				$("#accMenu").css({"display":"block"});
+				clickedAcc = 1;
+			}else{
+				$("#accMenu").css({"display":"none"});
+				clickedAcc = 0;
+			}
+		});
+	});
+  </script>
+ </head>
+
+ <body>
+	<div id="wrap">
+		<!-- ########## header ########## -->
+		<div id="header">
+			<h1>Apple</h1>
+			<div class="header_inner">
+				<div id="btn_mob_menu">
+					<p>
+						<span>a</span>
+						<span>a</span>
+						<span>a</span>
+					</p>
+				</div>
+				<div id="logo">
+					<a href="index.html" title="Apple">
+						<img src="img/icon/logo.svg" alt="apple logo"/>
+					</a>
+				</div>
+				<ul id="info_menu">
+					<li class="account"><a href="#none" title="account icon"><img src="img/icon/account.png" alt="icon of account"/></a></li>
+					<li class="magnifier"><a href="#none" title="search icon"><img src="img/icon/magnifier.png" alt="icon of search"/></a></li>
+				</ul>
+				<div class="search_area1">
+					<form id="search_bar1" action="http://www.apple.com/us/search" method="GET">
+						<!-- <img src="img/icon/magnifier.png" alt="image of search"/> -->
+						<input id="submit_btn" type="submit" name="submit_btn" title="button of submit"/>
+						<input id="search_bar_pc" type="text" name="search_bar_pc" title="search_bar_pc" placeholder="Search apple.com" />
+						<input id="close_button" type="button" name="close_button" title="close button" value="x" readonly/>
+					</form>
+					<aside id="quick_link">
+						<h3>QUICK LINK</h3>
+						<ul>
+							<li><a href="airpod.html" title="COVID-19 information">Airpods Pro</a></li>
+							<li><a href="apple_card.html" title="COVID-19 information">Apple Card</a></li>
+							<li><a href="signup.html" title="COVID-19 information">Sign Up</a></li>
+							<li><a href="acc.html" title="COVID-19 information">Accessories</a></li>
+							<li><a href="watch.html" title="COVID-19 information">Apple watch</a></li>
+							<li><a href="pro11.html" title="COVID-19 information">iPhone 11</a></li>
+						</ul>
+					</aside>
+				</div>
+				
+				<aside id="accMenu">
+					
+<?php if( empty($_SESSION['email']) ){ ?>
+					<div class="smallMenu"><a href="list.html" title="">Browse bulletin board</a></div>
+					<div class="smallMenu"><a href="signin.html" title="">Sign in</a></div>
+<?php }else{ ?>
+					<div class="smallMenu"><a href='manage.html?email=<?=$_SESSION['email']?>' title="">Manage account</a></div>
+					<div class="smallMenu"><a href="list.html" title="">Bulletin board</a></div>
+					<div class="smallMenu"><a href="signout.html" title="">Sign out</a></div>
+<?php } ?>
+				</aside>
+				<ul id="gnb">
+					<li><a href="airpod.html" title="Mac">Mac</a></li>
+					<li><a href="pad.html" title="iPad">iPad</a></li>
+					<li><a href="pro11.html" title="iPhone">iPhone</a></li>
+					<li><a href="watch.html" title="watch">Watch</a></li>
+					<li><a href="acc.html" title="watch">Acc</a></li>
+					<li><a href="apple_card.html" title="watch">Card</a></li>
+					<li><a href="purchase.html" title="watch">Purchase</a></li>
+				</ul>
+			</div>
+			
+			<div id="gnb2">
+				<div class="search_area2">
+					<form id="search_bar2" action="http://www.apple.com/us/search" method="GET">
+						<img src="img/icon/magnifier.png" alt="image of search"/><input id="search" type="text" name="src" title="search_bar_mob" placeholder="Search apple.com" />
+					</form>
+				</div>
+				<ul>
+					<li><a href="airpod.html" title="Mac">Mac</a></li>
+					<li><a href="pad.html" title="iPad">iPad</a></li>
+					<li><a href="pro11.html" title="iPhone">iPhone</a></li>
+					<li><a href="watch.html" title="watch">Watch</a></li>
+					<li><a href="acc.html" title="watch">Acc</a></li>
+					<li><a href="apple_card.html" title="watch">Card</a></li>
+					<li><a href="purchase.html" title="watch">Purchase</a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- ########## container ########## -->
+		<div id="container">
+			<div class="title_wrapper">
+				<h2 class="text_main">Create Your Apple ID</h2>
+			</div>
+			<div>
+				<form id="form" action="signup_control.html" method="post" onSubmit="checkInputs()">
+					<fieldset>
+						<legend></legend>
+						<div class="inner">
+							<p class="one">One Apple ID is all you need to access all Apple services.</p>
+							<div class="fillin userid">
+								<p class="firstName">
+									<input id="firstName" type="text" name="firstName" required/><label for="firstName">First name</label>
+								</p>
+								<p class="lastName">
+									<input id="lastName" type="text" name="lastName" required/><label for="lastName">Last name</label>
+								</p>
+							</div>
+							<!-- <div class="fillin country">
+								<span>COUNTRY / REGION</span>
+								<div class="selectionWrap">
+									<p class="countryWrap">
+										<input id="country" type="text" name="country" title="Select country" value="Select country"><input id="btnCountry" type="btnCountry" value="v" readonly/>
+									</p>					
+									<ul class="countries">
+										<li><a href="#none" title="South Korea">South Korea</a></li>
+										<li><a href="#none" title="United States">United States</a></li>
+										<li><a href="#none" title="China">China</a></li>
+										<li><a href="#none" title="Japan">Japan</a></li>
+									</ul>
+								</div>
+								<select id="countries">
+									<option value="United States">United States</option>
+									<option value="South Korea">South Korea</option>
+									<option value="Japan">Japan</option>
+								</select>
+							</div> -->
+
+							
+
+							<p class="fillin birthday">
+								<span>BIRTHDAY</span>
+								<input id="birthday" type="tel" name="birthday"  pattern="\d{4}-\d{2}-\d{2}" placeholder="2000-01-01" title="insert your birthday" required/>
+								<!-- <label for="birthday">Birthday</label> -->
+							</p>
+						</div>
+					</fieldset>
+					<hr/>
+
+					<fieldset>
+						<div class="inner">
+							<div class="fillin">
+								<span>This will be your new Apple ID.</span>
+								<p class="email">
+									<input id="email" type="email" name="email" title="Enter your email" required/>
+									<label for="email">name@example.com</label>
+								
+								</p>
+								<p class="idDblChk">
+									<span id="idCheckText">※ check Availability</span>
+									<input id="idCheck" type="button" value="click" onclick="idChecks();"/>
+									
+								</p>
+								
+							</div>
+							
+							<p class="fillin pw">
+								<span>Password</span>
+								<input id="userpw1" type="password" name="userpw" title="Eight or more characters"  placeholder="Eight or more characters" required/>
+								<!-- <label for="userpw1">Password</label> -->
+							</p>
+							<p class="fillin pw">
+								<input id="userpw2" type="password" name="userpw" title="Eight or more characters" pattern=".{8,}" required onkeyup="checkpw();" required/>
+								<label for="userpw2">Confirm password</label>
+							</p>
+							<span id="checkpw"></span>
+						</div>
+					</fieldset>
+					<hr/>
+
+					<fieldset>
+						<div class="inner">
+							<p class="fillin phone">
+								<span>Phone number</span>
+								<input id="phone" type="tel" name="phone" placeholder="010-123-1234" pattern="\d{3}-\d{3,4}-\d{4}"  required/>
+								<!-- <label for="phone">Phone number</label> -->
+							</p>
+							<div class="fillin address">
+								<span>Post Code</span>
+								<div class="selectionWrap">
+									<p class="post">
+										<input id="post" type="text" name="post" title="새로운 우편번호" placeholder="새로운 우편번호"/>
+										<input id="postBtn" type="button" value="Search" onclick="postcode();"/>
+									</p>					
+									<p class="add">
+										<span>Address</span>
+										<!-- <label for="add1">Address</label><br/> -->
+										<input id="add1" type="text" name="add1" title="상세주소1"/>
+										<input id="add2" type="text" name="add2" title="상세주소2"/>
+									</p>
+								</div>
+								<!-- <select id="countries">
+									<option value="United States">United States</option>
+									<option value="South Korea">South Korea</option>
+									<option value="Japan">Japan</option>
+								</select> -->
+							</div>
+							<span>
+								Be sure to enter a phone number you can always access. It will be used to verify your identity any time you sign in on a new device or web browser. Messaging or data rates my apply.
+							</span>
+							<div class="fillin verify">
+								<p>Verify with:</p> 
+								<div>
+									<input id="message" type="checkbox" name="verify"/><label for="message">Text message</label>
+									<input id="call" type="checkbox" name="verify"/><label for="call">Phone call</label>
+								</div>
+							</div>
+						</div>			
+					</fieldset>
+					<hr/>
+
+					<fieldset>
+						<div class="inner">
+							<ul class="agree">
+								<li class="fillin">
+									<input id="announcements" type="checkbox" name="announcements" checked/>
+									<span>
+										<label for="announcements">Announcements</label><br/>
+										<i>
+											Get announcements, recommendations, and updates about Apple products, services, and software.
+										</i>
+									</span>
+								</li>
+								<li class="fillin">
+									<input id="products" type="checkbox" name="products" checked/>
+									<span>
+										<label for="products">Apps, Music, TV, and More</label><br/>
+										<i>
+											Get new releases, exclusive content, special offers, and recommendations for apps, music, movies, TV, books, podcasts, Apple Pay, Apple Card and more.
+										</i>
+									</span>
+								</li>
+								<li class="fillin">
+									<input id="news" type="checkbox" name="news" checked/>
+									<span>
+										<label for="news">Apple News Newsletter</label><br/>
+										<i>
+											The best stories, picked by the Apple News editors, delivered right to your inbox.
+										</i>
+									</span>
+								</li>
+							</ul>
+						</div>
+					</fieldset>
+					<hr/>
+
+					<fieldset id="character">
+						<legend></legend>
+						<div class="inner">
+							<p class="img_character"><img src="img/signup/c1.jpg" alt=""/></p>
+							<div>
+								<p class="fillin character">
+									<input id="characters" type="text" name="characters" title="Type the characters in the image" required/>
+									<label for="characters">Type the characters in the image</label>
+								</p>
+								<!-- <span class="reset_code"><i></i>New Code</span><b>|</b>
+								<span class="vision"><i></i>Vision Impaired</span> -->
+							</div>
+						</div>
+					</fieldset>
+					<hr/>
+
+					<fieldset id="privacy">
+						<legend></legend>
+						<div class="inner">
+							<i><img src="img/signup/privacy.png" alt="icon of privacy"/></i><br/>
+							<span>
+								Your Apple ID information is used to allow you to sign in securely and access your data. Apple records certain usage data for security, support, and reporting purposes. See how your data is managed.
+							</span>
+						</div>
+					</fieldset>
+					<p class="btn_submit">
+						<input id="btn_submit" type="submit" name="btn_submit" title="button of Continue" value="Continue"/>
+					</p>
+				</form>
+			</div>
+		</div>
+		<!-- ########## footer ########## -->
+		<footer id="footer">
+			<ul id="footer_nav_menues">
+				<li class="learn_more">
+					<h3>LEARN MORE<span>+</span></h3>
+					<ul>
+						<li><a href="#" title="">iPhone SE</a></li>
+						<li><a href="#" title="">iPad Pro</a></li>
+						<li><a href="#" title="">iPhone Pro11</a></li>
+						<li><a href="#" title="">Apple Watch</a></li>
+					</ul>
+				</li>
+				<li class="nav_menu">
+					<h3>Support<span>+</span></h3>
+					<ul>
+						<li><a href="#" title="">Contact Us</a></li>
+						<li><a href="#" title="">Warranty</a></li>
+						<li><a href="#" title="">User Guide</a></li>
+						<li><a href="#" title="">Scooter safety notice</a></li>
+						<li><a href="#" title="">Android Enterprise Recommended</a></li>
+					</ul>
+				</li>
+				<li class="nav_menu">
+					<h3>ABOUT US<span>+</span></h3>
+					<ul>
+						<li><a href="#" title="">Apple</a></li>
+						<li><a href="#" title="">Press &amp; Media</a></li>
+						<li><a href="#" title="">User Agreement</a></li>
+						<li><a href="#" title="">Privacy Policy</a></li>
+						<li><a href="#" title="">Xiaomi Blog</a></li>
+						<li><a href="#" title="">Investor Relations</a></li>
+						<li><a href="#" title="">Integrity &amp; Compliance</a></li>
+					</ul>
+				</li>
+				<li class="nav_menu">
+					<h3>FOLLOW Apple<span>+</span></h3>
+					<ul>
+						<li><a href="#" title="">Facebook</a></li>
+						<li><a href="#" title="">Youtube</a></li>
+						<li><a href="#" title="">Instagram</a></li>
+						<li><a href="#" title="">Twitter</a></li>
+					</ul>
+				</li>
+			</ul>
+			<div class="footer_copyright">
+				Copyright &copy; 2020 Jisun Kim. All Rights Reserved
+			</div>
+		</footer>
+	</div>
+	<div id="full"></div>
+ </body>
+</html>

@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="ko">
+ <head>
+  <title> new document </title>
+  <meta charset="utf-8"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="css/reset.css" rel="stylesheet" type="text/css"/>
+  <style>
+	body{font-family: 'Heebo', sans-serif;}
+	*{margin:0;padding:0;}
+	body{margin:0;padding:0;}
+	header,nav,footer,section,aside,article{display:block;}
+	div, p, ul, ul li, ol, ol li{margin:0;padding:0;}
+	li{list-style-type: none;}
+	img{border:none;}
+	a:link,a:visited{text-decoration: none;color: #000;}
+
+	i{font-style:normal;}
+
+	#wrap{max-width:1920px;width:100%;margin:0 auto;}
+	#header{width:100%;}
+	#container{width:100%;}
+	/* #full{z-index:3;} */
+	#footer{width:100%;}
+
+	/*######## 기능 클래스 ########*/
+		.slide_down{max-height:500px !important;}
+	/*##################### header 공통 #####################*/
+		#header{width:100%;height:60px;background-color:#212121;position:fixed;z-index:5;}
+		#header h1{position:absolute;left:-9999px;font-size:1px;width:1px;height:1px;overflow:hidden;}
+		.header_inner{width:1300px;margin:0 auto;position:relative;}
+		.header_inner:after{content:"";display:block;clear:both;}
+		.header_inner #logo{width:30px;height:38px;position:absolute;left:0;top:10px;}
+		.header_inner #logo a{display:block;color:#b0b0b0;}
+		.header_inner #logo a:hover{color:#fff;}
+		.header_inner #logo img{width:100%;color:#fff;}
+
+
+		#accMenu{background-color:#fff;width:200px;padding:0 15px;border-radius:7px;position: absolute;top: 65px;right:-48px;display:none;}
+		#accMenu .smallMenu{padding:15px 0;border-top:1px solid #ccc;}
+		#accMenu .smallMenu:first-child{border:none;}
+
+		#gnb{text-align:right;height:60px;margin-right:60px;line-height:60px;float:right;}
+		#gnb li{display:inline;}
+		#gnb li a{padding:0 10px;color:#f5f5f7;}
+		#gnb li a:hover{color:#fff;}
+
+
+		#info_menu{text-align:right;line-height:60px;float:right;}
+		#info_menu li{height:20px;padding:20px 0;margin-left:25px;overflow:hidden;float:left;}
+		#info_menu li a{display:block;width:100%;height:100%;}
+		#info_menu li img{height:100%;margin-bottom:30px;}
+
+
+		.search_area1{width:50%;padding:18px 0;position:absolute;left:50%;transform:translatex(-50%);}
+		#submit_btn{
+			width:21px;
+			height:24px;
+			border:none;
+			color:transparent;
+			background-color:#212121;
+			background-image:url("img/icon/magnifier.png");
+			background-repeat:no-repeat;
+			background-size:100%;
+			vertical-align:middle;margin-right:15px;}
+		#search_bar_pc{height:24px;font-size:18px;background-color:#212121;color:#ccc;border:none;}
+		#close_button{background-color:#212121;border:none;color:#ccc;font-size:20px;float:right;}
+
+		#quick_link{background-color:#fff;transform:translatey(17px);padding:30px;font-size:14px;border-radius:0 0 20px 20px;color:#777;}
+		#quick_link h3{line-height:30px;font-weight:400;}
+
+		#quick_link ul li{line-height:40px;text-indent:20px;}
+		#quick_link ul li a{color:#777;}
+		#quick_link ul li:hover{background-color:#efefef;}
+		#quick_link ul li:hover a{color:rgba(0,112,201);}
+
+		/*############# 모바일 메뉴버튼 ##############*/
+		#btn_mob_menu{display:none;}
+
+		/*############# 모바일 gnb 메뉴 ##############*/
+		#gnb2{display:none;}
+
+
+
+	/*##################### footer 공통 #####################*/
+		#footer{width:100%;height:450px;background-color:#212121;}
+		#footer a{color:#b0b0b0;}
+		#footer h3{font-size:14px;line-height:40px;color:#b0b0b0;font-weight:700;}
+		#footer h3 span{display:none;}
+		#footer_nav_menues{width:750px;height:350px;padding-top:50px;margin:0 auto;}
+		#footer_nav_menues .learn_more{width:234px;float:left;}
+		#footer_nav_menues .learn_more li{font-size:14px;line-height:40px;}
+		#footer_nav_menues .nav_menu{width:172px;float:left;}
+		#footer_nav_menues .nav_menu li{font-size:14px;line-height:40px;}
+		#footer a:hover{color: #fff;}
+
+	/*############## 반응형 (일반 큰 pc) ###############*/
+	@media all and (min-width:1320px) and (max-width:1919px){
+		.header_inner{width:1000px;}
+		
+	}
+	/*############## 반응형 (작은 pc) ###############*/
+	@media all and (min-width:1025px) and (max-width:1319px){
+		.header_inner{width:900px;}
+	}  
+
+	/*############## 반응형 (태블릿) ###############*/
+	@media all and (min-width:768px) and (max-width:1024px){
+		.header_inner{width:644px;}
+	}
+	/*##############  반응형 480 ###############*/
+	@media all and (min-width:481px) and (max-width:767px){
+		
+		
+		.header_inner{width:100%;height:45px;position:relative;}
+		.header_inner #logo{width:20px;height:24px;left:50%;transform:translatex(-50%);top:50%;transform:translatey(-50%);}
+		
+
+		#info_menu{text-align:right;line-height:45px;float:right;}
+		#info_menu li{width:22px;height:20px;padding:0;float:none;overflow:visible;}
+		#info_menu li img{margin-bottom:10px;}
+		#info_menu .magnifier{display:none;}
+		#info_menu .account{position:absolute;top:50%;transform:translatey(-50%);right:3%;}
+		
+		
+		
+
+
+		#gnb{display:none !important;}
+
+		/*############# 모바일 메뉴버튼 ##############*/
+		#btn_mob_menu{display:block;width:40px;height:40px;position:absolute;left:0px;top:50%;transform:translatey(-45%);}
+		#btn_mob_menu p{width:100%;height:100%;overflow:hidden;}
+		#btn_mob_menu span{display:block;text-indent:-9999px;width:50%;height:1px;background-color:#fff;margin:8px auto 0;}
+		
+		/*############# gnb2 메뉴 (모바일버전) ##############*/
+		#gnb2{display:block;overflow:hidden;width:100%;height:0px; background-color:#000;transition:height 0.5s;}
+		#gnb2 ul{width:100%;box-sizing:border-box;padding:0 10%;}
+		#gnb2 li{font-size:17px;line-height:55px;border-bottom:1px solid #555;}
+		#gnb2 li:last-child{border-bottom:none;}
+		#gnb2 a{color:#fff;}
+
+		
+
+		/*모바일용 검색바*/
+		#gnb2 .search_area2{width:100%;border-bottom:1px solid #555;overflow:hidden;}
+		#gnb2 form{width:90%;margin:10px auto;background-color:#333;border-radius:5px;}
+		#gnb2 form img{width:5%;margin:2%;margin-left:4%;vertical-align:middle;}
+		#gnb2 form input{width:80%;border:none;padding:10px 0;text-indent:13px;background:none;font-size:17px;color:#fff;}
+
+		/*######## footer 420반응형 #########*/
+		#footer{width:100%;height:auto;}
+		/*pc버전에서 높이값이 이미 고정픽셀로 셋팅되어있어서 해제하는 방법 몰라서 auto 일단 넣어봄.*/
+		
+		#footer h3{font-size:14px;line-height:40px;color:#b0b0b0;font-weight:700;}
+		#footer h3 span{display:inline-block;float:right;}
+
+		#footer_nav_menues{width:80%;height:auto;padding:20px 0;margin:0 auto;}
+		#footer_nav_menues .learn_more{width:100%;float:none;border-bottom:1px solid #555;}
+		#footer_nav_menues .learn_more li{font-size:14px;line-height:40px;}
+		#footer_nav_menues .nav_menu{width:100%;float:none;border-bottom:1px solid #555;}
+		#footer_nav_menues .nav_menu:last-child{border-bottom:none;}
+		#footer_nav_menues .nav_menu li{font-size:14px;line-height:40px;}
+
+		#footer_nav_menues .learn_more ul, #footer_nav_menues .nav_menu ul {max-height:0px;overflow:hidden;transition:all 0.5s;}
+				
+	}
+
+	/*##############  반응형 320 ###############*/
+	@media all and (min-width:320px) and (max-width:480px){
+		#header{background-color:#212121;}
+		.header_inner{width:100%;height:45px;position:relative;}
+		.header_inner #logo{width:20px;height:24px;left:50%;transform:translatex(-50%);top:50%;transform:translatey(-50%);}
+		
+
+		#info_menu{text-align:right;line-height:45px;float:right;}
+		#info_menu li{width:22px;height:20px;padding:0;float:none;overflow:visible;}
+		#info_menu li img{margin-bottom:10px;}
+		#info_menu .magnifier{display:none;}
+		#info_menu .account{position:absolute;top:50%;transform:translatey(-50%);right:3%;}
+		
+		
+		
+
+
+		#gnb{display:none !important;}
+
+		/*############# 모바일 메뉴버튼 ##############*/
+		#btn_mob_menu{display:block;width:40px;height:40px;position:absolute;left:0px;top:50%;transform:translatey(-45%);}
+		#btn_mob_menu p{width:100%;height:100%;overflow:hidden;}
+		#btn_mob_menu span{display:block;text-indent:-9999px;width:50%;height:1px;background-color:#fff;margin:8px auto 0;}
+		
+		/*############# gnb2 메뉴 (모바일버전) ##############*/
+		#gnb2{display:block;overflow:hidden;width:100%;height:0px; background-color:#000;transition:height 0.5s;}
+		#gnb2 ul{width:100%;box-sizing:border-box;padding:0 10%;}
+		#gnb2 li{font-size:17px;line-height:55px;border-bottom:1px solid #555;}
+		#gnb2 li:last-child{border-bottom:none;}
+		#gnb2 a{color:#fff;}
+
+
+
+		/*모바일용 검색바*/
+		#gnb2 .search_area2{width:100%;border-bottom:1px solid #555;overflow:hidden;}
+		#gnb2 form{width:90%;margin:10px auto;background-color:#333;border-radius:5px;}
+		#gnb2 form img{width:5%;margin:2%;margin-left:4%;vertical-align:middle;}
+		#gnb2 form input{width:80%;border:none;padding:10px 0;text-indent:13px;background:none;font-size:17px;color:#fff;}
+
+		/*######## footer 320반응형 #########*/
+		#footer{width:100%;height:auto;}
+		/*pc버전에서 높이값이 이미 고정픽셀로 셋팅되어있어서 해제하는 방법 몰라서 auto 일단 넣어봄.*/
+		
+		#footer h3{font-size:14px;line-height:40px;color:#b0b0b0;font-weight:700;}
+		#footer h3 span{display:inline-block;float:right;}
+
+		#footer_nav_menues{width:80%;height:auto;padding:20px 0;margin:0 auto;}
+		#footer_nav_menues .learn_more{width:100%;float:none;border-bottom:1px solid #555;}
+		#footer_nav_menues .learn_more li{font-size:14px;line-height:40px;}
+		#footer_nav_menues .nav_menu{width:100%;float:none;border-bottom:1px solid #555;}
+		#footer_nav_menues .nav_menu:last-child{border-bottom:none;}
+		#footer_nav_menues .nav_menu li{font-size:14px;line-height:40px;}
+
+		#footer_nav_menues .learn_more ul, #footer_nav_menues .nav_menu ul {max-height:0px;overflow:hidden;/* transition:all 0.5s; */}
+		
+
+
+		/*############## footer_copyright ##############*/
+		.footer_copyright{display:none;width:100%;margin:0 auto;border-top:1px solid #b0b0b0;line-height:49px;color:#b0b0b0;font-size:14px;}
+
+	}
+  </style>
+  <style>
+	/* *{margin:0;padding:0;}
+	body{margin:0;padding:0;}
+	header, nav, section, footer, ul, ul li, div, p{margin:0;padding:0;}
+	header, nav, section, footer{display:block;}
+	
+	li{list-style:none;} */
+
+
+
+	#container{width:100%;}
+	
+	.title_function{text-align:center;margin:0 auto;font-size:28px;line-height:50px;padding:150px 0 30px;}
+	.text_long{
+		width:100%;
+		font-size:96px;
+		font-weight:700;text-align:center;
+		letter-spacing:-3px;
+		line-height:107px;
+		padding-bottom:105px;
+	}
+	.text_long2{
+		font-size:26px;
+		width:800px;
+		text-align:center;
+		margin:0 auto;
+		font-weight:700;
+		letter-spacing:0px;
+		line-height:28px;
+		padding-bottom:30px;
+	}
+
+	.text_small{text-align: center;margin: 0 auto;font-size: 28px;line-height: 50px;}
+	.desc_txt{width:330px;font-size: 23px;line-height: 30px;position:fixed;left:23%;top:50%;z-index:1;transform:translate(-50%,-33%);opacity:0;}
+	 .mob{display:none;}
+	 .selectedScroll{position:fixed;top:0;left:0;}
+	 .defaultScroll{position:fixed;top:0;left:0;}
+	/*################ section1 #################*/
+		#section1{width:100%;background-color:#000;color:#fff;}
+		#section1 .text_title{width:100%;text-align:center;font-size:96px;line-height:150px;}
+		#section1 .img_airpod_main{width:70%;margin:0 auto;}
+		#section1 .img_airpod_main img{width:100%;}
+		#section1 .text_sub{text-align:center;font-size:64px;font-weight:700;line-height:70px;}
+
+	/*################ section2 #################*/
+		#section2{width:100%;}
+		#section2 .img_guy{width:100%;}
+		#section2 .img_guy img{width:100%;}
+	
+	/*################ dancing #################*/
+		#dancing{width:100%;height:400vh;position:relative;background-color:#000;color:#fff;}
+		#dancing .dancingGuy{width:100%;}
+		#dancing .dancingGuy img{width:100%;}
+		#dancing .text_main{font-size:2em;color:#fff;text-align:center;position:relative;z-index:2;}
+		#dancing .textMoving{
+			width:100%;
+			font-weight:700;font-size:5em;color:#fff;text-align:center;
+			position:fixed;left:50%;top:50%;transform:translate(-50%,-33%);
+			opacity:0;z-index:3;
+			}
+	/*################ afterGuy #################*/
+		#afterGuy{width:100%;height:200vh;position:relative;background-color:#000;}
+		#afterGuy .afterGuyImg{width:100%;/* position:fixed; */top:0;margin:0 auto;}
+		#afterGuy .afterGuyImg img{width:100%;}
+	/*################ comfort #################*/
+		#comfort{width:100%;color:#fff;background-color:#000;}
+		#comfort .img_area{position:relative;}
+		#comfort .img_separate{width:986px;margin:0 auto;}
+		#comfort .img_separate img{width:100%;}
+		#comfort .text_desc{font-size:22px;font-weight:700;width:400px;position:absolute;top:100px;left:100px;}
+
+	/*################ section3 #################*/
+		#section3{width:100%;background-color:#000;color:#fff;}
+		#section3 .video_phones{width:100%}
+		#section3 .video_phones video{width:100%}
+		#section3 .img_area{position:relative;}
+		#section3 .text_desc{font-size:22px;width:400px;position:absolute;top:100px;left:100px;}
+	
+	/*################ noise #################*/
+		#noise{width:100%;color:#fff;background-color:#fff;position:relative;/* transition:opacity 1s; */}
+		#noise .img_woman{width:100%;}
+		#noise .img_woman img{width:100%;}
+		#noise .text_desc{font-size:22px;width:400px;position:absolute;bottom:100px;left:100px;}
+	
+	/*################ quality #################*/
+		#quality{width:100%;background-color:#fff;position:relative;}
+		#quality .img_area{position:relative;}
+		#quality .img_sprout{width:1320px;margin:0 auto;}
+		
+		#quality .text_desc{font-size:22px;width:400px;position:absolute;bottom:100px;left:100px;}
+	
+	/*################ chip #################*/
+		#chip{width:100%;position:relative;}
+		#chip .text_desc{font-size:22px;width:400px;position:absolute;bottom:100px;left:100px;}
+		#chip .img_sprout{width:800px;}
+		#chip .img_sprout img{width:100%;}
+	
+	/*################ battery #################*/
+		#battery{width:100%;position:relative;background-color:#000;color:#fff;}
+		#battery .img_area{width:100%;background-color:lightblue;position:relative;}
+		#battery .img_case{width:720px;margin:0 auto;}
+		
+		#battery .text_desc3{width:200px;background-color:green;font-size:19px;position:absolute;bottom:100px;left:100px;}
+		#battery .text_desc3 li{width:100%;padding-bottom:50px;/* background-color:gold; */}
+		#battery .text_desc3 li b{font-size:60px;}
+		#battery .text_desc3 li span{font-size:40px;}
+	
+
+	
+	
+	/*################ light #################*/
+		#light{width:100%;height:400vh;position:relative;background-color:#000;color:#fff;}
+		#light .lightImg{width:70%;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);}
+		#light .lightImg img{width:100%;}
+		#light .text_main{height:100vh;line-height:100vh;font-size:12em;color:#fff;text-align:center;position:relative;z-index:2;}
+		#light .textMoving{
+			width:100%;height:100vh;
+			font-weight:700;font-size:5em;color:#fff;text-align:center;
+			position:fixed;left:50%;transform:translate(-50%,-60%);
+			opacity:0;z-index:3;
+			}
+	/*################ separate #################*/
+		#separate{width:100%;height:400vh;position:relative;background-color:#000;color:#fff;}
+		#separate .separateImg{width:55%;position:absolute;left:50%;top:50%;transform:translate(-50%, -43%);}
+		#separate .separateImg img{width:100%;}
+		#separate .text_main{height:100vh;line-height:100vh;font-size:12em;color:#fff;text-align:center;position:relative;}
+		#separate .textMovingB{width:1000px;left:62%;}
+		#separate .textMovingB span{margin-right:8%;}
+	
+	/*################ fadeOut #################*/
+		#fadeOut{width:100%;height:300vh;position:relative;background-color:#000;color:#fff;}
+		#fadeOut .fadeOutImg{width:55%;position:absolute;left:50%;top:50%;transform:translate(-50%, -43%);}
+		#fadeOut .fadeOutImg img{width:100%;}
+		#fadeOut .text_main{color:#fff;text-align:center;font-size:96px;line-height:110px;}
+		#fadeOut .textMovingA{width:690px;position:fixed;top:50%;left:50%;z-index:1;opacity:0;}
+		#fadeOut .textMovingB{left:77%}
+		
+	/*################ blackBg #################*/
+		#blackBg{width:100%;height:100vh;background-color:#000;}
+	/*################ woman #################*/
+		#woman{width:100%;height:500vh;position:relative;}
+		#woman .imgWoman{width:100%;position:static;top:0;left:0;}
+		#woman .imgWoman img{width:100%;}
+	/*################ section4 #################*/
+		#whiteBg{width:100%;height:40vh;background-color:#fff;}
+	
+	/*################ siri #################*/
+		#siri{width:100%;position:relative;background-color:#fff;color:#000;}
+		#siri .imgArea{width:1200px;margin:50px auto;}
+		#siri .imgArea:after{content:"";display:block;clear:both;}
+		#siri .imgArea .text_long2{width:300px;margin-right:200px;margin-top:300px;float:left;}
+		#siri .phone_area{width:524px;height:1046px;position:relative;float:left;}
+		
+	
+		#siri .phone_area .play_area{position:absolute;top:31px;left:36px;}
+		#siri .phone_area .img_frame{position:absolute;}
+  </style>
+  <script src="js/common.js"></script>
+  <script src="js/airpod.js"></script>
+  <script>
+	$(function(){
+		/*계정버튼 클릭시 하위메뉴 나타나게 하기*/
+		var clickedAcc = 0;
+		$("#info_menu .account").click(function(){
+			if(clickedAcc == 0){
+				$("#accMenu").css({"display":"block"});
+				clickedAcc = 1;
+			}else{
+				$("#accMenu").css({"display":"none"});
+				clickedAcc = 0;
+			}
+		});
+	});
+		
+  </script>
+  <style>
+	body{font-family: 'Heebo', sans-serif;}
+	*{margin:0;padding:0;}
+	body{margin:0;padding:0;}
+	header,nav,footer,section,aside,article{display:block;}
+	div, p, ul, ul li, ol, ol li{margin:0;padding:0;}
+	li{list-style-type: none;}
+	img{border:none;}
+	a:link,a:visited{text-decoration: none;color: #000;}
+
+	i{font-style:normal;}
+
+	#wrap{max-width:1920px;width:100%;margin:0 auto;}
+	#header{width:100%;}
+	#container{width:100%;}
+	#footer{width:100%;}
+
+	/*######## 기능 클래스 ########*/
+		.slide_down{max-height:500px !important;}
+	/*##################### header 공통 #####################*/
+		#header{width:100%;height:60px;background-color:#212121;position:fixed;z-index:5;}
+		#header h1{position:absolute;left:-9999px;font-size:1px;width:1px;height:1px;overflow:hidden;}
+		.header_inner{width:1300px;margin:0 auto;position:relative;}
+		.header_inner:after{content:"";display:block;clear:both;}
+		.header_inner #logo{width:30px;height:38px;position:absolute;left:0;top:10px;}
+		.header_inner #logo a{display:block;color:#b0b0b0;}
+		.header_inner #logo a:hover{color:#fff;}
+		.header_inner #logo img{width:100%;color:#fff;}
+
+
+
+
+		#gnb{text-align:right;height:60px;margin-right:60px;line-height:60px;float:right;}
+		#gnb li{display:inline;}
+		#gnb li a{padding:0 10px;color:#f5f5f7;}
+		#gnb li a:hover{color:#fff;}
+
+
+		#info_menu{text-align:right;line-height:60px;float:right;}
+		#info_menu li{height:20px;padding:20px 0;margin-left:25px;overflow:hidden;float:left;}
+		#info_menu li a{display:block;width:100%;height:100%;}
+		#info_menu li img{height:100%;margin-bottom:30px;}
+
+
+		.search_area1{width:50%;padding:18px 0;position:absolute;left:50%;transform:translatex(-50%);}
+		#submit_btn{
+			width:21px;
+			height:24px;
+			border:none;
+			color:transparent;
+			background-color:#212121;
+			background-image:url("img/icon/magnifier.png");
+			background-repeat:no-repeat;
+			background-size:100%;
+			vertical-align:middle;margin-right:15px;}
+		#search_bar_pc{height:24px;font-size:18px;background-color:#212121;color:#ccc;border:none;}
+		#close_button{background-color:#212121;border:none;color:#ccc;font-size:20px;float:right;}
+
+		#quick_link{background-color:#fff;transform:translatey(17px);padding:30px;font-size:14px;border-radius:0 0 20px 20px;color:#777;}
+		#quick_link h3{line-height:30px;font-weight:400;}
+
+		#quick_link ul li{line-height:40px;text-indent:20px;}
+		#quick_link ul li a{color:#777;}
+		#quick_link ul li:hover{background-color:#efefef;}
+		#quick_link ul li:hover a{color:rgba(0,112,201);}
+
+		/*############# 모바일 메뉴버튼 ##############*/
+		#btn_mob_menu{display:none;}
+
+		/*############# 모바일 gnb 메뉴 ##############*/
+		#gnb2{display:none;}
+
+
+
+	/*##################### footer 공통 #####################*/
+		#footer{width:100%;height:450px;background-color:#212121;}
+		#footer a{color:#b0b0b0;}
+		#footer h3{font-size:14px;line-height:40px;color:#b0b0b0;font-weight:700;}
+		#footer h3 span{display:none;}
+		#footer_nav_menues{width:750px;height:350px;padding-top:50px;margin:0 auto;}
+		#footer_nav_menues .learn_more{width:234px;float:left;}
+		#footer_nav_menues .learn_more li{font-size:14px;line-height:40px;}
+		#footer_nav_menues .nav_menu{width:172px;float:left;}
+		#footer_nav_menues .nav_menu li{font-size:14px;line-height:40px;}
+
+	/*############## 반응형 (일반 큰 pc) ###############*/
+	@media all and (min-width:1320px) and (max-width:1919px){
+		.header_inner{width:1000px;}
+		
+	}
+	/*############## 반응형 (작은 pc) ###############*/
+	@media all and (min-width:1025px) and (max-width:1319px){
+		.header_inner{width:900px;}
+	}  
+
+	/*############## 반응형 (태블릿) ###############*/
+	@media all and (min-width:768px) and (max-width:1024px){
+		.header_inner{width:644px;}
+	}
+	/*##############  반응형 480 ###############*/
+	@media all and (min-width:481px) and (max-width:767px){
+		
+		
+		.header_inner{width:100%;height:45px;position:relative;}
+		.header_inner #logo{width:20px;height:24px;left:50%;transform:translatex(-50%);top:50%;transform:translatey(-50%);}
+		
+
+		#info_menu{text-align:right;line-height:45px;float:right;}
+		#info_menu li{width:22px;height:20px;padding:0;float:none;overflow:visible;}
+		#info_menu li img{margin-bottom:10px;}
+		#info_menu .magnifier{display:none;}
+		#info_menu .account{position:absolute;top:50%;transform:translatey(-50%);right:3%;}
+		
+		
+		
+
+
+		#gnb{display:none !important;}
+
+		/*############# 모바일 메뉴버튼 ##############*/
+		#btn_mob_menu{display:block;width:40px;height:40px;position:absolute;left:0px;top:50%;transform:translatey(-45%);}
+		#btn_mob_menu p{width:100%;height:100%;overflow:hidden;}
+		#btn_mob_menu span{display:block;text-indent:-9999px;width:50%;height:1px;background-color:#fff;margin:8px auto 0;}
+		
+		/*############# gnb2 메뉴 (모바일버전) ##############*/
+		#gnb2{display:block;overflow:hidden;width:100%;height:0px; background-color:#000;transition:height 0.5s;}
+		#gnb2 ul{width:100%;box-sizing:border-box;padding:0 10%;}
+		#gnb2 li{font-size:17px;line-height:55px;border-bottom:1px solid #555;}
+		#gnb2 li:last-child{border-bottom:none;}
+		#gnb2 a{color:#fff;}
+
+		
+
+		/*모바일용 검색바*/
+		#gnb2 .search_area2{width:100%;border-bottom:1px solid #555;overflow:hidden;}
+		#gnb2 form{width:90%;margin:10px auto;background-color:#333;border-radius:5px;}
+		#gnb2 form img{width:5%;margin:2%;margin-left:4%;vertical-align:middle;}
+		#gnb2 form input{width:80%;border:none;padding:10px 0;text-indent:13px;background:none;font-size:17px;color:#fff;}
+
+		/*######## footer 420반응형 #########*/
+		#footer{width:100%;height:auto;}
+		/*pc버전에서 높이값이 이미 고정픽셀로 셋팅되어있어서 해제하는 방법 몰라서 auto 일단 넣어봄.*/
+		
+		#footer h3{font-size:14px;line-height:40px;color:#b0b0b0;font-weight:700;}
+		#footer h3 span{display:inline-block;float:right;}
+
+		#footer_nav_menues{width:80%;height:auto;padding:20px 0;margin:0 auto;}
+		#footer_nav_menues .learn_more{width:100%;float:none;border-bottom:1px solid #555;}
+		#footer_nav_menues .learn_more li{font-size:14px;line-height:40px;}
+		#footer_nav_menues .nav_menu{width:100%;float:none;border-bottom:1px solid #555;}
+		#footer_nav_menues .nav_menu:last-child{border-bottom:none;}
+		#footer_nav_menues .nav_menu li{font-size:14px;line-height:40px;}
+
+		#footer_nav_menues .learn_more ul, #footer_nav_menues .nav_menu ul {max-height:0px;overflow:hidden;transition:all 0.5s;}
+				
+	}
+
+	/*##############  반응형 320 ###############*/
+	@media all and (min-width:320px) and (max-width:480px){
+		#header{background-color:#212121;}
+		.header_inner{width:100%;height:45px;position:relative;}
+		.header_inner #logo{width:20px;height:24px;left:50%;transform:translatex(-50%);top:50%;transform:translatey(-50%);}
+		
+
+		#info_menu{text-align:right;line-height:45px;float:right;}
+		#info_menu li{width:22px;height:20px;padding:0;float:none;overflow:visible;}
+		#info_menu li img{margin-bottom:10px;}
+		#info_menu .magnifier{display:none;}
+		#info_menu .account{position:absolute;top:50%;transform:translatey(-50%);right:3%;}
+		
+		
+		
+
+
+		#gnb{display:none !important;}
+
+		/*############# 모바일 메뉴버튼 ##############*/
+		#btn_mob_menu{display:block;width:40px;height:40px;position:absolute;left:0px;top:50%;transform:translatey(-45%);}
+		#btn_mob_menu p{width:100%;height:100%;overflow:hidden;}
+		#btn_mob_menu span{display:block;text-indent:-9999px;width:50%;height:1px;background-color:#fff;margin:8px auto 0;}
+		
+		/*############# gnb2 메뉴 (모바일버전) ##############*/
+		#gnb2{display:block;overflow:hidden;width:100%;height:0px; background-color:#000;transition:height 0.5s;}
+		#gnb2 ul{width:100%;box-sizing:border-box;padding:0 10%;}
+		#gnb2 li{font-size:17px;line-height:55px;border-bottom:1px solid #555;}
+		#gnb2 li:last-child{border-bottom:none;}
+		#gnb2 a{color:#fff;}
+
+
+
+		/*모바일용 검색바*/
+		#gnb2 .search_area2{width:100%;border-bottom:1px solid #555;overflow:hidden;}
+		#gnb2 form{width:90%;margin:10px auto;background-color:#333;border-radius:5px;}
+		#gnb2 form img{width:5%;margin:2%;margin-left:4%;vertical-align:middle;}
+		#gnb2 form input{width:80%;border:none;padding:10px 0;text-indent:13px;background:none;font-size:17px;color:#fff;}
+
+		/*######## footer 320반응형 #########*/
+		#footer{width:100%;height:auto;}
+		/*pc버전에서 높이값이 이미 고정픽셀로 셋팅되어있어서 해제하는 방법 몰라서 auto 일단 넣어봄.*/
+		
+		#footer h3{font-size:14px;line-height:40px;color:#b0b0b0;font-weight:700;}
+		#footer h3 span{display:inline-block;float:right;}
+
+		#footer_nav_menues{width:80%;height:auto;padding:20px 0;margin:0 auto;}
+		#footer_nav_menues .learn_more{width:100%;float:none;border-bottom:1px solid #555;}
+		#footer_nav_menues .learn_more li{font-size:14px;line-height:40px;}
+		#footer_nav_menues .nav_menu{width:100%;float:none;border-bottom:1px solid #555;}
+		#footer_nav_menues .nav_menu:last-child{border-bottom:none;}
+		#footer_nav_menues .nav_menu li{font-size:14px;line-height:40px;}
+
+		#footer_nav_menues .learn_more ul, #footer_nav_menues .nav_menu ul {max-height:0px;overflow:hidden;/* transition:all 0.5s; */}
+		
+
+
+		/*############## footer_copyright ##############*/
+		.footer_copyright{display:none;width:100%;margin:0 auto;border-top:1px solid #b0b0b0;line-height:49px;color:#b0b0b0;font-size:14px;}
+
+	}
+  </style>
+  
+ </head>
+
+ <body> 
+	<div id="wrap">
+		<!-- ########## header ########## -->
+		<div id="header">
+			<h1>Apple</h1>
+			<div class="header_inner">
+				<div id="btn_mob_menu">
+					<p>
+						<span>a</span>
+						<span>a</span>
+						<span>a</span>
+					</p>
+				</div>
+				<div id="logo">
+					<a href="index.html" title="Apple">
+						<img src="img/icon/logo.svg" alt="apple logo"/>
+					</a>
+				</div>
+				<ul id="info_menu">
+					<li class="account"><a href="#none" title="account icon"><img src="img/icon/account.png" alt="icon of account"/></a></li>
+					<li class="magnifier"><a href="#none" title="search icon"><img src="img/icon/magnifier.png" alt="icon of search"/></a></li>
+				</ul>
+				<div class="search_area1">
+					<form id="search_bar1" action="http://www.apple.com/us/search" method="GET">
+						<!-- <img src="img/icon/magnifier.png" alt="image of search"/> -->
+						<input id="submit_btn" type="submit" name="submit_btn" title="button of submit"/>
+						<input id="search_bar_pc" type="text" name="search_bar_pc" title="search_bar_pc" placeholder="Search apple.com" />
+						<input id="close_button" type="button" name="close_button" title="close button" value="x" readonly/>
+					</form>
+					<aside id="quick_link">
+						<h3>QUICK LINK</h3>
+						<ul>
+							<li><a href="airpod.html" title="COVID-19 information">Airpods Pro</a></li>
+							<li><a href="apple_card.html" title="COVID-19 information">Apple Card</a></li>
+							<li><a href="signup.html" title="COVID-19 information">Sign Up</a></li>
+							<li><a href="acc.html" title="COVID-19 information">Accessories</a></li>
+							<li><a href="watch.html" title="COVID-19 information">Apple watch</a></li>
+							<li><a href="pro11.html" title="COVID-19 information">iPhone 11</a></li>
+						</ul>
+					</aside>
+				</div>
+				
+				<aside id="accMenu">
+					
+<!-- <?php if( empty($_SESSION['email']) ){ ?>
+					<div class="smallMenu"><a href="list.html" title="">Browse bulletin board</a></div>
+					<div class="smallMenu"><a href="signin.html" title="">Sign in</a></div>
+<?php }else{ ?>
+					<div class="smallMenu"><a href='manage.html?email=<?=$_SESSION['email']?>' title="">Manage account</a></div>
+					<div class="smallMenu"><a href="list.html" title="">Bulletin board</a></div>
+					<div class="smallMenu"><a href="signout.html" title="">Sign out</a></div>
+<?php } ?> -->
+				</aside>
+				<ul id="gnb">
+					<li><a href="airpod.html" title="Mac">Mac</a></li>
+					<li><a href="pad.html" title="iPad">iPad</a></li>
+					<li><a href="pro11.html" title="iPhone">iPhone</a></li>
+					<li><a href="watch.html" title="watch">Watch</a></li>
+					<li><a href="acc.html" title="watch">Acc</a></li>
+					<li><a href="apple_card.html" title="watch">Card</a></li>
+					<li><a href="purchase.html" title="watch">Purchase</a></li>
+				</ul>
+			</div>
+			
+			<div id="gnb2">
+				<div class="search_area2">
+					<form id="search_bar2" action="http://www.apple.com/us/search" method="GET">
+						<img src="img/icon/magnifier.png" alt="image of search"/><input id="search" type="text" name="src" title="search_bar_mob" placeholder="Search apple.com" />
+					</form>
+				</div>
+				<ul>
+					<li><a href="airpod.html" title="Mac">Mac</a></li>
+					<li><a href="pad.html" title="iPad">iPad</a></li>
+					<li><a href="pro11.html" title="iPhone">iPhone</a></li>
+					<li><a href="watch.html" title="watch">Watch</a></li>
+					<li><a href="acc.html" title="watch">Acc</a></li>
+					<li><a href="apple_card.html" title="watch">Card</a></li>
+					<li><a href="purchase.html" title="watch">Purchase</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- ########## container ########## -->
+		<div id="container">
+			<section id="light">
+				<p class="lightImg"><img src="img/airpods/sequence/light/0000.jpg" alt=""></p>
+				<h2 class="text_main">AirPods Pro</h2>
+				<p class="textMoving textMovingA">
+					Active Noise Cancellation<br/>
+					for immersive sound.
+				</p>
+		
+			</section>
+			<section id="dancing">
+				<p class="dancingGuy"><img src="img/airpods/sequence/guy/0000.jpg" alt=""></p>
+				<div class="textMoving textMovingA">
+					<p class="text_small">Comfort</p>
+					<h2 class="text_main">AirPods Pro</h2>
+				</div>
+			</section>
+			<section id="afterGuy">
+				<p class="afterGuyImg"><img src="img/airpods/sequence/afterguy/0000.jpg" alt=""></p>
+				
+			</section>
+			<section id="separate">
+				<p class="separateImg"><img src="img/airpods/sequence/separate/0000.jpg" alt=""></p>
+				<p class="desc_txt textMovingA">
+					We refined the details of comfort, creating a new class of in-ear headphones with a customizable fit that forms an exceptional seal for Active Noise Cancellation. You'll feel your music, not your headphones.
+				</p>
+				<div class="desc_txt textMovingB">
+					<span>Large</span>
+					<span>Medium</span>
+					<span>Small</span>
+				</div>
+			</section>
+			<section id="fadeOut">
+				<p class="fadeOutImg"><img src="img/airpods/sequence/fadeOut/0000.jpg" alt=""></p>
+				<div class="textMoving textMovingA">
+					<p class="text_small">Active Noise Cancellation</p>
+					<h2 class="text_main">Sound that cuts out the noise.</h2>
+				</div>
+				<p class="desc_txt textMovingB">
+					We refined the details of comfort, creating a new class of in-ear headphones with a customizable fit that forms an exceptional seal for Active Noise Cancellation. You'll feel your music, not your headphones.
+				</p>
+			</section>
+			<p id="blackBg"></p>
+			<section id="woman">
+				<p class="imgWoman"><img src="img/airpods/sequence/woman/0000.jpg" alt=""></p>
+				<p class="desc_txt textMovingA">
+					Want to hear what's happening around you? Just press and hold the force sensor on the stem to jump between Active Noise Cancellation and Transparency mode — which lets outside sound in, and allows things to sound and feel natural when you're talking to people nearby.
+				</p>
+			</section>
+			<p id="whiteBg"></p>
+			<section id="siri">
+				<div class="text_main">
+					<h3 class="title_function">Magical experience</h3>
+					<p class="text_long">
+						Simplicity from<br/>
+						start to Siri.
+					</p>
+					<p class="text_long2">
+						The Wireless Charging Case delivers more than 24 hours of battery life to keep you and your AirPods Pro on the go. And it’s compatible with Qi-certified chargers.
+					</p>
+				</div>
+				<div class="imgArea">
+					<p class="text_long2">
+						Just like AirPods, AirPods Pro connect magically to your iPhone or Apple Watch.
+					</p>
+					<div class="phone_area">
+						<div class="play_area">
+							<video poster="img/airpods/etc/paring.jpg" controls autoplay muted>
+								<source src="video/airpods/display.mp4" type="video/mp4">
+							</video>	
+						</div>
+						<p class="img_frame">
+							<img src="img/airpods/etc/hardware.png" alt=""/>
+						</p>
+					</div>
+				</div>
+				
+			</section>
+			<!-- <section id="noise" >
+				<p class="img_woman"><img src="img/airpods/sequence/woman/m1.jpg" alt=""/></p>
+				<p class="text_desc">
+					Want to hear what's happening around you? Just press and hold the force sensor on the stem to jump between Active Noise Cancellation and Transparency mode - which lets outside sound in, and allows things to sound and feel natural when you're talking to people nearby.
+				</p>
+			</section>
+			
+			<section id="quality">
+				
+				<div class="text_main">
+					<h3 class="title_function">Audio quality</h3>
+					<p class="text_long">
+						Everything you hear is<br/>
+						unheard of.
+					</p>
+					<p class="text_long2">
+						AirPods Pro are the only in-ear headphones with Active Noise<br/>
+						Cancellation that continuously adapts to the geometry of your<br/>
+						ear and the fit of the ear tips - blocking out the world so you<br/>
+						can focus on what you're listening to.
+					</p>
+				</div>
+				<div class="img_area">
+					<p class="img_sprout"><img src="img/airpods/sequence/one/0000.jpg" alt=""/></p>
+					<p class="text_desc">
+						Enjoy superior sound quality with Adaptive EQ, which automatically tunes music to the shape of your ear for a rich, consistent listening experience.
+					</p>
+				</div>
+				<div class="img_area">
+					<p class="img_sprout"><img src="img/airpods/sequence/one/0039.jpg" alt=""/></p>
+					<p class="text_desc">
+						Powerful bass is delivered by a custom-built high-excursion, low-distortion speaker driver.
+					</p>
+					<p class="text_desc">
+						An inward-facing microphone hears sound as you do. AirPods Pro then fine-tune the audio by adjusting the mid and low frequencies.
+					</p>
+				</div>
+				<div class="img_area">
+					<p class="img_sprout"><img src="img/airpods/sequence/one/0068.jpg" alt=""/></p>
+					<p class="text_desc">
+						The amplifier powers the speaker driver to remove background noise and works with the H1 chip to control listening levels.
+					</p>
+					<p class="text_desc">
+						A super-efficient high dynamic range amplifier produces pure, incredibly clear sound while also extending battery life.
+					</p>
+				</div>
+			</section>
+			<section id="chip">
+				<div class="text_main">
+					<h3 class="title_function">Performance and design</h3>
+					<p class="text_long">
+						A chip with<br/>
+						serious chops.
+					</p>
+					<p class="text_long2">
+						Tech-packed yet compact, AirPods Pro are built around our System in Package design — featuring the H1 chip that powers everything from sound to Siri.
+					</p>
+				</div>
+				<div class="img_area">
+					<p class="img_sprout"><img src="img/airpods/sequence/inside/0017.jpg" alt=""/></p>
+					<p class="text_desc">
+						The Apple-designed H1 chip employs 10 audio cores, creating incredibly low audio processing latency that enables real-time noise cancellation.<br/><br/>
+					
+						The System in Package design is meticulously arranged, with the placement of each component based on the form of the human ear — maximizing comfort, fit, and stability.
+					</p>
+				</div>
+			</section>
+			<section id="battery">
+				<div class="text_main">
+					<h3 class="title_function">Battery</h3>
+					<p class="text_long">
+						Charge wirelessly.<br/>
+						Use tirelessly.
+					</p>
+					<p class="text_long2">
+						The Wireless Charging Case delivers more than 24 hours of battery life to keep you and your AirPods Pro on the go. And it’s compatible with Qi-certified chargers.
+					</p>
+				</div>
+				<div class="img_area">
+					<p class="img_case"><img src="img/airpods/sequence/fall_case/0170.jpg" alt=""/></p>
+					<ul class="text_desc3">
+						<li>
+							More than<br/>
+							<b>24</b><span>hrs</span><br/>
+							of listening time with multiple additional charges in the case2
+						</li>
+						<li>
+							Up to<br/>
+							<b>4.5</b><span>hrs</span><br/>
+							of listening time on one charge3
+						</li>
+						<li>
+							Around<br/>
+							<b>1</b><span>hrs</span><br/>
+							of listening time on only 5 minutes of charging
+						</li>
+					</ul>
+				</div>
+			</section> -->
+			<!-- <section id="siri">
+				<div class="text_main">
+					<h3 class="title_function">Magical experience</h3>
+					<p class="text_long">
+						Simplicity from<br/>
+						start to Siri.
+					</p>
+					<p class="text_long2">
+						The Wireless Charging Case delivers more than 24 hours of battery life to keep you and your AirPods Pro on the go. And it’s compatible with Qi-certified chargers.
+					</p>
+				</div>
+				<div class="phone_area">
+					<div class="play_area">
+						<video poster="img/airpods/etc/paring.jpg" controls autoplay muted>
+							<source src="video/airpods/display.mp4" type="video/mp4">
+						</video>	
+					</div>
+					<p class="img_frame">
+						<img src="img/airpods/etc/hardware.png" alt=""/>
+					</p>
+				</div>
+			</section> -->
+
+			<section id="section1" class="mob">
+				<h2 class="text_title">AirPods Pro</h2>
+				<p class="img_airpod_main"><img src="img/airpods/sequence/light/0077.jpg" alt=""/></p>
+				<p class="text_sub">
+					Active Noise Cancellation for<br/>
+					immersive sound.<br/><br/>
+
+					Transparency mode for hearing<br/>
+					what's happening around you.<br/><br/>
+
+					A customizable fit for all-<br/>
+					day comfort.<br/><br/>
+
+					Magic like you've never heard.
+				</p>
+			</section>
+			<section id="section2" class="mob">
+				<p class="img_guy"><img src="img/airpods/guy/1.jpg" alt=""/></p>
+			</section>
+
+			<section id="comfort" class="mob">
+				<div class="text_main">
+					<h3 class="title_function">Comfort</h3>
+					<p class="text_long">
+						Arrival of the fittest.
+					</p>
+					<p class="text_long2">
+						We refined the details of comfort, creating a new class of in-ear headphones with a customizable fit that forms an exceptional seal for Active Noise Cancellation. You'll feel your music, not your headphones.
+					</p>
+				</div>
+				<div class="img_area">
+					<p class="img_separate"><img src="img/airpods/sequence/separate/m1.jpg" alt=""/></p>
+					<p class="text_desc">
+						Choose from three sizes of soft, flexible silicone tips that click into place. Find the best fit - and get the best sound - by using the Ear Tip Fit Test.<br/><br/>
+
+						These internally tapered tips conform to your ear shape, keeping AirPods Pro secure. And with vents helping equalize pressure, you feel like there's nothing in your ears.
+					</p>
+				</div>
+			</section>
+			<section id="section3" class="mob">
+				<div class="text_main">
+					<h3 class="title_function">Active Noise Cancellation</h3>
+					<p class="text_long">
+						Sound that cuts out<br/>
+						the noise.
+					</p>
+					<p class="text_long2">
+						AirPods Pro are the only in-ear headphones with Active Noise
+						Cancellation that continuously adapts to the geometry of your	
+						ear and the fit of the ear tips - blocking out the world so you
+						can focus on what you're listening to.
+					</p>
+				</div>
+				<div class="img_area">
+					<div class="video_phones">
+						<!-- <video poster="img/airpods/noise_cancel.jpg"; autoplay muted>
+							<source src="video/airpods/noise.mp4" type="video/mp4"/>
+						</video> -->
+					</div>
+					<p class="text_desc">
+						An outward-facing microphone
+						detects external sound.
+					</p>
+					<p class="text_desc">
+						AirPods Pro then counter it with equal anti-noise, cancelling the external sound before you hear it.
+					</p>
+					<p class="text_desc">
+						An inward-facing microphone listens inside your ear for
+						unwanted sound, which is also eliminated with anti-noise.<br/><br/>
+
+						Noise cancellation is continuously adjusted at 200
+						times per second for truly immersive sound, so you're fully tuned in to your music, podcasts, and calls.
+					</p>
+				</div>
+			</section>
+		</div>
+
+		<!-- ########## footer ########## -->
+		<footer id="footer">
+			<ul id="footer_nav_menues">
+				<li class="learn_more">
+					<h3>LEARN MORE<span>+</span></h3>
+					<ul>
+						<li><a href="#" title="">iPhone SE</a></li>
+						<li><a href="#" title="">iPad Pro</a></li>
+						<li><a href="#" title="">iPhone Pro11</a></li>
+						<li><a href="#" title="">Apple Watch</a></li>
+					</ul>
+				</li>
+				<li class="nav_menu">
+					<h3>Support<span>+</span></h3>
+					<ul>
+						<li><a href="#" title="">Contact Us</a></li>
+						<li><a href="#" title="">Warranty</a></li>
+						<li><a href="#" title="">User Guide</a></li>
+						<li><a href="#" title="">Scooter safety notice</a></li>
+						<li><a href="#" title="">Android Enterprise Recommended</a></li>
+					</ul>
+				</li>
+				<li class="nav_menu">
+					<h3>ABOUT US<span>+</span></h3>
+					<ul>
+						<li><a href="#" title="">Apple</a></li>
+						<li><a href="#" title="">Press &amp; Media</a></li>
+						<li><a href="#" title="">User Agreement</a></li>
+						<li><a href="#" title="">Privacy Policy</a></li>
+						<li><a href="#" title="">Xiaomi Blog</a></li>
+						<li><a href="#" title="">Investor Relations</a></li>
+						<li><a href="#" title="">Integrity &amp; Compliance</a></li>
+					</ul>
+				</li>
+				<li class="nav_menu">
+					<h3>FOLLOW Apple<span>+</span></h3>
+					<ul>
+						<li><a href="#" title="">Facebook</a></li>
+						<li><a href="#" title="">Youtube</a></li>
+						<li><a href="#" title="">Instagram</a></li>
+						<li><a href="#" title="">Twitter</a></li>
+					</ul>
+				</li>
+			</ul>
+			<div class="footer_copyright">
+				Copyright &copy; 2020 Jisun Kim. All Rights Reserved
+			</div>
+		</footer>
+	</div>
+	<div id="full"></div>
+ </body>
+</html>

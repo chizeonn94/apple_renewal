@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="ko">
+ <head>
+  <title>iPhone11 - Apple</title>
+  <meta charset="utf-8"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="css/reset.css" rel="stylesheet" type="text/css"/>
+  <link href="css/pro11_sliding.css" rel="stylesheet" type="text/css"/>
+  <script src="js/common.js"></script>
+  <script>
+		$(function(){
+			/*계정버튼 클릭시 하위메뉴 나타나게 하기*/
+			var clickedAcc = 0;
+			$("#info_menu .account").click(function(){
+				if(clickedAcc == 0){
+					$("#accMenu").css({"display":"block"});
+					clickedAcc = 1;
+				}else{
+					$("#accMenu").css({"display":"none"});
+					clickedAcc = 0;
+				}
+			});
+			//기능) 버튼 클릭했을때 옆의 화면 나오게하기
+			$(window).scroll(function(){
+				var nowScroll= $(document).scrollTop();
+				console.log( nowScroll);
+				 
+				var clickedBtn = 0;
+				$(".btn_compare a").click(function(){
+					if(clickedBtn == 0){
+						$("#hidden").addClass("hidden2").css({marginTop:nowScroll});
+						$("#wrap").addClass("wrap2");
+						$("body").addClass("body2");
+						clickedBtn = 1;
+						
+					}else{
+						$("#hidden").removeClass("hidden2").css({marginTop:0});
+						$("#wrap").removeClass("wrap2");
+						$("body").removeClass("body2");
+						clickedBtn = 0;
+						
+					}
+					return false;
+				});
+
+				//기능) scooch 섹션 스크롤 닿았을때 사진크기 커지게하기
+				var scoochYOffset = $("#scooch").offset().top;
+				var light = $("#light").offset().top;
+				console.log(scoochYOffset);
+				if(nowScroll>=scoochYOffset && nowScroll<=light){
+					
+				}
+			});
+			
+
+			//기능) 버튼 눌렀을때 버튼 배경색, 글자색 효과주기
+			$(".features li a").click(function(){
+				$(".features li a").css({"backgroundColor":"#ccc","color":"#000"});
+				$(this).css({"backgroundColor":"#000","color":"#fff"});
+				$(".phone_screen_inner img").css({"zIndex":"0","opacity":"1"});
+			
+				return false;
+			});
+		
+			/*문제발생: 사진 바뀔때마다 깜빡거림*/
+			$(".features li:eq(0) a").click(function(){
+				
+				$(".phone_screen_inner img:not(.crop)").css({"zIndex":"1","opacity":"0"});
+			});
+			$(".features li:eq(1) a").click(function(){
+				
+				$(".phone_screen_inner img:not(.skew)").css({"zIndex":"1","opacity":"0"});
+			});
+			$(".features li:eq(2) a").click(function(){
+				$(".phone_screen_inner img:not(.filters)").css({"zIndex":"1","opacity":"0"});
+			});
+
+			//기능) sliding window
+			$("#section2 ul").css({"marginLeft":"-100%"});
+			$("#section2 ul").prepend($("#section2 ul .slide:last"));
+
+			//1) prev버튼
+			$(".btn_sliding .prev a").click(function(){
+				$("#section2 ul").animate({"marginLeft":"+=100%"},500,"swing",function(){
+					$("#section2 ul").css({"marginLeft":"-100%"});
+					$("#section2 ul").prepend($("#section2 ul .slide:last"));
+				});
+				return false;
+			});
+
+			//2) next버튼
+			$(".btn_sliding .next a").click(function(){
+				$("#section2 ul").animate({"marginLeft":"-=100%"},500,"swing",function(){
+					$("#section2 ul").append($("#section2 ul .slide:eq(0)"));
+					$("#section2 ul").css({"marginLeft":"-100%"});
+				});
+				return false;
+			});
+			
+			//기능) 색깔 클릭시 이미지 색상별 변화
+			$("#section2 .choose_color p i:eq(0)").click(function(){
+				$("#section2 .browse_phones	 img").css({"opacity":"1"});
+				$("#section2 .browse_phones img:not(.purple)").css({"opacity":"0"});
+			});
+			$("#section2 .choose_color p i:eq(1)").click(function(){
+				$("#section2 .browse_phones	 img").css({"opacity":"1"});
+				$("#section2 .browse_phones img:not(.yellow)").css({"opacity":"0"});
+			});
+			$("#section2 .choose_color p i:eq(2)").click(function(){
+				$("#section2 .browse_phones	 img").css({"opacity":"1"});
+				$("#section2 .browse_phones img:not(.green)").css({"opacity":"0"});
+			});
+			$("#section2 .choose_color p i:eq(3)").click(function(){
+				$("#section2 .browse_phones	 img").css({"opacity":"1"});
+				$("#section2 .browse_phones img:not(.black)").css({"opacity":"0"});
+			});
+			$("#section2 .choose_color p i:eq(4)").click(function(){
+				$("#section2 .browse_phones	 img").css({"opacity":"1"});
+				$("#section2 .browse_phones img:not(.white)").css({"opacity":"0"});
+			});
+			$("#section2 .choose_color p i:eq(5)").click(function(){
+				$("#section2 .browse_phones	 img").css({"opacity":"1"});
+				$("#section2 .browse_phones img:not(.red)").css({"opacity":"0"});
+			});
+		});
+  </script>
+  <style>
+	#header{position:sticky;top:0;}
+	/*full*/	
+	#full{width:100%;height:100%;background-color:rgba(255,255,255,0.5);position:fixed;left:0;top:0;}
+	.btn_compare{display:none;}
+  </style>
+ </head>
+
+ <body id="body">
+	<div id="wrap">
+		<!-- ########## header ########## -->
+		<div id="header">
+			<h1>Apple</h1>
+			<div class="header_inner">
+				<div id="btn_mob_menu">
+					<p>
+						<span>a</span>
+						<span>a</span>
+						<span>a</span>
+					</p>
+				</div>
+				<div id="logo">
+					<a href="index.html" title="Apple">
+						<img src="img/icon/logo.svg" alt="apple logo"/>
+					</a>
+				</div>
+				<ul id="info_menu">
+					<li class="account"><a href="#none" title="account icon"><img src="img/icon/account.png" alt="icon of account"/></a></li>
+					<li class="magnifier"><a href="#none" title="search icon"><img src="img/icon/magnifier.png" alt="icon of search"/></a></li>
+				</ul>
+				<div class="search_area1">
+					<form id="search_bar1" action="http://www.apple.com/us/search" method="GET">
+						<!-- <img src="img/icon/magnifier.png" alt="image of search"/> -->
+						<input id="submit_btn" type="submit" name="submit_btn" title="button of submit"/>
+						<input id="search_bar_pc" type="text" name="search_bar_pc" title="search_bar_pc" placeholder="Search apple.com" />
+						<input id="close_button" type="button" name="close_button" title="close button" value="x" readonly/>
+					</form>
+					<aside id="quick_link">
+						<h3>QUICK LINK</h3>
+						<ul>
+							<li><a href="airpod.html" title="COVID-19 information">Airpods Pro</a></li>
+							<li><a href="apple_card.html" title="COVID-19 information">Apple Card</a></li>
+							<li><a href="signup.html" title="COVID-19 information">Sign Up</a></li>
+							<li><a href="acc.html" title="COVID-19 information">Accessories</a></li>
+							<li><a href="watch.html" title="COVID-19 information">Apple watch</a></li>
+							<li><a href="pro11.html" title="COVID-19 information">iPhone 11</a></li>
+						</ul>
+					</aside>
+				</div>
+				
+				<aside id="accMenu">
+					
+<?php if( empty($_SESSION['email']) ){ ?>
+					<div class="smallMenu"><a href="list.html" title="">Browse bulletin board</a></div>
+					<div class="smallMenu"><a href="signin.html" title="">Sign in</a></div>
+<?php }else{ ?>
+					<div class="smallMenu"><a href='manage.html?email=<?=$_SESSION['email']?>' title="">Manage account</a></div>
+					<div class="smallMenu"><a href="list.html" title="">Bulletin board</a></div>
+					<div class="smallMenu"><a href="signout.html" title="">Sign out</a></div>
+<?php } ?>
+				</aside>
+				<ul id="gnb">
+					<li><a href="airpod.html" title="Mac">Mac</a></li>
+					<li><a href="pad.html" title="iPad">iPad</a></li>
+					<li><a href="pro11.html" title="iPhone">iPhone</a></li>
+					<li><a href="watch.html" title="watch">Watch</a></li>
+					<li><a href="acc.html" title="watch">Acc</a></li>
+					<li><a href="apple_card.html" title="watch">Card</a></li>
+					<li><a href="purchase.html" title="watch">Purchase</a></li>
+				</ul>
+			</div>
+			
+			<div id="gnb2">
+				<div class="search_area2">
+					<form id="search_bar2" action="http://www.apple.com/us/search" method="GET">
+						<img src="img/icon/magnifier.png" alt="image of search"/><input id="search" type="text" name="src" title="search_bar_mob" placeholder="Search apple.com" />
+					</form>
+				</div>
+				<ul>
+					<li><a href="airpod.html" title="Mac">Mac</a></li>
+					<li><a href="pad.html" title="iPad">iPad</a></li>
+					<li><a href="pro11.html" title="iPhone">iPhone</a></li>
+					<li><a href="watch.html" title="watch">Watch</a></li>
+					<li><a href="acc.html" title="watch">Acc</a></li>
+					<li><a href="apple_card.html" title="watch">Card</a></li>
+					<li><a href="purchase.html" title="watch">Purchase</a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- ########### container ########### -->
+		<div id="container">
+			
+			<section id="section1">
+				<div class="video_phones">
+					<video poster="img/iphone11/phones.jpg" autoplay muted>
+						<source src="video/iphone11/phones.mp4" type="video/mp4"/>
+					</video>
+				</div>
+				<div class="text">
+					<h2>Just the right amount of everything.</h2>
+					<p class="desc">
+						A new dual‑camera system captures more of what you see and love. The fastest chip ever in a smartphone and all‑day battery life let you do more and charge less. And the highest‑quality video in a smartphone, so your memories look better than ever.
+					</p>
+					<p class="price">
+						From $19.96/mo. or $479 with trade-in.*
+					</p>
+				</div>
+				
+				
+			</section>
+			<section id="section2">
+				<ul class="film">
+					<li class="slide" id="slide0">
+						<div class="slide_inner">
+							<h2>Love at first, second, third, fourth, fifth, and sixth sight.</h2>
+							<div class="img_frame">
+								<p class="browse_phones img_hardwares">
+									<img  class="purple" src="img/iphone11/phone_horizon_0.jpg" alt=""/>
+									<img class="yellow" src="img/iphone11/phone_horizon_1.jpg" alt=""/>
+									<img class="green" src="img/iphone11/phone_horizon_2.jpg" alt=""/>
+									<img class="black"
+									src="img/iphone11/phone_horizon_3.jpg" alt=""/>
+									<img class="white"
+									src="img/iphone11/phone_horizon_4.jpg" alt=""/>
+									<img class="red"
+									src="img/iphone11/phone_horizon_5.jpg" alt=""/>
+								</p>
+							</div>
+							
+							
+						</div>
+					</li>
+					<li class="slide" id="slide1">
+						<div class="slide_inner">
+							<div  class="text_design">
+								<p>
+									Precision milled from a single sheet of glass.
+								</p>
+							</div>
+							<div class="browse_phones design">	
+								
+								<img class="purple" src="img/iphone11/design0.jpg" alt="purple color of hardware"/>
+								<img class="yellow" src="img/iphone11/design1.jpg" alt="yellow color of hardware"/>
+								<img class="green" src="img/iphone11/design2.jpg" alt="green color of hardware"/>
+								<img class="black" src="img/iphone11/design3.jpg" alt="black color of hardware"/>
+								<img class="white" src="img/iphone11/design4.jpg" alt="white color of hardware"/>
+								<img class="red" src="img/iphone11/design5.jpg" alt="red color of hardware"/>
+								
+							</div>
+							
+						</div>
+					</li>
+					<li class="slide" id="slide2">
+						<div class="slide_inner">
+							<div  class="text_design">
+								<p>
+									Precision milled from a single sheet of glass.
+								</p>
+							</div>
+							<div class="big_wrap">
+								<div class="browse_phones big">
+									<img class="purple" src="img/iphone11/big0.jpg" alt="purple color of hardware"/>
+									<img class="yellow" src="img/iphone11/big1.jpg" alt="purple color of hardware"/>
+									<img class="green" src="img/iphone11/big2.jpg" alt="purple color of hardware"/>
+									<img class="black" src="img/iphone11/big3.jpg" alt="purple color of hardware"/>
+									<img class="white" src="img/iphone11/big4.jpg" alt="purple color of hardware"/>
+									<img class="red" src="img/iphone11/big5.jpg" alt="purple color of hardware"/>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li class="slide" id="slide3">
+						<div class="slide_inner">
+							<div  class="text_design">
+								<p>
+									Precision milled from a single sheet of glass.
+								</p>
+							</div>
+							<div class="back_wrap">
+								<div class="browse_phones back">
+									<img class="purple" src="img/iphone11/back0.jpg" alt="purple color of hardware"/>
+									<img class="yellow" src="img/iphone11/back1.jpg" alt="yellow color of hardware"/>
+									<img class="green" src="img/iphone11/back2.jpg" alt="green color of hardware"/>
+									<img class="black" src="img/iphone11/back3.jpg" alt="black color of hardware"/>
+									<img class="white" src="img/iphone11/back4.jpg" alt="white color of hardware"/>
+									<img class="red" src="img/iphone11/back5.jpg" alt="red color of hardware"/>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<div class="selection">
+					<div class="choose_color">
+						<p class="purple"><i></i></p>
+						<p class="yellow"><i></i></p>
+						<p class="green"><i></i></p>
+						<p class="black"><i></i></p>
+						<p class="white"><i></i></p>
+						<p class="red"><i></i></p>
+					</div>
+					<!-- 이것들 때문에 슬라이드 제대로 안돌아감 -->
+					<!-- <ul class="dots">
+						<li><a href="" title=""></a></li>
+						<li><a href="" title=""></a></li>
+						<li><a href="" title=""></a></li>
+						<li><a href="" title=""></a></li>
+					</ul> -->
+				
+				</div>
+				<div class="btn_sliding">
+					<p class="prev"><a href="#none" title="prev button">◀</a></p>
+					<p class="next"><a href="#none" title="next button">▶</a></p>
+				</div>
+			</section>
+			
+			<div id="video_phones">
+				<video poster="img/iphone11/phones2.jpg" autoplay muted>
+					<source src="video/iphone11/phones2.mp4" type="video/mp4"/>
+				</video>
+			</div>
+			
+			<section id="section3">
+				<div id="left">
+					<div class="text">
+						<h2>
+							It just got a whole<br/>
+							lot harder to take<br/>
+							a bad photo.
+						</h2>
+						<p class="desc">
+							<span style="color:#000;">All‑new dual‑camera system.</span> Take your photos from wide to ultra wide. A redesigned interface uses the new Ultra Wide camera to show you what's happening outside the frame — and lets you capture it. Shoot and edit videos as easily as you do photos. It's the world's most popular camera, now with a whole new perspective.
+						</p>
+					</div>
+					<div class="dual_camera">
+						<div class="img_dual_camera">
+							<ul class="desc_camera">
+								<li>
+									<p class="detail_title">12MP Wide</p>
+									<p class="desc_lense">The new Wide sensor has 100 percent Focus Pixels for up to three times faster autofocus in low light.</p>
+								</li>
+								<li>
+									<p class="detail_title">12MP Ultra Wide</p>
+									<p class="desc_lense">Capturing four times more scene, it's great for landscapes, travel, groups, large interiors, and action shots.</p>
+								</li>
+							</ul>
+						</div>
+						<p class="btn_compare" id="dfdf"><a href="#none" title="비교버튼">Compare with iPhone 11 Pro</a></p>
+					</div>
+				</div>
+				
+			</section>
+			
+			<section id="section4">
+				<div class="phone">
+					<p class="phone_frame">
+						<img src="img/iphone11/video_hardware.png" alt=""/>
+					</p>
+					<div class="phone_screen">
+						<p class="phone_screen_inner">
+							<img class="crop" src="img/iphone11/crop.jpg" alt="image of crop feature"/>
+							<img class="skew" src="img/iphone11/skew.jpg" alt="image of skew feature"/>
+							<img class="filters" src="img/iphone11/filters.jpg" alt="image of filters feature"/>
+						</p>
+					</div>
+				</div>
+				<ul class="features">
+					<li><a href="#none" title="crop">Crop</a></li>
+					<li><a href="#none" title="skew">Skew</a></li>
+					<li><a href="#none" title="filters">Filters</a></li>
+				</ul>
+				<p class="desc">
+					Shoot and edit the highest-quality video in a smartphone. iPhone 11 shoots beautifully sharp 4K video at 60 fps across all its cameras. The Ultra Wide camera captures four times more scene, so it’s perfect for action shots like your dog catching a frisbee. If you’re recording a performance — say, your kid’s piano recital — when you zoom in, the audio zooms too. And now you can edit videos as easily as you do photos.
+				</p>
+			</section>
+			<section id="scooch">
+				<p class="ok">“OK, everyone, scooch out a bit."</p>
+				<div class="img_scooch_wrap">
+					<p class="img_scooch">
+						<img src="img/iphone11/scooch.jpg" alt=""/>
+					</p>
+					<p class="transparency"></p>
+				</div>
+				
+				
+				<!-- <div class="pics">
+					<p><img src="img/iphone11/scooch.jpg" alt=""/></p>
+				</div> -->
+			</section>
+			<section id="light">
+				<div class="not_enough">
+					<p>
+						Not enough light?<br/>
+						No problem.
+					</p>
+				</div>
+				<p class="desc_night_mode">
+					<span style="color:#fff;">Introducing Night mode.</span> Shooting in low light doesn’t have to be a shot in the dark. Night mode is a new feature that turns on automatically for low‑light photos like you’ve never seen. There’s no need for flash, colors are more natural, and photos are brighter.
+				</p>
+				<ul class="img_night_mode">
+					<li><span class="off">Night mode off</span></li>
+					<li><span class="off">Night mode off</span></li>
+				</ul>
+				
+			</section>
+			<section id="portrait">
+				<p class="title">Portrait-perfect.</p>
+			</section>
+			<section id="portraits">
+				<p class="desc_main">
+					Take portraits to new places. With new kinds of portraits and more lighting controls, the dual cameras in iPhone 11 work together to create stunning images. And Portrait mode now works with everything you love to shoot — that includes your best friends, two‑legged or four.
+				</p>
+				<div class="pics">
+					<p class="p1"><img src="img/iphone11/portrait_1.jpg" alt=""/></p>
+					<p class="p2"><img src="img/iphone11/portrait_2.jpg" alt=""/></p>
+				</div>
+				<p class="desc_main">
+					The High-Key Light Mono effect in iOS 13 transforms your portraits into beautiful, studio‑style monochromes. And Portrait Lighting Control lets you create the look you want by changing the intensity of light on your subjects.
+				</p>
+				<div class="pics2">
+					<p class="p3"><img src="img/iphone11/portrait_3.jpg" alt=""/></p>
+					<p class="p4"><img src="img/iphone11/portrait_4.jpg" alt=""/></p>
+					<p class="p5"><img src="img/iphone11/portrait_5.jpg" alt=""/></p>
+					<p class="p6"><img src="img/iphone11/portrait_6.jpg" alt=""/></p>
+					<p class="p7"><img src="img/iphone11/portrait_7.jpg" alt=""/></p>
+					<p class="p8"><img src="img/iphone11/portrait_8.jpg" alt=""/></p>
+					<p class="p9"><img src="img/iphone11/portrait_9.jpg" alt=""/></p>
+				</div>
+				<h2 class="text_hdr">
+					Smart HDR.<br/>
+					The easiest form of flattery.
+				</h2>
+				<div class="pics_hdr">
+					<ul>
+						<li><img src="img/iphone11/hdr1.jpg" alt=""/></li>
+					</ul>
+				</div>
+				<ul class="dots">
+					<li><a href="" title=""></a></li>
+					<li><a href="" title=""></a></li>
+					<li><a href="" title=""></a></li>
+					<li><a href="" title=""></a></li>
+				</ul>
+				<p class="desc_main">
+					The High-Key Light Mono effect in iOS 13 transforms your portraits into beautiful, studio‑style monochromes. And Portrait Lighting Control lets you create the look you want by changing the intensity of light on your subjects.
+				</p>
+			</section>
+			<section id="speed_video">
+				<div class="quick_take">
+					<div class="video_selfie">
+						<video poster="img/iphone11/display_camera0.jpg" autoplay muted>
+							<source src="video/iphone11/selfie.mp4">
+						</video>
+					</div>
+					<p class="frame_quick">
+						<img src="img/iphone11/frame_quick.png" alt=""/>
+					</p>
+				</div>
+				<h3 class="text_speed">
+					Go from pics to<br/>
+					video faster than<br/>
+					a speeding toddler.
+				</h3>
+				<p class="desc_main">
+					Start shooting video instantly with QuickTake. Take a video simply by holding the shutter while in photo mode. Then swipe to the right to continue recording. If you’re shooting outdoors, A13 Bionic can use machine learning to automatically track a moving subject.
+				</p>
+				<h3 class="text_slo">
+					Slo‑mo your selfie.
+				</h3>
+				<div class="video_area_wrap">
+					<div class="video_area">					
+						<div class="video_selfie">
+							<video poster="img/iphone11/selfie_start.jpg" autoplay muted>
+								<source src="video/iphone11/selfie2.mp4">
+							</video>
+						</div>
+						<p class="phone_hand">
+							<img src="img/iphone11/phone_hand.png" alt=""/>
+						</p>
+					</div>
+					<p class="desc_main">
+						Introducing the slofie. Everything looks cooler at 120 fps, even if you’re just saying cheese, waving hi, or tossing your hair in the breeze. And now you can add more of everything to your selfies thanks to the new 12MP TrueDepth camera. Just turn your iPhone to landscape and the camera automatically zooms out to fit more in.
+					</p>
+				</div>
+				
+			</section>
+			<section id="chip">
+				<div class="inner">
+					<div class="desc">
+						<h2 class="text_main">
+							A chip that’s<br/>
+							all Pro.
+						</h2>
+						<p class="text_sub">
+							<span style="color:#000;">Both iPhone 11 and iPhone 11 Pro have the fastest chip ever in a smartphone.</span> A13 Bionic is so powerful, everything you do is fast and fluid. It also works in the most power‑efficient way possible, so your battery lasts longer. In fact, A13 Bionic is so advanced, it’s years ahead of the pack.
+						</p>
+					</div>
+					<div class="img_chips">
+						<p class="chip1"><img src="img/iphone11/chip1.jpg" alt=""/><p>
+						<p class="chip2"><img src="img/iphone11/chip2.jpg" alt=""/><p>
+						<p class="chip3"><img src="img/iphone11/chip3.jpg" alt=""/><p>
+						<p class="chip4"><img src="img/iphone11/chip4.jpg" alt=""/><p>
+						<p class="chip5"><img src="img/iphone11/chip5.jpg" alt=""/><p>
+						<p class="chip6"><img src="img/iphone11/chip6.jpg" alt=""/><p>
+					</div>
+				</div>
+				
+			</section>
+		</div>
+		<footer></footer>
+	</div>
+	<!-- <section id="hidden">
+		<p class="txt">
+			iPhone 11 Pro has the same Wide and Ultra Wide cameras, along with a new Telephoto camera. This triple‑camera system gives you a combined four times optical zoom range for more framing options.
+		</p>
+		<p class="img"><img src="img/iphone11/backBig.jpg" alt=""/></p>
+		
+	</section> -->
+	<div id="full"></div>
+ </body>
+</html>

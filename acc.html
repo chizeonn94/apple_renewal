@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="ko">
+ <head>
+  <title> Headphones &amp; Speakers  </title>
+  <meta charset="utf-8"/>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/d5f62a3761.js" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <link href="css/reset.css" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" type="text/css" href="css/acc.css"/>
+  <script>
+		window.onload=function(){
+
+			// 기능) filter클릭했을때 catefories 사라지게 하기, 박스 커지게 하기
+			var filterWrap= document.querySelector(".filterWrap");
+			var clickFilterWrap = 0;
+			var imgArea = document.querySelectorAll(".img_area");
+			filterWrap.onclick=function(){
+				if(clickFilterWrap == 0){
+					//1) categories 접어놓기
+					var categories= document.getElementById("categories");
+					categories.style.width="0";
+					
+					categories.style.transform = "translatex(-220px)";
+					categories.style.marginRight = "0";
+					categories.style.opacity = "0";
+
+
+					//2) boxes 너비 넓혀주기
+					document.getElementById("boxes").style.width="1300px";			
+					for(var i=0;i<imgArea.length;i++){
+						imgArea[i].style.height="432px";
+					}
+					clickFilterWrap = 1;
+				}else{
+					//1) categories 다시 펼치기
+					var categories= document.getElementById("categories");
+					categories.style.width="220px";
+					
+					categories.style.transform = "translatex(0)";
+					categories.style.marginRight = "30px";
+					categories.style.opacity = "1";
+					
+
+					//2) boxes 너비, imgArea의 높이 원래대로 돌려높기
+					document.getElementById("boxes").style.width="1050px"
+					for(var i=0;i<imgArea.length;i++){
+						imgArea[i].style.height="350px";
+					}
+					clickFilterWrap = 0;
+				}
+				
+			}
+			console.log(filterWrap);
+
+			// 기능) sortBy클릭했을때 sortLists나오게 하기
+			var sortBy = document.querySelectorAll(".sortBy");
+			
+		
+			
+			for(var i=0;i<sortBy.length;i++){
+				var clicked=0;
+				sortBy[i].onclick=function(){
+					console.log(clicked);
+					if(clicked==0){
+						sortLists.style.opacity="1";
+						sortLists.style.zIndex="99";
+						clicked = 1;
+					}else{
+						sortLists.style.opacity="0";
+						sortLists.style.zIndex="-1";
+						clicked = 0;
+					}
+					
+				}
+			}
+			/*
+			var clicked = 1;
+			
+			성공함. 근데 여러 element에 같은 onclickfunction 쓰는거때문에 다른것 시도
+			sortBy.onclick = function() {
+				if(clicked==1){
+					sortLists.style.opacity="1";
+					sortLists.style.zIndex="99";
+					clicked = 0;
+				}else{
+					sortLists.style.opacity="0";
+					sortLists.style.zIndex="-1";
+					clicked = 1;
+				}
+				//clicked = !clicked;
+			}*/
+			
+			//기능) sortList각각 클릭시 sortBy 안 텍스트 변경, sortLists 박스 다시 안보이게 하기
+			var sortList = document.querySelectorAll(".sortList");
+			console.log(sortList);
+			sortList.forEach(function(el){
+				el.addEventListener('click', changeSortWay, false);
+
+			});
+
+			function changeSortWay(e){
+
+				//1) 글자바꿔주기
+				var li = e.currentTarget;
+				var selectedSortBy=document.getElementById("selectedSortBy");
+				
+				var hidden = li.querySelector('a');
+				selectedSortBy.innerHTML= hidden.innerText;
+				
+				//2) sortLists 박스 다시 안보이게 하기
+				var clicked = false;
+			}
+
+			//기능) 메뉴 클릭시 상세메뉴 접혔던거 나타나게 하기 (아코디언)
+
+			$("#categories .container li").click(function(){
+		
+				if($(this).find("div").hasClass("slideDown")){
+					$(this).find("div").removeClass("slideDown");
+				}
+				else{
+					$(this).find("div").addClass("slideDown");
+				}
+			});
+			
+		}
+
+		
+		
+	
+	$(function(){
+		/*계정버튼 클릭시 하위메뉴 나타나게 하기*/
+		var clickedAcc = 0;
+		$("#info_menu .account").click(function(){
+			if(clickedAcc == 0){
+				$("#accMenu").css({"display":"block"});
+				clickedAcc = 1;
+			}else{
+				$("#accMenu").css({"display":"none"});
+				clickedAcc = 0;
+			}
+		});
+
+		//기능) prev, next 버튼 눌렀을때 이미지 바뀌기
+		$("#boxes .box .imgs0 img:gt(0)").hide();
+		$("#boxes .box .imgs1 img:gt(0)").hide();
+		$("#boxes .box .imgs2 img:gt(0)").hide();
+		$("#boxes .box .imgs3 img:gt(0)").hide();
+		$("#boxes .box .imgs4 img:gt(0)").hide();
+		$("#boxes .box .imgs5 img:gt(0)").hide();
+		$("#boxes .box .imgs6 img:gt(0)").hide();
+		$("#boxes .box .imgs7 img:gt(0)").hide();
+		$("#boxes .box .imgs8 img:gt(0)").hide();
+		
+		//1) next버튼 눌렀을때
+		$("#boxes .box .btns .btn_next").click(function(){
+			$(this).parent().prev().children("img:first").fadeOut().next().fadeIn();
+			$(this).parent().prev().children("img:first").appendTo($(this).parent().prev());
+			
+		});
+		
+		//2) prev버튼 눌렀을때
+		$("#boxes .box .btns .btn_prev").click(function(){
+			$(this).parent().prev().children("img:last").prependTo($(this).parent().prev()).fadeIn();
+			$(this).parent().prev().children("img:first").next().fadeOut();	
+		});
+
+		//
+		$(".name_product").click(function(){
+			location.href="purchase.html";
+		});
+	});
+  </script>
+  <script src="js/common.js"></script>
+  <style>
+	body{font-family: 'Heebo', sans-serif;}
+	*{margin:0;padding:0;}
+	body{margin:0;padding:0;}
+	header,nav,footer,section,aside,article{display:block;}
+	div, p, ul, ul li, ol, ol li{margin:0;padding:0;}
+	li{list-style-type: none;}
+	img{border:none;}
+	a:link,a:visited{text-decoration: none;color: #000;}
+
+	i{font-style:normal;}
+
+	#wrap{max-width:1920px;width:100%;margin:0 auto;}
+	#header{width:100%;}
+	#container{width:100%;}
+	#footer{width:100%;}
+
+	/*######## 기능 클래스 ########*/
+		.slide_down{max-height:500px !important;}
+	/*##################### header 공통 #####################*/
+		#header{width:100%;height:60px;background-color:#212121;position:fixed;z-index:5;}
+		#header h1{position:absolute;left:-9999px;font-size:1px;width:1px;height:1px;overflow:hidden;}
+		.header_inner{width:1300px;margin:0 auto;position:relative;}
+		.header_inner:after{content:"";display:block;clear:both;}
+		.header_inner #logo{width:30px;height:38px;position:absolute;left:0;top:10px;}
+		.header_inner #logo a{display:block;color:#b0b0b0;}
+		.header_inner #logo a:hover{color:#fff;}
+		.header_inner #logo img{width:100%;color:#fff;}
+
+
+		#accMenu{background-color:#fff;width:200px;padding:0 15px;border-radius:7px;position: absolute;top: 65px;right:-48px;display:none;}
+		#accMenu .smallMenu{padding:15px 0;border-top:1px solid #ccc;}
+		#accMenu .smallMenu:first-child{border:none;}
+
+		#gnb{text-align:right;height:60px;margin-right:60px;line-height:60px;float:right;}
+		#gnb li{display:inline;}
+		#gnb li a{padding:0 10px;color:#f5f5f7;}
+		#gnb li a:hover{color:#fff;}
+
+
+		#info_menu{text-align:right;line-height:60px;float:right;}
+		#info_menu li{height:20px;padding:20px 0;margin-left:25px;overflow:hidden;float:left;}
+		#info_menu li a{display:block;width:100%;height:100%;}
+		#info_menu li img{height:100%;margin-bottom:30px;}
+
+
+		.search_area1{width:50%;padding:18px 0;position:absolute;left:50%;transform:translatex(-50%);}
+		#submit_btn{
+			width:21px;
+			height:24px;
+			border:none;
+			color:transparent;
+			background-color:#212121;
+			background-image:url("img/icon/magnifier.png");
+			background-repeat:no-repeat;
+			background-size:100%;
+			vertical-align:middle;margin-right:15px;}
+		#search_bar_pc{height:24px;font-size:18px;background-color:#212121;color:#ccc;border:none;}
+		#close_button{background-color:#212121;border:none;color:#ccc;font-size:20px;float:right;}
+
+		#quick_link{background-color:#fff;transform:translatey(17px);padding:30px;font-size:14px;border-radius:0 0 20px 20px;color:#777;}
+		#quick_link h3{line-height:30px;font-weight:400;}
+
+		#quick_link ul li{line-height:40px;text-indent:20px;}
+		#quick_link ul li a{color:#777;}
+		#quick_link ul li:hover{background-color:#efefef;}
+		#quick_link ul li:hover a{color:rgba(0,112,201);}
+
+		/*############# 모바일 메뉴버튼 ##############*/
+		#btn_mob_menu{display:none;cursor:pointer;}
+
+		/*############# 모바일 gnb 메뉴 ##############*/
+		#gnb2{display:none;}
+
+
+
+	/*##################### footer 공통 #####################*/
+		#footer{width:100%;height:450px;background-color:#212121;}
+		#footer a{color:#b0b0b0;}
+		#footer h3{font-size:14px;line-height:40px;color:#b0b0b0;font-weight:700;}
+		#footer h3 span{display:none;}
+		#footer_nav_menues{width:750px;height:350px;padding-top:50px;margin:0 auto;}
+		#footer_nav_menues .learn_more{width:234px;float:left;}
+		#footer_nav_menues .learn_more li{font-size:14px;line-height:40px;}
+		#footer_nav_menues .nav_menu{width:172px;float:left;}
+		#footer_nav_menues .nav_menu li{font-size:14px;line-height:40px;}
+		#footer a:hover{color: #fff;}
+
+	/*############## 반응형 (일반 큰 pc) ###############*/
+	@media all and (min-width:1320px) and (max-width:1919px){
+		.header_inner{width:1000px;}
+		
+	}
+	/*############## 반응형 (작은 pc) ###############*/
+	@media all and (min-width:1025px) and (max-width:1319px){
+		.header_inner{width:900px;}
+	}  
+
+	/*############## 반응형 (태블릿) ###############*/
+	@media all and (min-width:768px) and (max-width:1024px){
+		.header_inner{width:644px;}
+	}
+	/*##############  반응형 480 ###############*/
+	@media all and (min-width:481px) and (max-width:767px){
+		
+		
+		.header_inner{width:100%;height:45px;position:relative;}
+		.header_inner #logo{width:20px;height:24px;left:50%;transform:translatex(-50%);top:50%;transform:translatey(-50%);}
+		
+
+		#info_menu{text-align:right;line-height:45px;float:right;}
+		#info_menu li{width:22px;height:20px;padding:0;float:none;overflow:visible;}
+		#info_menu li img{margin-bottom:10px;}
+		#info_menu .magnifier{display:none;}
+		#info_menu .account{position:absolute;top:50%;transform:translatey(-50%);right:3%;}
+		
+		
+		
+
+
+		#gnb{display:none !important;}
+
+		/*############# 모바일 메뉴버튼 ##############*/
+		#btn_mob_menu{display:block;width:40px;height:40px;position:absolute;left:0px;top:50%;transform:translatey(-45%);}
+		#btn_mob_menu p{width:100%;height:100%;overflow:hidden;}
+		#btn_mob_menu span{display:block;text-indent:-9999px;width:50%;height:1px;background-color:#fff;margin:8px auto 0;}
+		
+		/*############# gnb2 메뉴 (모바일버전) ##############*/
+		#gnb2{display:block;overflow:hidden;width:100%;height:0px; background-color:#000;transition:height 0.5s;}
+		#gnb2 ul{width:100%;box-sizing:border-box;padding:0 10%;}
+		#gnb2 li{font-size:17px;line-height:55px;border-bottom:1px solid #555;}
+		#gnb2 li:last-child{border-bottom:none;}
+		#gnb2 a{color:#fff;}
+
+		
+
+		/*모바일용 검색바*/
+		#gnb2 .search_area2{width:100%;border-bottom:1px solid #555;overflow:hidden;}
+		#gnb2 form{width:90%;margin:10px auto;background-color:#333;border-radius:5px;}
+		#gnb2 form img{width:5%;margin:2%;margin-left:4%;vertical-align:middle;}
+		#gnb2 form input{width:80%;border:none;padding:10px 0;text-indent:13px;background:none;font-size:17px;color:#fff;}
+
+		/*######## footer 420반응형 #########*/
+		#footer{width:100%;height:auto;}
+		/*pc버전에서 높이값이 이미 고정픽셀로 셋팅되어있어서 해제하는 방법 몰라서 auto 일단 넣어봄.*/
+		
+		#footer h3{font-size:14px;line-height:40px;color:#b0b0b0;font-weight:700;}
+		#footer h3 span{display:inline-block;float:right;}
+
+		#footer_nav_menues{width:80%;height:auto;padding:20px 0;margin:0 auto;}
+		#footer_nav_menues .learn_more{width:100%;float:none;border-bottom:1px solid #555;}
+		#footer_nav_menues .learn_more li{font-size:14px;line-height:40px;}
+		#footer_nav_menues .nav_menu{width:100%;float:none;border-bottom:1px solid #555;}
+		#footer_nav_menues .nav_menu:last-child{border-bottom:none;}
+		#footer_nav_menues .nav_menu li{font-size:14px;line-height:40px;}
+
+		#footer_nav_menues .learn_more ul, #footer_nav_menues .nav_menu ul {max-height:0px;overflow:hidden;transition:all 0.5s;}
+				
+	}
+
+	/*##############  반응형 320 ###############*/
+	@media all and (min-width:320px) and (max-width:480px){
+		
+		.header_inner{width:100%;height:45px;position:relative;}
+		.header_inner #logo{width:20px;height:24px;left:50%;transform:translatex(-50%);top:50%;transform:translatey(-50%);}
+		
+
+		#info_menu{text-align:right;line-height:45px;float:right;}
+		#info_menu li{width:22px;height:20px;padding:0;float:none;overflow:visible;}
+		#info_menu li img{margin-bottom:10px;}
+		#info_menu .magnifier{display:none;}
+		#info_menu .account{position:absolute;top:50%;transform:translatey(-50%);right:3%;}
+		
+		
+		
+
+
+		#gnb{display:none !important;}
+
+		/*############# 모바일 메뉴버튼 ##############*/
+		#btn_mob_menu{display:block;width:40px;height:40px;position:absolute;left:0px;top:50%;transform:translatey(-45%);}
+		#btn_mob_menu p{width:100%;height:100%;overflow:hidden;}
+		#btn_mob_menu span{display:block;text-indent:-9999px;width:50%;height:1px;background-color:#fff;margin:8px auto 0;}
+		
+		/*############# gnb2 메뉴 (모바일버전) ##############*/
+		#gnb2{display:block;overflow:hidden;width:100%;height:0px; background-color:#000;transition:height 0.5s;}
+		#gnb2 ul{width:100%;box-sizing:border-box;padding:0 10%;}
+		#gnb2 li{font-size:17px;line-height:55px;border-bottom:1px solid #555;}
+		#gnb2 li:last-child{border-bottom:none;}
+		#gnb2 a{color:#fff;}
+
+
+
+		/*모바일용 검색바*/
+		#gnb2 .search_area2{width:100%;border-bottom:1px solid #555;overflow:hidden;}
+		#gnb2 form{width:90%;margin:10px auto;background-color:#333;border-radius:5px;}
+		#gnb2 form img{width:5%;margin:2%;margin-left:4%;vertical-align:middle;}
+		#gnb2 form input{width:80%;border:none;padding:10px 0;text-indent:13px;background:none;font-size:17px;color:#fff;}
+
+		/*######## footer 320반응형 #########*/
+		#footer{width:100%;height:auto;}
+		/*pc버전에서 높이값이 이미 고정픽셀로 셋팅되어있어서 해제하는 방법 몰라서 auto 일단 넣어봄.*/
+		
+		#footer h3{font-size:14px;line-height:40px;color:#b0b0b0;font-weight:700;}
+		#footer h3 span{display:inline-block;float:right;}
+
+		#footer_nav_menues{width:80%;height:auto;padding:20px 0;margin:0 auto;}
+		#footer_nav_menues .learn_more{width:100%;float:none;border-bottom:1px solid #555;}
+		#footer_nav_menues .learn_more li{font-size:14px;line-height:40px;}
+		#footer_nav_menues .nav_menu{width:100%;float:none;border-bottom:1px solid #555;}
+		#footer_nav_menues .nav_menu:last-child{border-bottom:none;}
+		#footer_nav_menues .nav_menu li{font-size:14px;line-height:40px;}
+
+		#footer_nav_menues .learn_more ul, #footer_nav_menues .nav_menu ul {max-height:0px;overflow:hidden;/* transition:all 0.5s; */}
+		
+
+
+		/*############## footer_copyright ##############*/
+		.footer_copyright{display:none;width:100%;margin:0 auto;border-top:1px solid #b0b0b0;line-height:49px;color:#b0b0b0;font-size:14px;}
+
+	}
+  </style>
+  <style>
+	body{font-family: 'Heebo', sans-serif;}
+	*{margin:0;padding:0;}
+	body{margin:0;padding:0;}
+	header,nav,footer,section,aside,article{display:block;}
+	div, p, ul, ul li, ol, ol li{margin:0;padding:0;}
+	li{list-style-type: none;}
+	img{border:none;}
+	a:link,a:visited{text-decoration: none;color: #000;}
+
+	i{font-style:normal;}
+
+	#wrap{max-width:1920px;width:100%;margin:0 auto;}
+	#header{width:100%;}
+	#container{width:100%;}
+	#footer{width:100%;}
+
+	/*######## 기능 클래스 ########*/
+		.slide_down{max-height:500px !important;}
+	/*##################### header 공통 #####################*/
+		#header{width:100%;height:60px;background-color:#212121;position:fixed;z-index:5;}
+		#header h1{position:absolute;left:-9999px;font-size:1px;width:1px;height:1px;overflow:hidden;}
+		.header_inner{width:1300px;margin:0 auto;position:relative;}
+		.header_inner:after{content:"";display:block;clear:both;}
+		.header_inner #logo{width:30px;height:38px;position:absolute;left:0;top:10px;}
+		.header_inner #logo a{display:block;color:#b0b0b0;}
+		.header_inner #logo a:hover{color:#fff;}
+		.header_inner #logo img{width:100%;color:#fff;}
+
+
+
+
+		#gnb{text-align:right;height:60px;margin-right:60px;line-height:60px;float:right;}
+		#gnb li{display:inline;}
+		#gnb li a{padding:0 10px;color:#f5f5f7;}
+		#gnb li a:hover{color:#fff;}
+
+
+		#info_menu{text-align:right;line-height:60px;float:right;}
+		#info_menu li{height:20px;padding:20px 0;margin-left:25px;overflow:hidden;float:left;}
+		#info_menu li a{display:block;width:100%;height:100%;}
+		#info_menu li img{height:100%;margin-bottom:30px;}
+
+
+		.search_area1{width:50%;padding:18px 0;position:absolute;left:50%;transform:translatex(-50%);}
+		#submit_btn{
+			width:21px;
+			height:24px;
+			border:none;
+			color:transparent;
+			background-color:#212121;
+			background-image:url("img/icon/magnifier.png");
+			background-repeat:no-repeat;
+			background-size:100%;
+			vertical-align:middle;margin-right:15px;}
+		#search_bar_pc{height:24px;font-size:18px;background-color:#212121;color:#ccc;border:none;}
+		#close_button{background-color:#212121;border:none;color:#ccc;font-size:20px;float:right;}
+
+		#quick_link{background-color:#fff;transform:translatey(17px);padding:30px;font-size:14px;border-radius:0 0 20px 20px;color:#777;}
+		#quick_link h3{line-height:30px;font-weight:400;}
+
+		#quick_link ul li{line-height:40px;text-indent:20px;}
+		#quick_link ul li a{color:#777;}
+		#quick_link ul li:hover{background-color:#efefef;}
+		#quick_link ul li:hover a{color:rgba(0,112,201);}
+
+		/*############# 모바일 메뉴버튼 ##############*/
+		#btn_mob_menu{display:none;}
+
+		/*############# 모바일 gnb 메뉴 ##############*/
+		#gnb2{display:none;}
+
+
+
+	/*##################### footer 공통 #####################*/
+		#footer{width:100%;height:450px;background-color:#212121;}
+		#footer a{color:#b0b0b0;}
+		#footer h3{font-size:14px;line-height:40px;color:#b0b0b0;font-weight:700;}
+		#footer h3 span{display:none;}
+		#footer_nav_menues{width:750px;height:350px;padding-top:50px;margin:0 auto;}
+		#footer_nav_menues .learn_more{width:234px;float:left;}
+		#footer_nav_menues .learn_more li{font-size:14px;line-height:40px;}
+		#footer_nav_menues .nav_menu{width:172px;float:left;}
+		#footer_nav_menues .nav_menu li{font-size:14px;line-height:40px;}
+
+	/*############## 반응형 (일반 큰 pc) ###############*/
+	@media all and (min-width:1320px) and (max-width:1919px){
+		.header_inner{width:1000px;}
+		
+	}
+	/*############## 반응형 (작은 pc) ###############*/
+	@media all and (min-width:1025px) and (max-width:1319px){
+		.header_inner{width:900px;}
+	}  
+
+	/*############## 반응형 (태블릿) ###############*/
+	@media all and (min-width:768px) and (max-width:1024px){
+		.header_inner{width:644px;}
+	}
+	/*##############  반응형 480 ###############*/
+	@media all and (min-width:481px) and (max-width:767px){
+		
+		
+		.header_inner{width:100%;height:45px;position:relative;}
+		.header_inner #logo{width:20px;height:24px;left:50%;transform:translatex(-50%);top:50%;transform:translatey(-50%);}
+		
+
+		#info_menu{text-align:right;line-height:45px;float:right;}
+		#info_menu li{width:22px;height:20px;padding:0;float:none;overflow:visible;}
+		#info_menu li img{margin-bottom:10px;}
+		#info_menu .magnifier{display:none;}
+		#info_menu .account{position:absolute;top:50%;transform:translatey(-50%);right:3%;}
+		
+		
+		
+
+
+		#gnb{display:none !important;}
+
+		/*############# 모바일 메뉴버튼 ##############*/
+		#btn_mob_menu{display:block;width:40px;height:40px;position:absolute;left:0px;top:50%;transform:translatey(-45%);}
+		#btn_mob_menu p{width:100%;height:100%;overflow:hidden;}
+		#btn_mob_menu span{display:block;text-indent:-9999px;width:50%;height:1px;background-color:#fff;margin:8px auto 0;}
+		
+		/*############# gnb2 메뉴 (모바일버전) ##############*/
+		#gnb2{display:block;overflow:hidden;width:100%;height:0px; background-color:#000;transition:height 0.5s;}
+		#gnb2 ul{width:100%;box-sizing:border-box;padding:0 10%;}
+		#gnb2 li{font-size:17px;line-height:55px;border-bottom:1px solid #555;}
+		#gnb2 li:last-child{border-bottom:none;}
+		#gnb2 a{color:#fff;}
+
+		
+
+		/*모바일용 검색바*/
+		#gnb2 .search_area2{width:100%;border-bottom:1px solid #555;overflow:hidden;}
+		#gnb2 form{width:90%;margin:10px auto;background-color:#333;border-radius:5px;}
+		#gnb2 form img{width:5%;margin:2%;margin-left:4%;vertical-align:middle;}
+		#gnb2 form input{width:80%;border:none;padding:10px 0;text-indent:13px;background:none;font-size:17px;color:#fff;}
+
+		/*######## footer 420반응형 #########*/
+		#footer{width:100%;height:auto;}
+		/*pc버전에서 높이값이 이미 고정픽셀로 셋팅되어있어서 해제하는 방법 몰라서 auto 일단 넣어봄.*/
+		
+		#footer h3{font-size:14px;line-height:40px;color:#b0b0b0;font-weight:700;}
+		#footer h3 span{display:inline-block;float:right;}
+
+		#footer_nav_menues{width:80%;height:auto;padding:20px 0;margin:0 auto;}
+		#footer_nav_menues .learn_more{width:100%;float:none;border-bottom:1px solid #555;}
+		#footer_nav_menues .learn_more li{font-size:14px;line-height:40px;}
+		#footer_nav_menues .nav_menu{width:100%;float:none;border-bottom:1px solid #555;}
+		#footer_nav_menues .nav_menu:last-child{border-bottom:none;}
+		#footer_nav_menues .nav_menu li{font-size:14px;line-height:40px;}
+
+		#footer_nav_menues .learn_more ul, #footer_nav_menues .nav_menu ul {max-height:0px;overflow:hidden;transition:all 0.5s;}
+				
+	}
+
+	/*##############  반응형 320 ###############*/
+	@media all and (min-width:320px) and (max-width:480px){
+		#header{background-color:#212121;}
+		.header_inner{width:100%;height:45px;position:relative;}
+		.header_inner #logo{width:20px;height:24px;left:50%;transform:translatex(-50%);top:50%;transform:translatey(-50%);}
+		
+
+		#info_menu{text-align:right;line-height:45px;float:right;}
+		#info_menu li{width:22px;height:20px;padding:0;float:none;overflow:visible;}
+		#info_menu li img{margin-bottom:10px;}
+		#info_menu .magnifier{display:none;}
+		#info_menu .account{position:absolute;top:50%;transform:translatey(-50%);right:3%;}
+		
+		
+		
+
+
+		#gnb{display:none !important;}
+
+		/*############# 모바일 메뉴버튼 ##############*/
+		#btn_mob_menu{display:block;width:40px;height:40px;position:absolute;left:0px;top:50%;transform:translatey(-45%);}
+		#btn_mob_menu p{width:100%;height:100%;overflow:hidden;}
+		#btn_mob_menu span{display:block;text-indent:-9999px;width:50%;height:1px;background-color:#fff;margin:8px auto 0;}
+		
+		/*############# gnb2 메뉴 (모바일버전) ##############*/
+		#gnb2{display:block;overflow:hidden;width:100%;height:0px; background-color:#000;transition:height 0.5s;}
+		#gnb2 ul{width:100%;box-sizing:border-box;padding:0 10%;}
+		#gnb2 li{font-size:17px;line-height:55px;border-bottom:1px solid #555;}
+		#gnb2 li:last-child{border-bottom:none;}
+		#gnb2 a{color:#fff;}
+
+
+
+		/*모바일용 검색바*/
+		#gnb2 .search_area2{width:100%;border-bottom:1px solid #555;overflow:hidden;}
+		#gnb2 form{width:90%;margin:10px auto;background-color:#333;border-radius:5px;}
+		#gnb2 form img{width:5%;margin:2%;margin-left:4%;vertical-align:middle;}
+		#gnb2 form input{width:80%;border:none;padding:10px 0;text-indent:13px;background:none;font-size:17px;color:#fff;}
+
+		/*######## footer 320반응형 #########*/
+		#footer{width:100%;height:auto;}
+		/*pc버전에서 높이값이 이미 고정픽셀로 셋팅되어있어서 해제하는 방법 몰라서 auto 일단 넣어봄.*/
+		
+		#footer h3{font-size:14px;line-height:40px;color:#b0b0b0;font-weight:700;}
+		#footer h3 span{display:inline-block;float:right;}
+
+		#footer_nav_menues{width:80%;height:auto;padding:20px 0;margin:0 auto;}
+		#footer_nav_menues .learn_more{width:100%;float:none;border-bottom:1px solid #555;}
+		#footer_nav_menues .learn_more li{font-size:14px;line-height:40px;}
+		#footer_nav_menues .nav_menu{width:100%;float:none;border-bottom:1px solid #555;}
+		#footer_nav_menues .nav_menu:last-child{border-bottom:none;}
+		#footer_nav_menues .nav_menu li{font-size:14px;line-height:40px;}
+
+		#footer_nav_menues .learn_more ul, #footer_nav_menues .nav_menu ul {max-height:0px;overflow:hidden;/* transition:all 0.5s; */}
+		
+
+
+		/*############## footer_copyright ##############*/
+		.footer_copyright{display:none;width:100%;margin:0 auto;border-top:1px solid #b0b0b0;line-height:49px;color:#b0b0b0;font-size:14px;}
+
+	}
+  </style>
+ </head>
+
+ <body>
+	<div id="wrap">
+		<!-- ########## header ########## -->
+		<div id="header">
+			<h1>Apple</h1>
+			<div class="header_inner">
+				<div id="btn_mob_menu">
+					<p>
+						<span>a</span>
+						<span>a</span>
+						<span>a</span>
+					</p>
+				</div>
+				<div id="logo">
+					<a href="index.html" title="Apple">
+						<img src="img/icon/logo.svg" alt="apple logo"/>
+					</a>
+				</div>
+				<ul id="info_menu">
+					<li class="account"><a href="#none" title="account icon"><img src="img/icon/account.png" alt="icon of account"/></a></li>
+					<li class="magnifier"><a href="#none" title="search icon"><img src="img/icon/magnifier.png" alt="icon of search"/></a></li>
+				</ul>
+				<div class="search_area1">
+					<form id="search_bar1" action="http://www.apple.com/us/search" method="GET">
+						<!-- <img src="img/icon/magnifier.png" alt="image of search"/> -->
+						<input id="submit_btn" type="submit" name="submit_btn" title="button of submit"/>
+						<input id="search_bar_pc" type="text" name="search_bar_pc" title="search_bar_pc" placeholder="Search apple.com" />
+						<input id="close_button" type="button" name="close_button" title="close button" value="x" readonly/>
+					</form>
+					<aside id="quick_link">
+						<h3>QUICK LINK</h3>
+						<ul>
+							<li><a href="airpod.html" title="COVID-19 information">Airpods Pro</a></li>
+							<li><a href="apple_card.html" title="COVID-19 information">Apple Card</a></li>
+							<li><a href="signup.html" title="COVID-19 information">Sign Up</a></li>
+							<li><a href="acc.html" title="COVID-19 information">Accessories</a></li>
+							<li><a href="watch.html" title="COVID-19 information">Apple watch</a></li>
+							<li><a href="pro11.html" title="COVID-19 information">iPhone 11</a></li>
+						</ul>
+					</aside>
+				</div>
+				<aside id="accMenu">
+					<div class="smallMenu"><a href="list.html" title="">Browse bulletin board</a></div>
+					<div class="smallMenu"><a href="signin.html" title="">Sign in</a></div>
+					<div class="smallMenu"><a href='manage.html' title="">Manage account</a></div>
+					<div class="smallMenu"><a href="list.html" title="">Bulletin board</a></div>
+					<div class="smallMenu"><a href="signout.html" title="">Sign out</a></div>
+				</aside>
+				<ul id="gnb">
+					<li><a href="airpod.html" title="Mac">Mac</a></li>
+					<li><a href="pad.html" title="iPad">iPad</a></li>
+					<li><a href="pro11.html" title="iPhone">iPhone</a></li>
+					<li><a href="watch.html" title="watch">Watch</a></li>
+					<li><a href="acc.html" title="watch">Acc</a></li>
+					<li><a href="apple_card.html" title="watch">Card</a></li>
+					<li><a href="purchase.html" title="watch">Purchase</a></li>
+				</ul>
+			</div>
+			
+			<div id="gnb2">
+				<div class="search_area2">
+					<form id="search_bar2" action="http://www.apple.com/us/search" method="GET">
+						<img src="img/icon/magnifier.png" alt="image of search"/><input id="search" type="text" name="src" title="search_bar_mob" placeholder="Search apple.com" />
+					</form>
+				</div>
+				<ul>
+					<li><a href="airpod.html" title="Mac">Mac</a></li>
+					<li><a href="pad.html" title="iPad">iPad</a></li>
+					<li><a href="pro11.html" title="iPhone">iPhone</a></li>
+					<li><a href="watch.html" title="watch">Watch</a></li>
+					<li><a href="acc.html" title="watch">Acc</a></li>
+					<li><a href="apple_card.html" title="watch">Card</a></li>
+					<li><a href="purchase.html" title="watch">Purchase</a></li>
+				</ul>
+			</div>
+		</div>
+		
+
+		<!-- ########## container ########## -->
+		<div id="container">
+			<div id="visual">
+				<div class="inner">
+					<p class="text_main">
+						A match made<br/>
+						for iPhone
+					</p>
+					<p class="img_bg"><img src="img/acc/bg.png" alt=""/></p>
+				</div>
+			</div>
+			<div id="bar">
+				<div class="bar_middle">
+					<div class="bar_left">
+						<div class="filterWrap">
+							<i class="fas fa-bars"></i><span class="filter">filter</span>
+						</div>
+					</div>
+					<div class="bar_right">
+						<div class="sortByWrap">
+							<div id="sortBy" class="sortBy">
+								Sort By:<span id="selectedSortBy">lowest</span><i class="fas fa-angle-down fa-sm"></i>
+							</div>
+						</div>
+						<ul id="sortLists">
+							<li class="sortList sortBy"><a href="#none" title="">Featured</a></li>
+							<li class="sortList sortBy"><a href="#none" title="">Newest</a></li>
+							<li class="sortList sortBy"><a href="#none" title="">Price: Low to High</a></li>
+							<li class="sortList sortBy"><a href="#none" title="">Price: High to Low</a></li>
+						</ul>
+					</div>
+				</div>	
+			</div>
+			<div id="center">
+				<div id="categories">
+					<ul class="container">
+						<li class="menu">
+							<h3 class="title_cate">Headphones & Speakers</h3>
+							<div class="smallMenues">
+								<span>Headphones</span>
+								<span>Speakers</span>
+								<span>Headphone Cases</span>
+								<span>Speaker Cases</span>
+								<span>Audio Adapters</span>
+								<span>Audio Cases</span>
+								<span>Earphone</span>
+								<span>Bluetooth Speakers</span>
+								<span>Bluetooth Adapters</span>
+				
+
+							</div>
+						</li>
+						<li class="menu">
+							<h3 class="title_cate">Cases &amp; Protection</h3>
+							<div class="smallMenues">
+								<span>Headphones</span>
+								<span>Speakers</span>
+								<span>Headphone Cases</span>
+								<span>Audio Adapters</span>
+								<span>Headphone Cases</span>
+								<span>Speaker Cases</span>
+								<span>Audio Adapters</span>
+								<span>Audio Cases</span>
+								<span>Earphone</span>
+							</div>
+						</li>
+						<li class="menu">
+							<h3 class="title_cate">Made by Apple</h3>
+							<div class="smallMenues">
+								<span>Headphones</span>
+								<span>Speakers</span>
+								<span>Headphone Cases</span>
+								<span>Audio Adapters</span>
+							</div>
+						</li>
+						<li class="menu">
+							<h3 class="title_cate">Apple watch</h3>
+							<div class="smallMenues">
+								<span>Headphones</span>
+								<span>Speakers</span>
+								<span>Headphone Cases</span>
+								<span>Audio Adapters</span>
+							</div>
+						</li>
+						<li class="menu">
+							<h3 class="title_cate">What's new</h3>
+							<div class="smallMenues">
+								<span>Headphones</span>
+								<span>Speakers</span>
+								<span>Headphone Cases</span>
+								<span>Audio Adapters</span>
+							</div>
+						</li>
+					
+					</ul>
+				</div>
+				
+				<!-- <h3>Featured iPhone Accessories</h3> -->
+				<div id="boxes">
+					
+					<div class="box">
+						<div class="img_area">
+							<p class="imgs_product imgs0">
+								<img src="img/acc/download/MWP22.jpg" alt=""/>
+								<img src="img/acc/download/MWP22_AV1.jpg" alt=""/>
+								<img src="img/acc/download/MWP22_AV2.jpg" alt=""/>
+								<img src="img/acc/download/MWP22_AV3.jpg" alt=""/>
+								<img src="img/acc/download/MWP22_AV4_GEO_US.jpg" alt=""/>
+								<img src="img/acc/download/MWP22_AV5_GEO_US.jpg" alt=""/>
+							</p>
+							<div class="btns">
+								<p class="btn_prev"><i class="fas fa-caret-left fa-2x"></i></p>
+								<p class="btn_next"><i class="fas fa-caret-right fa-2x"></i></p>
+							</div>	
+						</div>
+						<div class="desc_product">
+							<span class="special">Free Engraving</span><br/>
+							<strong class="name_product">AirPods Pro</strong><br/>
+							<span class="price">$249.00</span>
+						</div>
+						
+					</div>
+					<div class="box">
+						<div class="img_area">
+							<p class="imgs_product imgs1">
+								<img src="img/acc/download/HP2V2.jpg" alt=""/>
+								<img src="img/acc/download/HP2V2_AV1.jpg" alt=""/>
+								<img src="img/acc/download/HP2V2_AV2.jpg" alt=""/>
+								<img src="img/acc/download/HP2V2_AV3.jpg" alt=""/>
+								<img src="img/acc/download/HP2V2_AV4.jpg" alt=""/>
+							</p>
+							<div class="btns">
+								<p class="btn_prev"><i class="fas fa-caret-left fa-2x"></i></p>
+								<p class="btn_next"><i class="fas fa-caret-right fa-2x"></i></p>
+							</div>	
+						</div>
+						<div class="desc_product">
+							<span class="special">Only at Apple</span><br/>
+							<strong class="name_product">Incase AirPods Pro Case with Woolenex</strong><br/>
+							<span class="price">$29.00</span>
+						</div>
+						
+					</div>
+					<div class="box">
+						<div class="img_area">
+							<p class="imgs_product imgs2">
+								<img src="img/acc/download/MRJA2.jpg" alt=""/>
+								<img src="img/acc/download/MRJA2_AV1.jpg" alt=""/>
+								<img src="img/acc/download/MRJA2_AV2.jpg" alt=""/>
+								<img src="img/acc/download/MRJA2_AV3.jpg" alt=""/>
+								<img src="img/acc/download/MRJA2_AV4.jpg" alt=""/>
+							</p>
+							<div class="btns">
+								<p class="btn_prev"><i class="fas fa-caret-left fa-2x"></i></p>
+								<p class="btn_next" onclick="showNext();"><i class="fas fa-caret-right fa-2x"></i></p>
+							</div>	
+						</div>
+						<div class="desc_product">
+							<span class="special"></span><br/>
+							<strong class="name_product">Beats Solo Pro Wireless Noise Cancelling Headphones…</strong><br/>
+							<span class="price">$299.95</span>
+						</div>
+					
+					</div>
+					<div class="box">
+						<div class="img_area">
+							<p class="imgs_product imgs3">
+								<img src="img/acc/download/MXY92.jpg" alt=""/>
+								<img src="img/acc/download/MXY92_AV1.jpg" alt=""/>
+								<img src="img/acc/download/MXY92_AV2.jpg" alt=""/>
+								<img src="img/acc/download/MXY92_AV3.jpg" alt=""/>
+								<img src="img/acc/download/MXY92_AV4.jpg" alt=""/>
+								<img src="img/acc/download/MXY92_AV5.jpg" alt=""/>
+							</p>
+							<div class="btns">
+								<p class="btn_prev"><i class="fas fa-caret-left fa-2x"></i></p>
+								<p class="btn_next"><i class="fas fa-caret-right fa-2x"></i></p>
+							</div>	
+						</div>
+						<div class="desc_product">
+							<span class="special">Only at Apple</span><br/>
+							<strong class="name_product">Powerbeats Pro - Totally Wireless Earphones - Spring Yellow</strong><br/>
+							<span class="price">$249.00</span>
+						</div>
+						
+					</div>
+					<div class="box">
+						<div class="img_area">
+							<p class="imgs_product imgs4">
+								<img src="img/acc/download/MUHW2.jpg" alt=""/>
+								<img src="img/acc/download/MUHW2_AV1.jpg" alt=""/>
+								<img src="img/acc/download/MUHW2_AV2.jpg" alt=""/>
+								<img src="img/acc/download/MUHW2_AV3.jpg" alt=""/>
+							</p>
+							<div class="btns">
+								<p class="btn_prev"><i class="fas fa-caret-left fa-2x"></i></p>
+								<p class="btn_next"><i class="fas fa-caret-right fa-2x"></i></p>
+							</div>	
+						</div>
+						<div class="desc_product">
+							<span class="special"></span><br/>
+							<strong class="name_product">urBeats3 Earphones with Lightning Connector - Satin Gold</strong><br/>
+							<span class="price">$249.00</span>
+						</div>
+						
+					</div>
+					<div class="box">
+						<div class="img_area">
+							<p class="imgs_product imgs5">
+								<img src="img/acc/download/HP1H2.jpg" alt=""/>
+								<img src="img/acc/download/HP1H2_AV1.jpg" alt=""/>
+								<img src="img/acc/download/HP1H2_AV2.jpg" alt=""/>
+								<img src="img/acc/download/HP1H2_AV3.jpg" alt=""/>
+								<img src="img/acc/download/HP1H2_AV4.jpg" alt=""/>
+								<img src="img/acc/download/HP1H2_AV5.jpg" alt=""/>
+							</p>
+							<div class="btns">
+								<p class="btn_prev"><i class="fas fa-caret-left fa-2x"></i></p>
+								<p class="btn_next"><i class="fas fa-caret-right fa-2x"></i></p>
+							</div>	
+						</div>
+						<div class="desc_product">
+							<span class="special">Only at Apple</span><br/>
+							<strong class="name_product">Catalyst Waterproof Case for AirPods Pro - Special Edition - Red</strong><br/>
+							<span class="price">$249.00</span>
+						</div>
+					
+					</div>
+					<div class="box">
+						<div class="img_area">
+							<p class="imgs_product imgs6">
+								<img src="img/acc/download/ML4M2.jpg" alt=""/>
+								<img src="img/acc/download/ML4M2_AV1.jpg" alt=""/>
+								<img src="img/acc/download/ML4M2_AV2.jpg" alt=""/>
+								<img src="img/acc/download/ML4M2_AV3.jpg" alt=""/>
+								<img src="img/acc/download/ML4M2_AV4.jpg" alt=""/>
+								<img src="img/acc/download/ML4M2_AV5.jpg" alt=""/>
+							</p>
+							<div class="btns">
+								<p class="btn_prev"><i class="fas fa-caret-left fa-2x"></i></p>
+								<p class="btn_next"><i class="fas fa-caret-right fa-2x"></i></p>
+							</div>	
+						</div>
+						<div class="desc_product">
+							<span class="special"></span><br/>
+							<strong class="name_product">Beats Pill+ Portable Speaker - Black</strong><br/>
+							<span class="price">$249.00</span>
+						</div>
+					
+					</div>
+					<div class="box">
+						<div class="img_area">
+							<p class="imgs_product imgs7">
+								<img src="img/acc/download/MHA22.jpg" alt=""/>
+								<img src="img/acc/download/MHA22_AV1.jpg" alt=""/>
+								<img src="img/acc/download/MHA22_AV2.jpg" alt=""/>
+								<img src="img/acc/download/MHA22_AV3.jpg" alt=""/>
+								<img src="img/acc/download/MHA22_AV4.jpg" alt=""/>
+								<img src="img/acc/download/MHA22_AV5.jpg" alt=""/>
+								<img src="img/acc/download/MHA22_AV6.jpg" alt=""/>
+							</p>
+							<div class="btns">
+								<p class="btn_prev"><i class="fas fa-caret-left fa-2x"></i></p>
+								<p class="btn_next"><i class="fas fa-caret-right fa-2x"></i></p>
+							</div>	
+						</div>
+						<div class="desc_product">
+							<span class="special"></span><br/>
+							<strong class="name_product">Beats Pro Over-Ear Headphones - Black</strong><br/>
+							<span class="price">$249.00</span>
+						</div>
+						
+					</div>
+					<div class="box">
+						<div class="img_area">
+							<p class="imgs_product imgs8">
+								<img src="img/acc/download/HP0A2.jpg" alt=""/>
+								<img src="img/acc/download/HP0A2_AV1.jpg" alt=""/>
+								<img src="img/acc/download/HP0A2_AV2.jpg" alt=""/>
+								<img src="img/acc/download/HP0A2_AV3.jpg" alt=""/>
+								<img src="img/acc/download/HP0A2_AV4.jpg" alt=""/>
+							</p>
+							<div class="btns">
+								<p class="btn_prev"><i class="fas fa-caret-left fa-2x"></i></p>
+								<p class="btn_next"><i class="fas fa-caret-right fa-2x"></i></p>
+							</div>	
+						</div>
+						<div class="desc_product">
+							<span class="special">Only at Apple</span><br/>
+							<strong class="name_product">Incase AirPods Pro Case with Woolenex</strong><br/>
+							<span class="price">$249.00</span>
+						</div>
+					
+					</div>	
+				</div>
+				
+			</div>
+		</div>
+
+		<!-- ########## footer ########## -->
+		<footer id="footer">
+			<ul id="footer_nav_menues">
+				<li class="learn_more">
+					<h3>LEARN MORE<span>+</span></h3>
+					<ul>
+						<li><a href="#" title="">iPhone SE</a></li>
+						<li><a href="#" title="">iPad Pro</a></li>
+						<li><a href="#" title="">iPhone Pro11</a></li>
+						<li><a href="#" title="">Apple Watch</a></li>
+					</ul>
+				</li>
+				<li class="nav_menu">
+					<h3>Support<span>+</span></h3>
+					<ul>
+						<li><a href="#" title="">Contact Us</a></li>
+						<li><a href="#" title="">Warranty</a></li>
+						<li><a href="#" title="">User Guide</a></li>
+						<li><a href="#" title="">Scooter safety notice</a></li>
+						<li><a href="#" title="">Android Enterprise Recommended</a></li>
+					</ul>
+				</li>
+				<li class="nav_menu">
+					<h3>ABOUT US<span>+</span></h3>
+					<ul>
+						<li><a href="#" title="">Apple</a></li>
+						<li><a href="#" title="">Press &amp; Media</a></li>
+						<li><a href="#" title="">User Agreement</a></li>
+						<li><a href="#" title="">Privacy Policy</a></li>
+						<li><a href="#" title="">Xiaomi Blog</a></li>
+						<li><a href="#" title="">Investor Relations</a></li>
+						<li><a href="#" title="">Integrity &amp; Compliance</a></li>
+					</ul>
+				</li>
+				<li class="nav_menu">
+					<h3>FOLLOW Apple<span>+</span></h3>
+					<ul>
+						<li><a href="#" title="">Facebook</a></li>
+						<li><a href="#" title="">Youtube</a></li>
+						<li><a href="#" title="">Instagram</a></li>
+						<li><a href="#" title="">Twitter</a></li>
+					</ul>
+				</li>
+			</ul>
+			<div class="footer_copyright">
+				Copyright &copy; 2020 Jisun Kim. All Rights Reserved
+			</div>
+		</footer>
+	</div>
+	<div id="full"></div>
+ </body>
+ </body>
+</html>

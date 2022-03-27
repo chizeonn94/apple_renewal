@@ -1,0 +1,675 @@
+body {
+  font-family: "Heebo", sans-serif;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+header,
+nav,
+footer,
+section,
+aside,
+article {
+  display: block;
+}
+div,
+p,
+ul,
+ul li,
+ol,
+ol li {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style-type: none;
+}
+img {
+  border: none;
+}
+a:link,
+a:visited {
+  text-decoration: none;
+  color: #000;
+}
+
+i {
+  font-style: normal;
+}
+
+#wrap {
+  max-width: 1920px;
+  width: 100%;
+  margin: 0 auto;
+}
+#header {
+  width: 100%;
+}
+#container {
+  width: 100%;
+}
+#footer {
+  width: 100%;
+}
+/*full*/
+#full {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+/*######## 기능 클래스 ########*/
+.slide_down {
+  max-height: 500px !important;
+}
+/*##################### header 공통 #####################*/
+#header {
+  width: 100%;
+  height: 60px;
+  background-color: #212121;
+  position: fixed;
+  z-index: 5;
+}
+#header h1 {
+  position: absolute;
+  left: -9999px;
+  font-size: 1px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.header_inner {
+  width: 1300px;
+  margin: 0 auto;
+  position: relative;
+}
+.header_inner:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.header_inner #logo {
+  width: 30px;
+  height: 38px;
+  position: absolute;
+  left: 0;
+  top: 10px;
+}
+.header_inner #logo a {
+  display: block;
+  color: #b0b0b0;
+}
+.header_inner #logo a:hover {
+  color: #fff;
+}
+.header_inner #logo img {
+  width: 100%;
+  color: #fff;
+}
+
+#accMenu {
+  background-color: #fff;
+  width: 200px;
+  padding: 0 15px;
+  border-radius: 7px;
+  position: absolute;
+  top: 65px;
+  right: -48px;
+  display: none;
+}
+#accMenu .smallMenu {
+  padding: 15px 0;
+  border-top: 1px solid #ccc;
+}
+#accMenu .smallMenu:first-child {
+  border: none;
+}
+
+#gnb {
+  text-align: right;
+  height: 60px;
+  margin-right: 60px;
+  line-height: 60px;
+  float: right;
+}
+#gnb li {
+  display: inline;
+}
+#gnb li a {
+  padding: 0 10px;
+  color: #f5f5f7;
+}
+#gnb li a:hover {
+  color: #fff;
+}
+
+#info_menu {
+  text-align: right;
+  line-height: 60px;
+  float: right;
+}
+#info_menu li {
+  height: 20px;
+  padding: 20px 0;
+  margin-left: 25px;
+  overflow: hidden;
+  float: left;
+}
+#info_menu li a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+#info_menu li img {
+  height: 100%;
+  margin-bottom: 30px;
+}
+
+.search_area1 {
+  width: 50%;
+  padding: 18px 0;
+  position: absolute;
+  left: 50%;
+  transform: translatex(-50%);
+}
+#submit_btn {
+  width: 21px;
+  height: 24px;
+  border: none;
+  color: transparent;
+  background-color: #212121;
+  background-image: url("img/icon/magnifier.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  vertical-align: middle;
+  margin-right: 15px;
+}
+#search_bar_pc {
+  height: 24px;
+  font-size: 18px;
+  background-color: #212121;
+  color: #ccc;
+  border: none;
+}
+#close_button {
+  background-color: #212121;
+  border: none;
+  color: #ccc;
+  font-size: 20px;
+  float: right;
+}
+
+#quick_link {
+  background-color: #fff;
+  transform: translatey(17px);
+  padding: 30px;
+  font-size: 14px;
+  border-radius: 0 0 20px 20px;
+  color: #777;
+}
+#quick_link h3 {
+  line-height: 30px;
+  font-weight: 400;
+}
+
+#quick_link ul li {
+  line-height: 40px;
+  text-indent: 20px;
+}
+#quick_link ul li a {
+  color: #777;
+}
+#quick_link ul li:hover {
+  background-color: #efefef;
+}
+#quick_link ul li:hover a {
+  color: rgba(0, 112, 201);
+}
+
+/*############# 모바일 메뉴버튼 ##############*/
+#btn_mob_menu {
+  display: none;
+}
+
+/*############# 모바일 gnb 메뉴 ##############*/
+#gnb2 {
+  display: none;
+}
+
+/*##################### footer 공통 #####################*/
+#footer {
+  width: 100%;
+  height: 450px;
+  background-color: #212121;
+}
+#footer a {
+  color: #b0b0b0;
+}
+#footer h3 {
+  font-size: 14px;
+  line-height: 40px;
+  color: #b0b0b0;
+  font-weight: 700;
+}
+#footer h3 span {
+  display: none;
+}
+#footer_nav_menues {
+  width: 750px;
+  height: 350px;
+  padding-top: 50px;
+  margin: 0 auto;
+}
+#footer_nav_menues .learn_more {
+  width: 234px;
+  float: left;
+}
+#footer_nav_menues .learn_more li {
+  font-size: 14px;
+  line-height: 40px;
+}
+#footer_nav_menues .nav_menu {
+  width: 172px;
+  float: left;
+}
+#footer_nav_menues .nav_menu li {
+  font-size: 14px;
+  line-height: 40px;
+}
+
+/*############## 반응형 (일반 큰 pc) ###############*/
+@media all and (min-width: 1320px) and (max-width: 1919px) {
+  .header_inner {
+    width: 1000px;
+  }
+}
+/*############## 반응형 (작은 pc) ###############*/
+@media all and (min-width: 1025px) and (max-width: 1319px) {
+  .header_inner {
+    width: 900px;
+  }
+}
+
+/*############## 반응형 (태블릿) ###############*/
+@media all and (min-width: 768px) and (max-width: 1024px) {
+  .header_inner {
+    width: 644px;
+  }
+}
+/*##############  반응형 480 ###############*/
+@media all and (min-width: 481px) and (max-width: 767px) {
+  .header_inner {
+    width: 100%;
+    height: 45px;
+    position: relative;
+  }
+  .header_inner #logo {
+    width: 20px;
+    height: 24px;
+    left: 50%;
+    transform: translatex(-50%);
+    top: 50%;
+    transform: translatey(-50%);
+  }
+
+  #info_menu {
+    text-align: right;
+    line-height: 45px;
+    float: right;
+  }
+  #info_menu li {
+    width: 22px;
+    height: 20px;
+    padding: 0;
+    float: none;
+    overflow: visible;
+  }
+  #info_menu li img {
+    margin-bottom: 10px;
+  }
+  #info_menu .magnifier {
+    display: none;
+  }
+  #info_menu .account {
+    position: absolute;
+    top: 50%;
+    transform: translatey(-50%);
+    right: 3%;
+  }
+
+  #accMenu {
+    right: 10px;
+  }
+
+  #gnb {
+    display: none !important;
+  }
+
+  /*############# 모바일 메뉴버튼 ##############*/
+  #btn_mob_menu {
+    display: block;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left: 0px;
+    top: 50%;
+    transform: translatey(-45%);
+  }
+  #btn_mob_menu p {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  #btn_mob_menu span {
+    display: block;
+    text-indent: -9999px;
+    width: 50%;
+    height: 1px;
+    background-color: #fff;
+    margin: 8px auto 0;
+  }
+
+  /*############# gnb2 메뉴 (모바일버전) ##############*/
+  #gnb2 {
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    height: 0px;
+    background-color: #000;
+    transition: height 0.5s;
+  }
+  #gnb2 ul {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 10%;
+  }
+  #gnb2 li {
+    font-size: 17px;
+    line-height: 55px;
+    border-bottom: 1px solid #555;
+  }
+  #gnb2 li:last-child {
+    border-bottom: none;
+  }
+  #gnb2 a {
+    color: #fff;
+  }
+
+  /*모바일용 검색바*/
+  #gnb2 .search_area2 {
+    width: 100%;
+    border-bottom: 1px solid #555;
+    overflow: hidden;
+  }
+  #gnb2 form {
+    width: 90%;
+    margin: 10px auto;
+    background-color: #333;
+    border-radius: 5px;
+  }
+  #gnb2 form img {
+    width: 5%;
+    margin: 2%;
+    margin-left: 4%;
+    vertical-align: middle;
+  }
+  #gnb2 form input {
+    width: 80%;
+    border: none;
+    padding: 10px 0;
+    text-indent: 13px;
+    background: none;
+    font-size: 17px;
+    color: #fff;
+  }
+
+  /*######## footer 420반응형 #########*/
+  #footer {
+    width: 100%;
+    height: auto;
+  }
+  /*pc버전에서 높이값이 이미 고정픽셀로 셋팅되어있어서 해제하는 방법 몰라서 auto 일단 넣어봄.*/
+
+  #footer h3 {
+    font-size: 14px;
+    line-height: 40px;
+    color: #b0b0b0;
+    font-weight: 700;
+  }
+  #footer h3 span {
+    display: inline-block;
+    float: right;
+  }
+
+  #footer_nav_menues {
+    width: 80%;
+    height: auto;
+    padding: 20px 0;
+    margin: 0 auto;
+  }
+  #footer_nav_menues .learn_more {
+    width: 100%;
+    float: none;
+    border-bottom: 1px solid #555;
+  }
+  #footer_nav_menues .learn_more li {
+    font-size: 14px;
+    line-height: 40px;
+  }
+  #footer_nav_menues .nav_menu {
+    width: 100%;
+    float: none;
+    border-bottom: 1px solid #555;
+  }
+  #footer_nav_menues .nav_menu:last-child {
+    border-bottom: none;
+  }
+  #footer_nav_menues .nav_menu li {
+    font-size: 14px;
+    line-height: 40px;
+  }
+
+  #footer_nav_menues .learn_more ul,
+  #footer_nav_menues .nav_menu ul {
+    max-height: 0px;
+    overflow: hidden;
+    transition: all 0.5s;
+  }
+}
+
+/*##############  반응형 320 ###############*/
+@media all and (min-width: 320px) and (max-width: 480px) {
+  #header {
+    background-color: #212121;
+  }
+  .header_inner {
+    width: 100%;
+    height: 45px;
+    position: relative;
+  }
+  .header_inner #logo {
+    width: 20px;
+    height: 24px;
+    left: 50%;
+    transform: translatex(-50%);
+    top: 50%;
+    transform: translatey(-50%);
+  }
+
+  #info_menu {
+    text-align: right;
+    line-height: 45px;
+    float: right;
+  }
+  #info_menu li {
+    width: 22px;
+    height: 20px;
+    padding: 0;
+    float: none;
+    overflow: visible;
+  }
+  #info_menu li img {
+    margin-bottom: 10px;
+  }
+  #info_menu .magnifier {
+    display: none;
+  }
+  #info_menu .account {
+    position: absolute;
+    top: 50%;
+    transform: translatey(-50%);
+    right: 3%;
+  }
+
+  #gnb {
+    display: none !important;
+  }
+
+  /*############# 모바일 메뉴버튼 ##############*/
+  #btn_mob_menu {
+    display: block;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left: 0px;
+    top: 50%;
+    transform: translatey(-45%);
+  }
+  #btn_mob_menu p {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  #btn_mob_menu span {
+    display: block;
+    text-indent: -9999px;
+    width: 50%;
+    height: 1px;
+    background-color: #fff;
+    margin: 8px auto 0;
+  }
+
+  /*############# gnb2 메뉴 (모바일버전) ##############*/
+  #gnb2 {
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    height: 0px;
+    background-color: #000;
+    transition: height 0.5s;
+  }
+  #gnb2 ul {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 10%;
+  }
+  #gnb2 li {
+    font-size: 17px;
+    line-height: 55px;
+    border-bottom: 1px solid #555;
+  }
+  #gnb2 li:last-child {
+    border-bottom: none;
+  }
+  #gnb2 a {
+    color: #fff;
+  }
+
+  /*모바일용 검색바*/
+  #gnb2 .search_area2 {
+    width: 100%;
+    border-bottom: 1px solid #555;
+    overflow: hidden;
+  }
+  #gnb2 form {
+    width: 90%;
+    margin: 10px auto;
+    background-color: #333;
+    border-radius: 5px;
+  }
+  #gnb2 form img {
+    width: 5%;
+    margin: 2%;
+    margin-left: 4%;
+    vertical-align: middle;
+  }
+  #gnb2 form input {
+    width: 80%;
+    border: none;
+    padding: 10px 0;
+    text-indent: 13px;
+    background: none;
+    font-size: 17px;
+    color: #fff;
+  }
+
+  /*######## footer 320반응형 #########*/
+  #footer {
+    width: 100%;
+    height: auto;
+  }
+  /*pc버전에서 높이값이 이미 고정픽셀로 셋팅되어있어서 해제하는 방법 몰라서 auto 일단 넣어봄.*/
+
+  #footer h3 {
+    font-size: 14px;
+    line-height: 40px;
+    color: #b0b0b0;
+    font-weight: 700;
+  }
+  #footer h3 span {
+    display: inline-block;
+    float: right;
+  }
+
+  #footer_nav_menues {
+    width: 80%;
+    height: auto;
+    padding: 20px 0;
+    margin: 0 auto;
+  }
+  #footer_nav_menues .learn_more {
+    width: 100%;
+    float: none;
+    border-bottom: 1px solid #555;
+  }
+  #footer_nav_menues .learn_more li {
+    font-size: 14px;
+    line-height: 40px;
+  }
+  #footer_nav_menues .nav_menu {
+    width: 100%;
+    float: none;
+    border-bottom: 1px solid #555;
+  }
+  #footer_nav_menues .nav_menu:last-child {
+    border-bottom: none;
+  }
+  #footer_nav_menues .nav_menu li {
+    font-size: 14px;
+    line-height: 40px;
+  }
+
+  #footer_nav_menues .learn_more ul,
+  #footer_nav_menues .nav_menu ul {
+    max-height: 0px;
+    overflow: hidden; /* transition:all 0.5s; */
+  }
+
+  /*############## footer_copyright ##############*/
+  .footer_copyright {
+    display: none;
+    width: 100%;
+    margin: 0 auto;
+    border-top: 1px solid #b0b0b0;
+    line-height: 49px;
+    color: #b0b0b0;
+    font-size: 14px;
+  }
+}

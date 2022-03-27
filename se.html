@@ -1,0 +1,701 @@
+<?php
+	include "00_conn.html";
+	
+	session_cache_expire(30);
+	session_start();
+?>
+<!DOCTYPE html>
+<html lang="ko">
+ <head>
+  <title> new document </title>
+  <meta charset="utf-8"/>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <link href="css/reset.css" rel="stylesheet" type="text/css"/>
+  <link href="css/se.css" rel="stylesheet" type="text/css"/>
+  <script src="js/common.js"></script>
+  <script>
+	$(function(){
+		/*계정버튼 클릭시 하위메뉴 나타나게 하기*/
+		var clickedAcc = 0;
+		$("#info_menu .account").click(function(){
+			if(clickedAcc == 0){
+				$("#accMenu").css({"display":"block"});
+				clickedAcc = 1;
+			}else{
+				$("#accMenu").css({"display":"none"});
+				clickedAcc = 0;
+			}
+		});
+	
+	});
+  </script>
+  <style>
+	body{font-family: 'Heebo', sans-serif;}
+	*{margin:0;padding:0;}
+	body{margin:0;padding:0;}
+	header,nav,footer,section,aside,article{display:block;}
+	div, p, ul, ul li, ol, ol li{margin:0;padding:0;}
+	li{list-style-type: none;}
+	img{border:none;}
+	a:link,a:visited{text-decoration: none;color: #000;}
+
+	i{font-style:normal;}
+
+	#wrap{max-width:1920px;width:100%;margin:0 auto;}
+	#header{width:100%;}
+	#container{width:100%;}
+	#footer{width:100%;}
+	/*full*/	
+	#full{width:100%;height:100%;background-color:rgba(255,255,255,0.5);position:fixed;left:0;top:0;}
+
+	/*######## 기능 클래스 ########*/
+		.slide_down{max-height:500px !important;}
+	/*##################### header 공통 #####################*/
+		#header{width:100%;height:60px;background-color:#212121;position:fixed;z-index:5;}
+		#header h1{position:absolute;left:-9999px;font-size:1px;width:1px;height:1px;overflow:hidden;}
+		.header_inner{width:1300px;margin:0 auto;position:relative;}
+		.header_inner:after{content:"";display:block;clear:both;}
+		.header_inner #logo{width:30px;height:38px;position:absolute;left:0;top:10px;}
+		.header_inner #logo a{display:block;color:#b0b0b0;}
+		.header_inner #logo a:hover{color:#fff;}
+		.header_inner #logo img{width:100%;color:#fff;}
+
+
+
+
+		#gnb{text-align:right;height:60px;margin-right:60px;line-height:60px;float:right;}
+		#gnb li{display:inline;}
+		#gnb li a{padding:0 10px;color:#f5f5f7;}
+		#gnb li a:hover{color:#fff;}
+
+
+		#info_menu{text-align:right;line-height:60px;float:right;}
+		#info_menu li{height:20px;padding:20px 0;margin-left:25px;overflow:hidden;float:left;}
+		#info_menu li a{display:block;width:100%;height:100%;}
+		#info_menu li img{height:100%;margin-bottom:30px;}
+
+
+		.search_area1{width:50%;padding:18px 0;position:absolute;left:50%;transform:translatex(-50%);}
+		#submit_btn{
+			width:21px;
+			height:24px;
+			border:none;
+			color:transparent;
+			background-color:#212121;
+			background-image:url("img/icon/magnifier.png");
+			background-repeat:no-repeat;
+			background-size:100%;
+			vertical-align:middle;margin-right:15px;}
+		#search_bar_pc{height:24px;font-size:18px;background-color:#212121;color:#ccc;border:none;}
+		#close_button{background-color:#212121;border:none;color:#ccc;font-size:20px;float:right;}
+
+		#quick_link{background-color:#fff;transform:translatey(17px);padding:30px;font-size:14px;border-radius:0 0 20px 20px;color:#777;}
+		#quick_link h3{line-height:30px;font-weight:400;}
+
+		#quick_link ul li{line-height:40px;text-indent:20px;}
+		#quick_link ul li a{color:#777;}
+		#quick_link ul li:hover{background-color:#efefef;}
+		#quick_link ul li:hover a{color:rgba(0,112,201);}
+
+		/*############# 모바일 메뉴버튼 ##############*/
+		#btn_mob_menu{display:none;}
+
+		/*############# 모바일 gnb 메뉴 ##############*/
+		#gnb2{display:none;}
+
+
+
+	/*##################### footer 공통 #####################*/
+		#footer{width:100%;height:450px;background-color:#212121;}
+		#footer a{color:#b0b0b0;}
+		#footer h3{font-size:14px;line-height:40px;color:#b0b0b0;font-weight:700;}
+		#footer h3 span{display:none;}
+		#footer_nav_menues{width:750px;height:350px;padding-top:50px;margin:0 auto;}
+		#footer_nav_menues .learn_more{width:234px;float:left;}
+		#footer_nav_menues .learn_more li{font-size:14px;line-height:40px;}
+		#footer_nav_menues .nav_menu{width:172px;float:left;}
+		#footer_nav_menues .nav_menu li{font-size:14px;line-height:40px;}
+
+	/*############## 반응형 (일반 큰 pc) ###############*/
+	@media all and (min-width:1320px) and (max-width:1919px){
+		.header_inner{width:1000px;}
+		
+	}
+	/*############## 반응형 (작은 pc) ###############*/
+	@media all and (min-width:1025px) and (max-width:1319px){
+		.header_inner{width:900px;}
+	}  
+
+	/*############## 반응형 (태블릿) ###############*/
+	@media all and (min-width:768px) and (max-width:1024px){
+		.header_inner{width:644px;}
+	}
+	/*##############  반응형 480 ###############*/
+	@media all and (min-width:481px) and (max-width:767px){
+		
+		
+		.header_inner{width:100%;height:45px;position:relative;}
+		.header_inner #logo{width:20px;height:24px;left:50%;transform:translatex(-50%);top:50%;transform:translatey(-50%);}
+		
+
+		#info_menu{text-align:right;line-height:45px;float:right;}
+		#info_menu li{width:22px;height:20px;padding:0;float:none;overflow:visible;}
+		#info_menu li img{margin-bottom:10px;}
+		#info_menu .magnifier{display:none;}
+		#info_menu .account{position:absolute;top:50%;transform:translatey(-50%);right:3%;}
+		
+		
+		
+
+
+		#gnb{display:none !important;}
+
+		/*############# 모바일 메뉴버튼 ##############*/
+		#btn_mob_menu{display:block;width:40px;height:40px;position:absolute;left:0px;top:50%;transform:translatey(-45%);}
+		#btn_mob_menu p{width:100%;height:100%;overflow:hidden;}
+		#btn_mob_menu span{display:block;text-indent:-9999px;width:50%;height:1px;background-color:#fff;margin:8px auto 0;}
+		
+		/*############# gnb2 메뉴 (모바일버전) ##############*/
+		#gnb2{display:block;overflow:hidden;width:100%;height:0px; background-color:#000;transition:height 0.5s;}
+		#gnb2 ul{width:100%;box-sizing:border-box;padding:0 10%;}
+		#gnb2 li{font-size:17px;line-height:55px;border-bottom:1px solid #555;}
+		#gnb2 li:last-child{border-bottom:none;}
+		#gnb2 a{color:#fff;}
+
+		
+
+		/*모바일용 검색바*/
+		#gnb2 .search_area2{width:100%;border-bottom:1px solid #555;overflow:hidden;}
+		#gnb2 form{width:90%;margin:10px auto;background-color:#333;border-radius:5px;}
+		#gnb2 form img{width:5%;margin:2%;margin-left:4%;vertical-align:middle;}
+		#gnb2 form input{width:80%;border:none;padding:10px 0;text-indent:13px;background:none;font-size:17px;color:#fff;}
+
+		/*######## footer 420반응형 #########*/
+		#footer{width:100%;height:auto;}
+		/*pc버전에서 높이값이 이미 고정픽셀로 셋팅되어있어서 해제하는 방법 몰라서 auto 일단 넣어봄.*/
+		
+		#footer h3{font-size:14px;line-height:40px;color:#b0b0b0;font-weight:700;}
+		#footer h3 span{display:inline-block;float:right;}
+
+		#footer_nav_menues{width:80%;height:auto;padding:20px 0;margin:0 auto;}
+		#footer_nav_menues .learn_more{width:100%;float:none;border-bottom:1px solid #555;}
+		#footer_nav_menues .learn_more li{font-size:14px;line-height:40px;}
+		#footer_nav_menues .nav_menu{width:100%;float:none;border-bottom:1px solid #555;}
+		#footer_nav_menues .nav_menu:last-child{border-bottom:none;}
+		#footer_nav_menues .nav_menu li{font-size:14px;line-height:40px;}
+
+		#footer_nav_menues .learn_more ul, #footer_nav_menues .nav_menu ul {max-height:0px;overflow:hidden;transition:all 0.5s;}
+				
+	}
+
+	/*##############  반응형 320 ###############*/
+	@media all and (min-width:320px) and (max-width:480px){
+		#header{background-color:#212121;}
+		.header_inner{width:100%;height:45px;position:relative;}
+		.header_inner #logo{width:20px;height:24px;left:50%;transform:translatex(-50%);top:50%;transform:translatey(-50%);}
+		
+
+		#info_menu{text-align:right;line-height:45px;float:right;}
+		#info_menu li{width:22px;height:20px;padding:0;float:none;overflow:visible;}
+		#info_menu li img{margin-bottom:10px;}
+		#info_menu .magnifier{display:none;}
+		#info_menu .account{position:absolute;top:50%;transform:translatey(-50%);right:3%;}
+		
+		
+		
+
+
+		#gnb{display:none !important;}
+
+		/*############# 모바일 메뉴버튼 ##############*/
+		#btn_mob_menu{display:block;width:40px;height:40px;position:absolute;left:0px;top:50%;transform:translatey(-45%);}
+		#btn_mob_menu p{width:100%;height:100%;overflow:hidden;}
+		#btn_mob_menu span{display:block;text-indent:-9999px;width:50%;height:1px;background-color:#fff;margin:8px auto 0;}
+		
+		/*############# gnb2 메뉴 (모바일버전) ##############*/
+		#gnb2{display:block;overflow:hidden;width:100%;height:0px; background-color:#000;transition:height 0.5s;}
+		#gnb2 ul{width:100%;box-sizing:border-box;padding:0 10%;}
+		#gnb2 li{font-size:17px;line-height:55px;border-bottom:1px solid #555;}
+		#gnb2 li:last-child{border-bottom:none;}
+		#gnb2 a{color:#fff;}
+
+
+
+		/*모바일용 검색바*/
+		#gnb2 .search_area2{width:100%;border-bottom:1px solid #555;overflow:hidden;}
+		#gnb2 form{width:90%;margin:10px auto;background-color:#333;border-radius:5px;}
+		#gnb2 form img{width:5%;margin:2%;margin-left:4%;vertical-align:middle;}
+		#gnb2 form input{width:80%;border:none;padding:10px 0;text-indent:13px;background:none;font-size:17px;color:#fff;}
+
+		/*######## footer 320반응형 #########*/
+		#footer{width:100%;height:auto;}
+		/*pc버전에서 높이값이 이미 고정픽셀로 셋팅되어있어서 해제하는 방법 몰라서 auto 일단 넣어봄.*/
+		
+		#footer h3{font-size:14px;line-height:40px;color:#b0b0b0;font-weight:700;}
+		#footer h3 span{display:inline-block;float:right;}
+
+		#footer_nav_menues{width:80%;height:auto;padding:20px 0;margin:0 auto;}
+		#footer_nav_menues .learn_more{width:100%;float:none;border-bottom:1px solid #555;}
+		#footer_nav_menues .learn_more li{font-size:14px;line-height:40px;}
+		#footer_nav_menues .nav_menu{width:100%;float:none;border-bottom:1px solid #555;}
+		#footer_nav_menues .nav_menu:last-child{border-bottom:none;}
+		#footer_nav_menues .nav_menu li{font-size:14px;line-height:40px;}
+
+		#footer_nav_menues .learn_more ul, #footer_nav_menues .nav_menu ul {max-height:0px;overflow:hidden;/* transition:all 0.5s; */}
+		
+
+
+		/*############## footer_copyright ##############*/
+		.footer_copyright{display:none;width:100%;margin:0 auto;border-top:1px solid #b0b0b0;line-height:49px;color:#b0b0b0;font-size:14px;}
+
+	}
+  </style>
+ </head>
+
+ <body>
+	<div id="wrap">
+		<!-- ########## header ########## -->
+		<div id="header">
+			<h1>Apple</h1>
+			<div class="header_inner">
+				<div id="btn_mob_menu">
+					<p>
+						<span>a</span>
+						<span>a</span>
+						<span>a</span>
+					</p>
+				</div>
+				<div id="logo">
+					<a href="index.html" title="Apple">
+						<img src="img/icon/logo.svg" alt="apple logo"/>
+					</a>
+				</div>
+				<ul id="info_menu">
+					<li class="account"><a href="#none" title="account icon"><img src="img/icon/account.png" alt="icon of account"/></a></li>
+					<li class="magnifier"><a href="#none" title="search icon"><img src="img/icon/magnifier.png" alt="icon of search"/></a></li>
+				</ul>
+				<div class="search_area1">
+					<form id="search_bar1" action="http://www.apple.com/us/search" method="GET">
+						<!-- <img src="img/icon/magnifier.png" alt="image of search"/> -->
+						<input id="submit_btn" type="submit" name="submit_btn" title="button of submit"/>
+						<input id="search_bar_pc" type="text" name="search_bar_pc" title="search_bar_pc" placeholder="Search apple.com" />
+						<input id="close_button" type="button" name="close_button" title="close button" value="x" readonly/>
+					</form>
+					<aside id="quick_link">
+						<h3>QUICK LINK</h3>
+						<ul>
+							<li><a href="airpod.html" title="COVID-19 information">Airpods Pro</a></li>
+							<li><a href="apple_card.html" title="COVID-19 information">Apple Card</a></li>
+							<li><a href="signup.html" title="COVID-19 information">Sign Up</a></li>
+							<li><a href="acc.html" title="COVID-19 information">Accessories</a></li>
+							<li><a href="watch.html" title="COVID-19 information">Apple watch</a></li>
+							<li><a href="pro11.html" title="COVID-19 information">iPhone 11</a></li>
+						</ul>
+					</aside>
+				</div>
+				
+				<aside id="accMenu">
+					
+<?php if( empty($_SESSION['email']) ){ ?>
+					<div class="smallMenu"><a href="list.html" title="">Browse bulletin board</a></div>
+					<div class="smallMenu"><a href="signin.html" title="">Sign in</a></div>
+<?php }else{ ?>
+					<div class="smallMenu"><a href='manage.html?email=<?=$_SESSION['email']?>' title="">Manage account</a></div>
+					<div class="smallMenu"><a href="list.html" title="">Bulletin board</a></div>
+					<div class="smallMenu"><a href="signout.html" title="">Sign out</a></div>
+<?php } ?>
+				</aside>
+				<ul id="gnb">
+					<li><a href="airpod.html" title="Mac">Mac</a></li>
+					<li><a href="pad.html" title="iPad">iPad</a></li>
+					<li><a href="pro11.html" title="iPhone">iPhone</a></li>
+					<li><a href="watch.html" title="watch">Watch</a></li>
+					<li><a href="acc.html" title="watch">Acc</a></li>
+					<li><a href="apple_card.html" title="watch">Card</a></li>
+					<li><a href="purchase.html" title="watch">Purchase</a></li>
+				</ul>
+			</div>
+			
+			<div id="gnb2">
+				<div class="search_area2">
+					<form id="search_bar2" action="http://www.apple.com/us/search" method="GET">
+						<img src="img/icon/magnifier.png" alt="image of search"/><input id="search" type="text" name="src" title="search_bar_mob" placeholder="Search apple.com" />
+					</form>
+				</div>
+				<ul>
+					<li><a href="airpod.html" title="Mac">Mac</a></li>
+					<li><a href="pad.html" title="iPad">iPad</a></li>
+					<li><a href="pro11.html" title="iPhone">iPhone</a></li>
+					<li><a href="watch.html" title="watch">Watch</a></li>
+					<li><a href="acc.html" title="watch">Acc</a></li>
+					<li><a href="apple_card.html" title="watch">Card</a></li>
+					<li><a href="purchase.html" title="watch">Purchase</a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- ########## container ########## -->
+		<div id="container">
+			<section id="section1">
+				<p class="img_airpod_main"><img src="img/se/flow_startframe.jpg" alt=""/></p>
+				<p class="logo_se"><img src="img/se/logo.png" alt=""/></p>
+				<h2 class="text_title">
+					Lots to love.<br/>
+					Less to spend.
+				</h2>
+				
+				<p class="text_sub">
+					iPhone SE packs our most powerful chip into our most popular size at our most affordable price. It's just what you've been waiting for.
+				</p>
+				<p class="text_sub2">
+					Starting at $399.
+				</p>
+				<p class="text_sub3">
+					From $9.54/mo. or $229 with trade-in.1
+				</p>
+				
+				<div class="durable durable1">
+					<p class="img_d1"><img src="img/se/flow_key_059.jpg" alt=""/></p>
+					<p class="text_properties1">
+						Durable glass and aluminum design
+					</p>
+				</div>
+				<div class="durable durable2">
+					<p class="text_properties2">
+						Brilliant 4.7''Retina HD display
+					</p>
+					<p class="img_d2"><img src="img/se/flow_startframe.jpg" alt=""/></p>
+				</div>
+			</section>
+			<section id="chip_back">
+				<div class="inner">
+					<p><img src="img/se/a13.jpg" alt="image of a13"/></p>
+					<h3 class="text_title2">
+						iPhone 11 Pro called.<br/>
+						It wants its chip back.
+					</h3>
+					<p class="text_desc">
+						We put the brains of iPhone 11 Pro in the body of iPhone SE. A13 Bionic is the fastest chip ever in a smartphone, period. So everything feels fluid, whether you’re launching apps, playing the latest games, or exploring new ways to work and play with augmented reality.
+					</p>
+				</div>
+			</section>
+			<section id="video_bike">
+				<video autoplay autoplay muted>
+					<source src="video/se/ani.mp4" type="video/mp4"/>
+				</video>
+				
+			</section>
+			<section id="camera">
+				<p class="img_camera"><img src="img/se/portrait_phone.jpg" alt=""/></p>
+			</section>
+			<section id="smile">
+				<div class="inner">
+					<p><img src="img/se/i8.jpg" alt=""/></p>
+					<h3 class="text_title2">
+						Smile, you're in<br/>
+						Portrait mode.
+					</h3>
+					<p class="text_desc">
+						The advanced camera system with A13 Bionic brings you Portrait mode, which artfully blurs the background to put the focus on your subject -even when you're taking selfies.
+					</p>
+				</div>
+			</section>
+			<section id="light1">
+				
+				<p class="p1"><img src="img/se/p1.jpg" alt=""/></p>
+				
+				
+				
+				<div class="pics">
+					<p class="text_pic t1">
+						Depth Control. <span>A simple slider lets you blur the background as much or as little as you like — before or after you take the photo.</span>
+					</p>
+					<div class="play_area">
+						<video autoplay muted>
+							<source src="video/se/medium.mp4" type="video/mp4"/>
+						</video>
+					</div>
+					<p class="text_pic t2">
+						Portrait Lighting. <span>Choose from six studio‑quality effects, then adjust the lighting intensity to show your subject in the best possible light.</span>
+					</p>
+					<div class="pic2">
+						<p><img src="img/se/p2.jpg" alt=""/></p>
+						<span>Studio Light</span>
+					</div>
+					<div class="pic3">
+						<p><img src="img/se/p3.jpg" alt=""/></p>
+						<span>Studio Light</span>
+					</div>
+					<div class="pic4">
+						<p><img src="img/se/p4.jpg" alt=""/></p>
+						<span>Studio Light</span>
+					</div>
+
+					<div class="pic5">
+						<p><img src="img/se/p5.jpg" alt=""/></p>
+						<span>Studio Light</span>
+					</div>
+					<div class="pic6">
+						<p><img src="img/se/p6.jpg" alt=""/></p>
+						<span>Studio Light</span>
+					</div>
+					<div class="pic7">
+						<p><img src="img/se/p7.jpg" alt=""/></p>
+						<span>Studio Light</span>
+					</div>
+				</div>
+				
+			</section>
+			<section id="light2">
+				<div class="inner">
+					<h3 class="text_title2">
+						Let there be light.<br/>
+						And shadow. And contour.
+					</h3>
+					<p class="text_desc">
+						Next-generation Smart HDR knows a face when it sees one, and intelligently relights it to capture more natural-looking contours and skin tones. It also finesses highlight and shadow detail in the background. So every part of your photo looks amazing.
+					</p>
+					<ul class="pics">
+						<li><img src="img/se/l1.jpg" alt="이미지1"/></li>
+						<li><img src="img/se/l2.jpg" alt="이미지1"/></li>
+						<li><img src="img/se/l3.jpg" alt="이미지1"/></li>
+						<li><img src="img/se/l4.jpg" alt="이미지1"/></li>
+						<li><img src="img/se/l5.jpg" alt="이미지1"/></li>
+						<li><img src="img/se/l6.jpg" alt="이미지1"/></li>
+					</ul>
+					<h3 class="text_title2">
+						High, high, high<br/>
+						high-definition video
+					</h3>
+					<div id="phone_jump">
+						
+						<div class="play_area">
+							<video autoplay muted>
+								<source src="video/se/jump.mp4" type="video/mp4"/>
+							</video>
+						</div>
+						<p class="img_hardware">
+							<img src="img/se/hardware_crop.png" alt=""/>
+						</p>
+					</div>
+					<p class="text_desc">
+						4K video means you'll see four times more detail than in 1080p HD video. And extended dynamic range adds greater detail in highlights and shadows.
+					</p>
+				</div>
+			</section>
+			<section id="quick">
+				<p class="img_quick">
+					<img src="img/se/quick_take.jpg" alt=""/>
+				</p>
+				<p class="text_pic">
+					QuickTake. <span>When a photo op turns into a video op, you can instantly start recording video by just holding the shutter.</span>
+				</p>
+				
+			</section>
+			<section id="touch">
+				<p class="phone_touch"><img src="img/se/touch.jpg" alt="image of home button"/></p>
+				<p class="img_fingerprint"><img src="img/se/finger_print.jpg" alt="image of fingerprint"/></p>
+				<h3 class="text_title2">
+					Home sweet<br/>
+					Home button.
+				</h3>
+				<p class="text_desc">
+					Touch ID lets you securely unlock your iPhone and sign in to apps instantly. You can even use it with Apple Pay to grab a coffee, get a yoga app, or shop for sneakers online. All without reaching for your credit card.
+				</p>
+			</section>
+			<section id="privacy">
+				<div class="inner">
+					<p class="img_lock"><img src="img/se/privacy.png" alt="image of locker"/></p>
+					<h3 class="text_title2">
+						Privacy is built in.
+					</h3>
+					<p class="text_desc">
+						Everything we make is designed to give you control over your information. All the iMessages you send are encrypted. Fingerprint data is stored on your device, never on Apple servers or in iCloud. Apple Pay doesn't share your credit card number. And the list goes on.
+					</p>
+				</div>
+			</section>
+			<section id="survive">
+				
+				<h3 class="text_title2">
+					Survives splashes,<br/>
+					sloshes, sprinkles, sprays,<br/>
+					splatters, and spills.
+				</h3>
+				<p class="text_desc">
+					iPhone SE is water resistant to 1 meter for 30 minutes.2 It's not afraid of a little coffee, tea, or soda either. And dust? No worries.
+				</p>
+				<p class="img_water"><img src="img/se/water.jpg" alt="image of locker"/></p>
+			</section>
+			<section id="binge">
+				<h3 class="text_title2">
+					Binge-worthy battery life.
+				</h3>
+				<p class="text_desc">
+					The show must go on. So iPhone SE lets you watch up to 13 hours of video on a single charge.3 When you do need to power up, just set it down on a wireless charger. Or connect to an 18W fast-charge adapter to go from zero to up to 50 percent in 30 minutes.4
+				</p>
+				<p class="img_lock"><img src="img/se/battery.jpg" alt="image of locker"/></p>
+			</section>
+			<section id="ios13">
+				<div class="text">
+					<h3 class="text_title2">
+						Built for iOS 13.<br/>
+						And beyond.
+					</h3>
+					<p class="text_desc">
+						iPhone SE is made to run the latest features-and even some that haven't been invented yet. So you can use Dark Mode, Siri Shortcuts, and the new Photos app now. And take advantage of feature and security updates in the future.
+					</p>
+				</div>
+				<p class="img_ios13"><img src="img/se/ios13.jpg" alt="image of locker"/></p>
+			</section>
+			<!-- <section id="colors">
+				<p class="text_title2">
+					Comes in<br/>
+					<span>Black.</span>
+				</p>
+				<p class="img_lock"><img src="img/se/black.png" alt="image of locker"/></p>
+			</section> -->
+			<section id="more">
+				<h3 class="text_title2">
+					Even more great stuff.
+				</h3>
+				<ol class="properties">
+					<li>
+						<p class="img_property"><img src="img/se/i1.jpg" alt="image of locker"/></p>
+						<strong>True Tone</strong><br/>
+						<p>
+							Dynamically adjusts white balance on the display so images look natural and are easier on your eyes.
+						</p>
+					</li>
+					<li>
+						<p class="img_property"><img src="img/se/i2.jpg" alt="icon of haptip touch"/></p>
+						<strong>Haptic Touch</strong><br/>
+						<p>
+							Press and hold an icon for shortcuts and a slight vibration makes it feel like you're pressing a real, physical button.
+						</p>
+					</li>
+					<li>
+						<p class="img_property"><img src="img/se/i3.jpg" alt="image of locker"/></p>
+						<strong>Augmented reality</strong><br/>
+						<p>
+							Run the latest AR apps that let you measure real-world objects, map constellations over the stars, and more.
+						</p>
+					</li>
+					<li>
+						<p class="img_property"><img src="img/se/i4.jpg" alt="image of locker"/></p>
+						<strong>Stereo audio recording</strong><br/>
+						<p>
+							iPhone SE records videos in stereo to make the sound as engaging as the picture.
+						</p>
+					</li>
+					<li>
+						<p class="img_property"><img src="img/se/i5.jpg" alt="image of locker"/></p>
+						<strong>Faster Wi-Fi and cellular data</strong><br/>
+						<p>
+							Wi-Fi 6 and Gigabit-class LTE can deliver much faster download speeds, whether you're on Wi-Fi or cellular networks.
+						</p>
+					</li>
+					<li>
+						<p class="img_property"><img src="img/se/i6.jpg" alt="image of locker"/></p>
+						<strong>Audio Sharing</strong><br/>
+						<p>
+							You and a friend can both rock out to the same playlist by pairing two sets of AirPods or Beats headphones to one iPhone.
+						</p>
+					</li>
+					
+				</ol>
+			</section>
+			<section id="ar">
+				<div class="inner">
+					<div class="left">
+						<p class="img_property"><img src="img/se/i9.jpg" alt="image of locker"/></p>
+						<h3 class="text_title3">
+							Use AR to see<br/>
+							iPhone SE.</h3>
+						<p class="text_desc">Open this page using Safari on your iPhone or iPad.</p>
+						<ul class="colors_ar">
+							<li class="black">
+								<p></p>
+								<span>black</span>
+							</li>
+							<li class="white">
+								<p></p>
+								<span>white</span>
+							</li>
+							<li class="red">
+								<p></p>
+								<span>red</span>
+							</li>
+						</ul>
+					</div>
+					<ul class="right">
+						<li class="black">
+							<img src="img/se/ar_black.jpg" alt=""/>
+						</li>
+						<!-- <li class="white">
+							<img src="img/se/ar_white.jpg" alt=""/>
+						</li>
+						<li class="red">
+							<img src="img/se/ar_red.jpg" alt=""/>
+						</li> -->
+					</ul>
+				</div>
+			</section>
+			<section id="explore">
+				<h3 class="text_title3">Explore iPhone accessories.</h3>
+				<p class="text_desc"><a href="acc.html" title="browse acc shop">Shop ></a></p>
+				<p class="img_property"><img src="img/se/acc.jpg" alt="image of accessries"/></p>
+			</section>
+		</div>
+
+		<!-- ########## footer ########## -->
+		<footer id="footer">
+			<ul id="footer_nav_menues">
+				<li class="learn_more">
+					<h3>LEARN MORE<span>+</span></h3>
+					<ul>
+						<li><a href="#" title="">iPhone SE</a></li>
+						<li><a href="#" title="">iPad Pro</a></li>
+						<li><a href="#" title="">iPhone Pro11</a></li>
+						<li><a href="#" title="">Apple Watch</a></li>
+					</ul>
+				</li>
+				<li class="nav_menu">
+					<h3>Support<span>+</span></h3>
+					<ul>
+						<li><a href="#" title="">Contact Us</a></li>
+						<li><a href="#" title="">Warranty</a></li>
+						<li><a href="#" title="">User Guide</a></li>
+						<li><a href="#" title="">Scooter safety notice</a></li>
+						<li><a href="#" title="">Android Enterprise Recommended</a></li>
+					</ul>
+				</li>
+				<li class="nav_menu">
+					<h3>ABOUT US<span>+</span></h3>
+					<ul>
+						<li><a href="#" title="">Apple</a></li>
+						<li><a href="#" title="">Press &amp; Media</a></li>
+						<li><a href="#" title="">User Agreement</a></li>
+						<li><a href="#" title="">Privacy Policy</a></li>
+						<li><a href="#" title="">Xiaomi Blog</a></li>
+						<li><a href="#" title="">Investor Relations</a></li>
+						<li><a href="#" title="">Integrity &amp; Compliance</a></li>
+					</ul>
+				</li>
+				<li class="nav_menu">
+					<h3>FOLLOW Apple<span>+</span></h3>
+					<ul>
+						<li><a href="#" title="">Facebook</a></li>
+						<li><a href="#" title="">Youtube</a></li>
+						<li><a href="#" title="">Instagram</a></li>
+						<li><a href="#" title="">Twitter</a></li>
+					</ul>
+				</li>
+			</ul>
+			<div class="footer_copyright">
+				Copyright &copy; 2020 Jisun Kim. All Rights Reserved
+			</div>
+		</footer>
+	</div>
+	<div id="full"></div>
+ </body>
+</html>

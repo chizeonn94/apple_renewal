@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="ko">
+ <head>
+  <title>Apple card - Apple</title>
+  <meta charset="utf-8"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="css/reset.css" rel="stylesheet" type="text/css"/>
+  <script src="js/common.js"></script>
+  <script>
+		$(function(){
+	
+			$("#cards2 .card .inner").click(function(){
+				if($(this).hasClass("rotate180")){ 
+					$(this).removeClass("rotate180");
+					$("body").css({"backgroundColor":"rgba(0,0,0,0)"});
+					$(this).parent().siblings().css({"opacity":"1"});
+				}
+				else
+				{
+					$(this).addClass("rotate180");
+					$("body").css({"backgroundColor":"rgba(0,0,0,0.7)"});
+					$(this).parent().siblings().css({"opacity":"0.2"});
+				}
+			});
+		});
+  </script>
+  <style>
+	#header{position:sticky;top:0;}
+	/*full*/	
+	#full{width:100%;height:100%;background-color:rgba(255,255,255,0.5);position:fixed;left:0;top:0;}
+	.btn_compare{display:none;}
+ 
+	body{font-family: 'Heebo', sans-serif;}
+	*{margin:0;padding:0;}
+	body{margin:0;padding:0;}
+	header,nav,footer,section,aside,article{display:block;}
+	div, p, ul, ul li, ol, ol li{margin:0;padding:0;}
+	li{list-style-type: none;}
+	img{border:none;}
+	a:link,a:visited{text-decoration: none;color: #000;}
+
+	i{font-style:normal;}
+
+	#wrap{max-width:1920px;width:100%;margin:0 auto;}
+	#header{width:100%;}
+	#container{width:100%;}
+	#footer{width:100%;}
+
+	/*######## 기능 클래스 ########*/
+		.slide_down{max-height:500px !important;}
+	/*##################### header 공통 #####################*/
+		#header{width:100%;height:60px;background-color:#212121;position:fixed;z-index:5;}
+		#header h1{position:absolute;left:-9999px;font-size:1px;width:1px;height:1px;overflow:hidden;}
+		.header_inner{width:1300px;margin:0 auto;position:relative;}
+		.header_inner:after{content:"";display:block;clear:both;}
+		.header_inner #logo{width:30px;height:38px;position:absolute;left:0;top:10px;}
+		.header_inner #logo a{display:block;color:#b0b0b0;}
+		.header_inner #logo a:hover{color:#fff;}
+		.header_inner #logo img{width:100%;color:#fff;}
+
+		#accMenu{border:1px solid #ccc;}
+
+
+		#gnb{text-align:right;height:60px;margin-right:60px;line-height:60px;float:right;}
+		#gnb li{display:inline;}
+		#gnb li a{padding:0 10px;color:#f5f5f7;}
+		#gnb li a:hover{color:#fff;}
+
+
+		#info_menu{text-align:right;line-height:60px;float:right;}
+		#info_menu li{height:20px;padding:20px 0;margin-left:25px;overflow:hidden;float:left;}
+		#info_menu li a{display:block;width:100%;height:100%;}
+		#info_menu li img{height:100%;margin-bottom:30px;}
+
+
+		.search_area1{width:50%;padding:18px 0;position:absolute;left:50%;transform:translatex(-50%);}
+		#submit_btn{
+			width:21px;
+			height:24px;
+			border:none;
+			color:transparent;
+			background-color:#212121;
+			background-image:url("img/icon/magnifier.png");
+			background-repeat:no-repeat;
+			background-size:100%;
+			vertical-align:middle;margin-right:15px;}
+		#search_bar_pc{height:24px;font-size:18px;background-color:#212121;color:#ccc;border:none;}
+		#close_button{background-color:#212121;border:none;color:#ccc;font-size:20px;float:right;}
+
+		#quick_link{background-color:#fff;transform:translatey(17px);padding:30px;font-size:14px;border-radius:0 0 20px 20px;color:#777;}
+		#quick_link h3{line-height:30px;font-weight:400;}
+
+		#quick_link ul li{line-height:40px;text-indent:20px;}
+		#quick_link ul li a{color:#777;}
+		#quick_link ul li:hover{background-color:#efefef;}
+		#quick_link ul li:hover a{color:rgba(0,112,201);}
+
+		/*############# 모바일 메뉴버튼 ##############*/
+		#btn_mob_menu{display:none;}
+
+		/*############# 모바일 gnb 메뉴 ##############*/
+		#gnb2{display:none;}
+
+
+
+	/*##################### footer 공통 #####################*/
+		#footer{width:100%;height:450px;background-color:#212121;}
+		#footer a{color:#b0b0b0;}
+		#footer h3{font-size:14px;line-height:40px;color:#b0b0b0;font-weight:700;}
+		#footer h3 span{display:none;}
+		#footer_nav_menues{width:750px;height:350px;padding-top:50px;margin:0 auto;}
+		#footer_nav_menues .learn_more{width:234px;float:left;}
+		#footer_nav_menues .learn_more li{font-size:14px;line-height:40px;}
+		#footer_nav_menues .nav_menu{width:172px;float:left;}
+		#footer_nav_menues .nav_menu li{font-size:14px;line-height:40px;}
+
+	/*############## 반응형 (일반 큰 pc) ###############*/
+	@media all and (min-width:1320px) and (max-width:1919px){
+		.header_inner{width:1000px;}
+		
+	}
+	/*############## 반응형 (작은 pc) ###############*/
+	@media all and (min-width:1025px) and (max-width:1319px){
+		.header_inner{width:900px;}
+	}  
+
+	/*############## 반응형 (태블릿) ###############*/
+	@media all and (min-width:768px) and (max-width:1024px){
+		.header_inner{width:644px;}
+	}
+	/*##############  반응형 480 ###############*/
+	@media all and (min-width:481px) and (max-width:767px){
+		
+		
+		.header_inner{width:100%;height:45px;position:relative;}
+		.header_inner #logo{width:20px;height:24px;left:50%;transform:translatex(-50%);top:50%;transform:translatey(-50%);}
+		
+
+		#info_menu{text-align:right;line-height:45px;float:right;}
+		#info_menu li{width:22px;height:20px;padding:0;float:none;overflow:visible;}
+		#info_menu li img{margin-bottom:10px;}
+		#info_menu .magnifier{display:none;}
+		#info_menu .account{position:absolute;top:50%;transform:translatey(-50%);right:3%;}
+		
+		
+		
+
+
+		#gnb{display:none !important;}
+
+		/*############# 모바일 메뉴버튼 ##############*/
+		#btn_mob_menu{display:block;width:40px;height:40px;position:absolute;left:0px;top:50%;transform:translatey(-45%);}
+		#btn_mob_menu p{width:100%;height:100%;overflow:hidden;}
+		#btn_mob_menu span{display:block;text-indent:-9999px;width:50%;height:1px;background-color:#fff;margin:8px auto 0;}
+		
+		/*############# gnb2 메뉴 (모바일버전) ##############*/
+		#gnb2{display:block;overflow:hidden;width:100%;height:0px; background-color:#000;transition:height 0.5s;}
+		#gnb2 ul{width:100%;box-sizing:border-box;padding:0 10%;}
+		#gnb2 li{font-size:17px;line-height:55px;border-bottom:1px solid #555;}
+		#gnb2 li:last-child{border-bottom:none;}
+		#gnb2 a{color:#fff;}
+
+		
+
+		/*모바일용 검색바*/
+		#gnb2 .search_area2{width:100%;border-bottom:1px solid #555;overflow:hidden;}
+		#gnb2 form{width:90%;margin:10px auto;background-color:#333;border-radius:5px;}
+		#gnb2 form img{width:5%;margin:2%;margin-left:4%;vertical-align:middle;}
+		#gnb2 form input{width:80%;border:none;padding:10px 0;text-indent:13px;background:none;font-size:17px;color:#fff;}
+
+		/*######## footer 420반응형 #########*/
+		#footer{width:100%;height:auto;}
+		/*pc버전에서 높이값이 이미 고정픽셀로 셋팅되어있어서 해제하는 방법 몰라서 auto 일단 넣어봄.*/
+		
+		#footer h3{font-size:14px;line-height:40px;color:#b0b0b0;font-weight:700;}
+		#footer h3 span{display:inline-block;float:right;}
+
+		#footer_nav_menues{width:80%;height:auto;padding:20px 0;margin:0 auto;}
+		#footer_nav_menues .learn_more{width:100%;float:none;border-bottom:1px solid #555;}
+		#footer_nav_menues .learn_more li{font-size:14px;line-height:40px;}
+		#footer_nav_menues .nav_menu{width:100%;float:none;border-bottom:1px solid #555;}
+		#footer_nav_menues .nav_menu:last-child{border-bottom:none;}
+		#footer_nav_menues .nav_menu li{font-size:14px;line-height:40px;}
+
+		#footer_nav_menues .learn_more ul, #footer_nav_menues .nav_menu ul {max-height:0px;overflow:hidden;transition:all 0.5s;}
+				
+	}
+
+	/*##############  반응형 320 ###############*/
+	@media all and (min-width:320px) and (max-width:480px){
+		#header{background-color:#212121;}
+		.header_inner{width:100%;height:45px;position:relative;}
+		.header_inner #logo{width:20px;height:24px;left:50%;transform:translatex(-50%);top:50%;transform:translatey(-50%);}
+		
+
+		#info_menu{text-align:right;line-height:45px;float:right;}
+		#info_menu li{width:22px;height:20px;padding:0;float:none;overflow:visible;}
+		#info_menu li img{margin-bottom:10px;}
+		#info_menu .magnifier{display:none;}
+		#info_menu .account{position:absolute;top:50%;transform:translatey(-50%);right:3%;}
+		
+		
+		
+
+
+		#gnb{display:none !important;}
+
+		/*############# 모바일 메뉴버튼 ##############*/
+		#btn_mob_menu{display:block;width:40px;height:40px;position:absolute;left:0px;top:50%;transform:translatey(-45%);}
+		#btn_mob_menu p{width:100%;height:100%;overflow:hidden;}
+		#btn_mob_menu span{display:block;text-indent:-9999px;width:50%;height:1px;background-color:#fff;margin:8px auto 0;}
+		
+		/*############# gnb2 메뉴 (모바일버전) ##############*/
+		#gnb2{display:block;overflow:hidden;width:100%;height:0px; background-color:#000;transition:height 0.5s;}
+		#gnb2 ul{width:100%;box-sizing:border-box;padding:0 10%;}
+		#gnb2 li{font-size:17px;line-height:55px;border-bottom:1px solid #555;}
+		#gnb2 li:last-child{border-bottom:none;}
+		#gnb2 a{color:#fff;}
+
+
+
+		/*모바일용 검색바*/
+		#gnb2 .search_area2{width:100%;border-bottom:1px solid #555;overflow:hidden;}
+		#gnb2 form{width:90%;margin:10px auto;background-color:#333;border-radius:5px;}
+		#gnb2 form img{width:5%;margin:2%;margin-left:4%;vertical-align:middle;}
+		#gnb2 form input{width:80%;border:none;padding:10px 0;text-indent:13px;background:none;font-size:17px;color:#fff;}
+
+		/*######## footer 320반응형 #########*/
+		#footer{width:100%;height:auto;}
+		/*pc버전에서 높이값이 이미 고정픽셀로 셋팅되어있어서 해제하는 방법 몰라서 auto 일단 넣어봄.*/
+		
+		#footer h3{font-size:14px;line-height:40px;color:#b0b0b0;font-weight:700;}
+		#footer h3 span{display:inline-block;float:right;}
+
+		#footer_nav_menues{width:80%;height:auto;padding:20px 0;margin:0 auto;}
+		#footer_nav_menues .learn_more{width:100%;float:none;border-bottom:1px solid #555;}
+		#footer_nav_menues .learn_more li{font-size:14px;line-height:40px;}
+		#footer_nav_menues .nav_menu{width:100%;float:none;border-bottom:1px solid #555;}
+		#footer_nav_menues .nav_menu:last-child{border-bottom:none;}
+		#footer_nav_menues .nav_menu li{font-size:14px;line-height:40px;}
+
+		#footer_nav_menues .learn_more ul, #footer_nav_menues .nav_menu ul {max-height:0px;overflow:hidden;/* transition:all 0.5s; */}
+		
+
+
+		/*############## footer_copyright ##############*/
+		.footer_copyright{display:none;width:100%;margin:0 auto;border-top:1px solid #b0b0b0;line-height:49px;color:#b0b0b0;font-size:14px;}
+
+	}
+  </style>
+  <style>
+		
+		body{transition:background-color 0.5s;}
+		#wrap{max-width:1920px;width:100%;}
+	
+	/*######### section1 ##########*/
+		#section1{
+			width:100%;
+			position:relative;
+		}
+
+		#section1 .play_area, #section1 .play_area video{width:100%;}
+		#section1 .play_area{width:100%;max-height:100vh;overflow:hidden;position:relative;}
+		#section1 .text{width:100%;text-align:center;position:absolute;top:50%;transform:translatey(-59%);}
+		
+		
+		#section1 .card i{
+			display:inline-block;width:190px;height:230px;
+			overflow:hidden;
+			}
+		#section1 .card i img{height:100%;}
+		#section1 .card span{font-size:250px;color:#fff;text-shadow:-5px -5px 20px rgba(0,0,0,0.3);}
+
+		#section1 .btn_apply{
+			width:120px;line-height:35px;border-radius:35px;font-size:18px;margin:0 auto;background-color:rgba(0,0,0,1);opacity:1;padding:10px;}
+		#section1 .btn_apply:hover{opacity:0.7;}
+		#section1 .btn_apply a{display:block;width:100%;height:100%;color:#fff;}
+
+		.banner_text{
+			width:100%;height:0;text-align:center;font-weight:700;font-size:18px;
+			line-height:70px;
+			background-image:-webkit-linear-gradient(left, #FCC833, #F9B678, #EB6D66, #E5709B);
+			
+			position:absolute;bottom:0;animation:show_banner 1s 1;animation-delay:0.5s;animation-fill-mode:forwards;}
+		
+		@keyframes show_banner{
+			0%{height:0;}
+			100%{height:70px;}
+		}
+
+	/*######### section2 ##########*/
+		#section2{width:100%;}
+		#section2 .text_main{
+			font-size:110px;
+			padding:100px 0 50px;
+			letter-spacing:-5px;
+			margin:0 auto;
+			text-align:center;			
+			} 
+		#section2 .text_main .grad_txt{
+			background-image:-webkit-linear-gradient(left, #908BC0, #D498B6, #FFCF83);
+			-webkit-background-clip:text;
+			color:transparent;
+		}
+		#section2 .desc_main{width:993px;font-weight:700;margin:0 auto;padding:40px 0;font-size:32px;text-align:center;}
+
+		
+	
+	/*######### section3 ##########*/
+		#section3{display:none;}
+	/*############### cards2 ##############*/
+
+
+		#cards2{width:1000px;margin:0 auto;}
+		#cards2 .card{width:1000px;height:740px;margin-bottom:20px;perspective:3000px;float:left;cursor:pointer;}
+		#cards2:after{content:"";display:block;clear:both;}
+		#c2, #c5, #c10{margin-right:20px;}
+		#cards2 .small{width:490px;}
+		
+		#cards2 .card .inner{width:100%;height:100%;border-radius:40px;box-shadow:5px 5px 30px rgba(0,0,0,0.3);position:relative;transform-style: preserve-3d;transition:all 0.9s;}
+		
+		.rotate180{transform:rotatex(180deg);}
+		
+		#cards2 .card .inner li{
+			border-radius:40px;overflow:hidden;position:absolute;
+			width:100%;height:100%;padding:75px;box-sizing:border-box;
+			background-color:#fff;
+			
+			}
+		#cards2 .card .inner .front{z-index:1;}
+		#cards2 .card .inner .back{/* opacity:0; */transform:rotatex(180deg);/* transition:all 0.5s; */}
+
+	
+		
+		#cards2 .txt_main{font-size:105px;line-height:98px;font-weight:700;}
+		#cards2 .txt_main p{height:98px;overflow:hidden;}
+		#cards2 .txt_main p span{display:block;margin-top:100%;animation:up_t 0.8s 1;animation-fill-mode:forwards;animation-play-state:paused;}
+		#cards2:hover .txt_main p span{animation-play-state:running;}
+		@keyframes up_t{
+			0%{margin-top:100%;}
+			100%{margin-top:0%;}
+		}
+		
+		
+		/*######## back 공통 #######*/
+		#cards2 .back dl{width:340px;float:left;font-weight:700;}
+		#cards2 .back dl dt{font-size:20px;color:#777;line-height:30px;}
+		#cards2 .back dl dd{font-size:20px;color:#000;line-height:30px;}
+		#cards2 .back .img_phone{position:relative;left:60px;float:left;}
+		
+		#cards2 .back .img_phone .display{width:270px;position:absolute;top:19px;left:29px;}
+		#cards2 .back .img_phone .frame{width:407px;position:absolute;}
+		#cards2 .back .img_phone img{width:100%;}
+
+		/*######## c1 /front #######*/
+		#c1 .front{
+			background-image:url("img/card/apple_card.png");
+			background-repeat:no-repeat;
+			background-size:100%;
+			background-position:center 12px;
+			border-radius:40px;
+			
+		}
+		#c1 .front .txt_main{font-size:54px;font-weight:700;}
+
+		/*######## c2 /front #######*/
+		#c2 .front{
+			background-image:url("img/bg/pink2.png");background-size:100% 100%;color:#fff;
+		}
+		/* #c2 .txt_main{font-size:65px;line-height:65px;color}*/
+		#c2 .txt_main p{height:87px;}
+		
+		#c2 .txt_main p span{display:block;margin-top:100%;animation:up_t 0.8s 1;animation-fill-mode:forwards;animation-play-state:paused;}
+		#c2:hover{animation-play-state:running;}
+		
+		@keyframes up_t{
+			0%{margin-top:100%;}
+			100%{margin-top:0%;}
+		}
+	
+		#c2 .txt_main .t4 span{animation-delay:0.8s;}
+		#c2 .txt_main .t5 span{animation-delay:1.6s;}
+
+		/*######## c3 /front #######*/
+		#c3 .front {background-color:lightblue;}
+		#c3 .front .play_area{margin-top:150px;width:100%;height:400px;animation:show_balance 1s 1;animation-fill-mode:forwards;animation-delay:3s;}
+		
+		@keyframes show_balance{
+			0%{margin-top:150px;}
+			100%{margin-top:-300px;}
+		
+		}
+		#c3 .front .play_area video{width:100%;}
+		#c3 .txt_main{
+			font-size:65px;line-height:80px;letter-spacing:-4px;
+			font-weight:700;margin-top:100%;
+			animation:show_text 1s 1;animation-delay:3.5s;animation-fill-mode:forwards;}
+
+		@keyframes show_text{
+			0%{margin-top:100%;}
+			100%{margin-top:0%;}
+
+		}
+
+		/*######## c4 / front #######*/
+		#c4 .front{background-color:#000 !important;}
+		#c4 .front .play_area{width:190px;position:absolute;right:10%;top:10%;}
+		#c4 .front .play_area video{width:100%;}
+		#c4 .front .txt_main{font-size:100px;margin-top:277px;line-height:100px;color:#fff;font-weight:700;}
+
+		#c4 .front .txt_sub{font-size:40px;line-height:80px;font-weight:700;}
+		#c4 .front .txt_sub span{
+			background-image:-webkit-linear-gradient(left, #61A97B, #B8CE66);
+			-webkit-background-clip:text;
+			color:transparent;
+		}
+
+		/*######## c5 / front #######*/
+		#c5 .front{background-image:url("img/bg/green.png");background-size:100% 100%;}
+		#c5 .front .txt_main{font-size:67px;line-height:74px;color:#fff;font-weight:700;}
+		#c5 .front .txt_sub{font-size:22px;line-height:32px;color:#fff;font-weight:400;}
+		
+		#c5 .front .img_area{position:relative;}
+		#c5 .front .hand_card, #cards .li4 .machine_tab, #cards .li4 .shadow{position:absolute;}
+		#c5 .front .hand_card{width:441px;top:-68px;left:68px;}
+		#c5 .front .hand_card img{width:100%;}
+		#c5 .front .machine_tab{top:290px;left:-9px;}
+		#c5 .front .shadow{top:236px;left:1px;}
+		
+		/*######## c6 / front #######*/
+		#c6 .front .txt_main{font-size:52px;line-height:58px;font-weight:700;}
+		#c6 .front .txt_main span{
+			background-image:-webkit-linear-gradient(left, #92CA5A, #F4C234, #DAC355);
+			-webkit-background-clip:text;
+			color:transparent;
+		}
+		#c6 .front .shops p{display:inline-block;margin-top:22px;margin-right:30px;}
+		
+		/*######## c7 / front #######*/
+		#c7 .front{
+			padding:0 !important;
+			background-image:url("img/card/titanium_card.jpg");
+			background-size:100%;
+		}
+		#c7 .front .txt_main{
+			font-size:71px;line-height:85px;color:#fff;font-weight:700;
+			text-shadow:-4px -4px 15px rgba(0,0,0,0.3);
+			position:absolute;
+			left:8%;
+			animation:titanium 1.5s 1 ease-in-out;animation-delay:3s;animation-fill-mode:forwards;/*애니메이션 다시 0%로 안돌아오게 하는거 검색해서 알아냄*/
+			}
+		@keyframes titanium{
+			0%{bottom:-100%;}
+			100%{bottom:8%;}
+		}
+		#c7 .front .play_area{width:100%;}
+		#c7 .front .play_area video{width:100%;}
+
+		/*######## c8 / front #######*/
+		#c8 .front{
+			background-image:url("img/bg/pink2.png");
+			background-size:100% 100%;
+		}
+		#c8 .front .lock{width:119px;height:165px;overflow:hidden;}
+		#c8 .front .txt_sub{font-size:37px;line-height:86px;color:#fff;font-weight:700;}
+		#c8 .front .txt_main{font-size:96px;line-height:96px;color:#fff;font-weight:700;}
+		
+		/*######## c9 / front #######*/
+		#c9 .front .txt_sub{font-size:19px;line-height:35px;text-align:center;font-weight:700;}
+		#c9 .front .txt_main{
+			font-size:50px;line-height:63px;text-align:center;font-weight:700;margin-bottom:20px;}
+		#c9 .front .monthly{width:80%;margin:50px auto 0;}
+		#c9 .front .monthly img{width:100%;}
+		
+		/*######## c10 / front #######*/
+		#c10 .front{background-color:#000 !important;}
+		#c10 .front .txt_main{font-size:53px;line-height:61px;color:#fff;font-weight:700;margin-bottom:20px;}
+		#c10 .front .bars:after{content:"";display:block;clear:both;}
+		#c10 .front .bars p{width:30px;height:200px;float:left;margin-right:26px;position:relative;}
+		#c10 .front .bars p span{display:block;width:100%;border-radius:7px;position:absolute;bottom:0;}
+		#c10 .front .bars .bar1{background-image:-webkit-linear-gradient(bottom, #FCC833, #F9B678, #EB6D66, #E5709B);height:50px;animation:bar1 2s 2 alternate;}
+		
+		#c10 .front .bars .bar2{background-image:-webkit-linear-gradient(bottom, #59BD77, #DAD12A, #2DE865, #EEB813);height:150px;animation:bar2 2s 2 alternate;}
+		#c10 .front .bars .bar3{background-image:-webkit-linear-gradient(bottom, #C785C8, #F8A1A4, #DAAADB, #F47378);height:80px;animation:bar3 2s 2 alternate;}
+		#c10 .front .bars .bar4{background-image:-webkit-linear-gradient(bottom, #6BD089, #F4E809, #4ACD71, #ECE00E);height:60px;animation:bar4 2s 2 alternate;}
+		#c10 .front .bars .bar5{background-image:-webkit-linear-gradient(bottom, #2430CF, #FFB27D, #60C5F1, #D87D80);height:180px;animation:bar5 2s 2 alternate;}
+		#c10 .front .bars .bar6{background-image:-webkit-linear-gradient(bottom, #C785C8, #F8A1A4, #DAAADB, #F47378);height:30px;animation:bar6 2s 2 alternate;}
+		@keyframes bar1{
+			0%{height:50px;}
+			50%{height:35px;}
+			100%{height:140px;}
+		}
+		@keyframes bar2{
+			0%{height:150px;}
+			50%{height:170px;}
+			100%{height:60px;}
+		}
+		@keyframes bar3{
+			0%{height:80px;}
+			50%{height:170px;}
+			100%{height:50px;}
+		}
+		@keyframes bar4{
+			0%{height:60px;}
+			50%{height:120px;}
+			100%{height:40px;}
+		}
+		@keyframes bar5{
+			0%{height:180px;}
+			50%{height:70px;}
+			100%{height:100px;}
+		}
+		@keyframes bar6{
+			0%{height:30px;}
+			50%{height:150px;}
+			100%{height:80px;}
+		}
+		
+		/*######## c11 / front #######*/
+		#c11 .front .goldman{float:left;}
+		#c11 .front .mastercard{width:121px;float:right;}
+		#c11 .front .mastercard img{width:100%;}
+		#c11 .front .txt_main{font-size:59px;line-height:72px;color:#fff;font-weight:700;padding-top:202px;}
+
+		#c11 .front .txt_main{font-size:75px;line-height:85px;letter-spacing:-3px;font-weight:700;}
+		#c11 .front .txt_main span{
+			background-image:-webkit-linear-gradient(left, #61A97B, #B8CE66);
+			-webkit-background-clip:text;
+			color:transparent;
+		}
+		/*########## btn_plus #########*/
+		#cards2 .btn_plus{display:block;width:56px;height:56px;z-index:33;position:absolute;left:7%;bottom:7%;}
+		#cards2 .btn_plus img{width:100%;}
+
+		/*##############  반응형 768 ###############*/
+		@media all and (min-width:768px) and (max-width:1024px){
+			
+			#section1 .card i{width:126px;height:140px;}
+			#section1 .card span{font-size:150px;}
+			#section1 .btn_apply{
+			width:120px;line-height:33px;font-size:17px;padding:7px;}
+			.banner_text{font-size:16px;}
+			.banner_text .hidden{display:none;}
+			#section2 .desc_main{width:80%;padding:40px 0;font-size:32px;}
+			#section2 .text_main{
+				font-size:80px;
+				padding:50px 0 20px;
+				letter-spacing:-5px;	
+				}
+			#cards2{width:740px;margin:0 auto;}
+			#cards2 .card{width:740px;height:620px;}
+			#c2, #c5, #c10{margin-right:20px;}
+			#cards2 .small{width:360px;}
+			#cards2 .card .inner li{padding:48px;}
+			#c1 .front{
+				background-size:67%;
+				background-position:center 80%;
+				border-radius:40px;
+				
+			}
+			
+			#c3 .txt_main{font-size:49px;line-height:71px;letter-spacing:-2px;}
+			#c4 .front .play_area{width:139px;}
+			#c4 .front .txt_main{font-size:80px;margin-top:186px;line-height:97px;}
+
+			#c5 .front .txt_main{font-size:55px;line-height:68px;}
+			#c5 .front .hand_card{width:279px;top:14px;left:33px;}
+			#c6 .front .txt_main{font-size:44px;line-height:48px;}
+			#c6 .front .shops p{margin-top:12px;}
+			#c6 .front .shops p img{width:82%;}
+			
+			@keyframes titanium{
+				0%{bottom:-100%;}
+				100%{bottom:15%;}
+			}
+			#c7 .front .play_area video{width:114%;}
+
+			#c8 .front .txt_main{font-size:78px;line-height:73px;}
+			#c10 .front .txt_main{font-size:44px;}
+			#c10 .front .bars p{height:140px;margin-right:14px;animation-play-state:paused;}
+			#c10:hover .front .bars p{animation-play-state:running;}
+			#c11 .front .mastercard{width:79px;}
+			#c11 .front .txt_main{font-size:48px;line-height:65px;}
+		}
+		
+
+		/*##############  반응형 480 ###############*/
+		@media all and (min-width:480px) and (max-width:767px){
+			#section1 .card i{width:95px;height:109px;}
+			#section1 .card span{font-size:120px;}
+			#section1 .btn_apply{
+			width:120px;line-height:30px;font-size:16px;padding:5px;}
+			.banner_text{font-size:16px;line-height:50px;}
+			@keyframes show_banner{
+			0%{height:0;}
+			100%{height:50px;}
+			}
+			.banner_text .hidden{display:none;}
+			#section2 .desc_main{width:80%;padding:20px 0;font-size:24px;}
+			#section2 .text_main{
+				font-size:63px;
+				padding:30px 0 10px;
+				
+				}
+			#cards2{width:450px;}
+			#cards2 .card{width:450px;height:495px;}
+			#c2, #c5, #c10{margin-right:0;}
+			#cards2 .small{width:450px;}
+			#cards2 .card .inner li{padding:48px;}
+
+			#c1 .front{
+				background-size:67%;
+				background-position:center 80%;
+				border-radius:40px;
+				
+			}
+			#c1 .front .txt_main{font-size:37px;line-height:72px;}
+			#c2 .txt_main{font-size:65px;line-height:65px;}
+			#c2 .txt_main p{height:65px;}
+			#c3 .txt_main{font-size:43px;line-height:49px;letter-spacing:-2px;}
+			#c4 .front .play_area{width:88px;}
+			#c4 .front .txt_main{font-size:45px;margin-top:196px;line-height:47px;}
+			#c4 .front .txt_sub{font-size: 21px;line-height:80px;}
+			#c5 .front .txt_main{font-size:67px;line-height:76px;}
+			#c5 .front .txt_sub{display:none;}
+			#c5 .front .hand_card{width:279px;top:14px;left:123px;}
+			#c6 .front .txt_main{font-size:44px;line-height:48px;}
+			#c6 .front .shops{display:none;}
+			
+			
+			@keyframes titanium{
+				0%{bottom:-100%;}
+				100%{bottom:15%;}
+			}
+			#c7 .front .play_area{width:131%;margin-left:-102px;}
+			#c7 .front .play_area video{width:114%;}
+			#c7 .front .txt_main{font-size:46px;line-height:54px;}
+			#c8 .front .txt_main{font-size:78px;line-height:73px;}
+			@keyframes titanium{
+			0%{bottom:-100%;}
+			100%{bottom:21%;}
+			}
+			#c8 .front .txt_sub{font-size:34px;line-height:40px;}
+			#c8 .front .txt_main{font-size:50px;line-height:49px;}
+			#c9 .front .txt_main{font-size:30px;line-height:41px;}
+			#c10 .front .txt_main{font-size:40px;line-height:45px;}
+			#c10 .front .bars p{height:140px;margin-right:28px;}
+			#c11 .front .mastercard{width:79px;}
+			#c11 .front .txt_main{font-size:45px;padding-top:109px;}
+		}
+		/*##############  반응형 320 ###############*/
+		@media all and (min-width:320px) and (max-width:479px){
+			
+			#section1 .card i{width:42px;height:48px;}
+			#section1 .card span{font-size:56px;}
+			#section1 .btn_apply{
+			width:110px;line-height:30px;font-size:16px;padding:1px;}
+			.banner_text{font-size:14px;line-height:25px;}
+			@keyframes show_banner{
+			0%{height:0;}
+			100%{height:25px;}
+			}
+			.banner_text .hidden{display:none;}
+			#section2 .desc_main{display:none;}
+			#section2 .text_main{
+				font-size:37px;
+				padding:10px 0;
+				
+				}
+			#cards2{width:290px;}
+			#cards2 .card{width:290px;height:350px;}
+			#c2, #c5, #c10{margin-right:0;}
+			#cards2 .small{width:290px;}
+			#cards2 .card .inner li{padding:48px;}
+			#cards2 .btn_plus{width:38px;left:8%;bottom:4%;}
+
+
+			#c1 .front{
+				background-size:67%;
+				background-position:center 80%;
+				border-radius:40px;
+				
+			}
+			#c1 .front .txt_main{font-size:34px;line-height:37px;}
+			#c2 .txt_main{font-size:45px;line-height:45px;}
+			#c2 .txt_main p{height:45px;}
+			
+			#c3 .front .play_area{height:280px;margin-top:70px;}
+			@keyframes show_balance{
+			0%{margin-top:70px;}
+			100%{margin-top:-300px;}
+			}
+			#c3 .txt_main{font-size:29px;line-height:40px;letter-spacing:-2px;}
+			#c4 .front .play_area{display:none;}
+			#c4 .front .txt_main{font-size:40px;margin-top:0px;line-height:43px;}
+			#c4 .front .txt_sub{font-size: 21px;line-height:26px;}
+			#c5 .front .txt_main{font-size:45px;line-height:53px;}
+			#c5 .front .machine_tab{display:none;}
+			#c5 .front .txt_sub{display:none;}
+			
+			#c6 .front .txt_main{font-size:33px;line-height:33px;}
+			#c6 .front .shops{display:none;}
+			
+			
+			@keyframes titanium{
+				0%{bottom:-100%;}
+				100%{bottom:15%;}
+			}
+			#c7 .front .play_area{width:147%;margin-left:-102px;}
+			#c7 .front .play_area video{width:114%;}
+			#c7 .front .txt_main{font-size:31px;line-height:35px;}
+			
+			@keyframes titanium{
+			0%{bottom:-100%;}
+			100%{bottom:25%;}
+			}
+
+			#c8 .front .lock{margin-top: -52px;height: 161px;overflow: hidden;}
+			#c8 .front .txt_main{font-size:78px;line-height:73px;}
+			#c8 .front .txt_sub{font-size:34px;line-height:40px;}
+			#c8 .front .txt_main{display:none;}
+			#c9 .front .txt_main{display:none;}
+			#c9 .front .txt_sub{font-size: 29px;line-height: 37px;}
+			#c9 .front .monthly{width:100%;margin: 20px auto 0;}
+
+			#c10 .front .txt_main{font-size:29px;line-height:43px;}
+			#c10 .front .bars p{display:none;}
+			#c11 .front .mastercard{display:none;}
+			#c11 .front .txt_main{font-size: 31px;line-height:37px;padding-top: 81px;}
+		}
+  </style>
+  
+  <!-- <script>
+  		console.log(document.getElementById('sun'));
+  </script> -->
+  
+ </head>
+
+ <body>
+	<div id="wrap">
+		<!-- ########## header ########## -->
+		<!-- ########## header ########## -->
+		<div id="header">
+			<h1>Apple</h1>
+			<div class="header_inner">
+				<div id="btn_mob_menu">
+					<p>
+						<span>a</span>
+						<span>a</span>
+						<span>a</span>
+					</p>
+				</div>
+				<div id="logo">
+					<a href="index.html" title="Apple">
+						<img src="img/icon/logo.svg" alt="apple logo"/>
+					</a>
+				</div>
+				<ul id="info_menu">
+					<li class="account"><a href="#none" title="account icon"><img src="img/icon/account.png" alt="icon of account"/></a></li>
+					<li class="magnifier"><a href="#none" title="search icon"><img src="img/icon/magnifier.png" alt="icon of search"/></a></li>
+				</ul>
+				<div class="search_area1">
+					<form id="search_bar1" action="http://www.apple.com/us/search" method="GET">
+						<!-- <img src="img/icon/magnifier.png" alt="image of search"/> -->
+						<input id="submit_btn" type="submit" name="submit_btn" title="button of submit"/>
+						<input id="search_bar_pc" type="text" name="search_bar_pc" title="search_bar_pc" placeholder="Search apple.com" />
+						<input id="close_button" type="button" name="close_button" title="close button" value="x" readonly/>
+					</form>
+					<aside id="quick_link">
+						<h3>QUICK LINK</h3>
+						<ul>
+							<li><a href="airpod.html" title="COVID-19 information">Airpods Pro</a></li>
+							<li><a href="apple_card.html" title="COVID-19 information">Apple Card</a></li>
+							<li><a href="signup.html" title="COVID-19 information">Sign Up</a></li>
+							<li><a href="acc.html" title="COVID-19 information">Accessories</a></li>
+							<li><a href="watch.html" title="COVID-19 information">Apple watch</a></li>
+							<li><a href="pro11.html" title="COVID-19 information">iPhone 11</a></li>
+						</ul>
+					</aside>
+				</div>
+				
+				<aside id="accMenu">
+					
+<!-- <?php if( empty($_SESSION['email']) ){ ?>
+					<div class="smallMenu"><a href="list.html" title="">Browse bulletin board</a></div>
+					<div class="smallMenu"><a href="signin.html" title="">Sign in</a></div>
+<?php }else{ ?>
+					<div class="smallMenu"><a href='manage.html?email=<?=$_SESSION['email']?>' title="">Manage account</a></div>
+					<div class="smallMenu"><a href="list.html" title="">Bulletin board</a></div>
+					<div class="smallMenu"><a href="signout.html" title="">Sign out</a></div>
+<?php } ?> -->
+				</aside>
+				<ul id="gnb">
+					<li><a href="airpod.html" title="Mac">Mac</a></li>
+					<li><a href="pad.html" title="iPad">iPad</a></li>
+					<li><a href="pro11.html" title="iPhone">iPhone</a></li>
+					<li><a href="watch.html" title="watch">Watch</a></li>
+					<li><a href="acc.html" title="watch">Acc</a></li>
+					<li><a href="apple_card.html" title="watch">Card</a></li>
+					<li><a href="purchase.html" title="watch">Purchase</a></li>
+				</ul>
+			</div>
+			
+			<div id="gnb2">
+				<div class="search_area2">
+					<form id="search_bar2" action="http://www.apple.com/us/search" method="GET">
+						<img src="img/icon/magnifier.png" alt="image of search"/><input id="search" type="text" name="src" title="search_bar_mob" placeholder="Search apple.com" />
+					</form>
+				</div>
+				<ul>
+					<li><a href="airpod.html" title="Mac">Mac</a></li>
+					<li><a href="pad.html" title="iPad">iPad</a></li>
+					<li><a href="pro11.html" title="iPhone">iPhone</a></li>
+					<li><a href="watch.html" title="watch">Watch</a></li>
+					<li><a href="acc.html" title="watch">Acc</a></li>
+					<li><a href="apple_card.html" title="watch">Card</a></li>
+					<li><a href="purchase.html" title="watch">Purchase</a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- ######### container ######## -->
+		<div id="container">
+			<!-- 
+				https://www.apple.com/apple-card/monthly-installments/
+				https://www.apple.com/apple-pay/
+				https://www.apple.com/apple-card/
+			-->
+			<section id="section1">
+				<div class="play_area">
+					<video poster="img/start_main.jpg" autoplay muted>
+						<source src="video/card/card.mp4" type="video/mp4">
+					</video>	
+				</div>
+				<div class="text">
+					<h2 class="card">
+						<i class="icon_apple"><img src="img/card/text_main.svg" alt=""/></i><span>Card</span>
+					</h2>
+					<p class="btn_apply">
+						<a href="#" title="">Apply now</a>
+					</p>
+				</div>
+				
+				<p class="banner_text">
+					<span class="hidden">For a limited time, get $50 when you use your new Apple Card to purchase an Apple service.</span><a href="#" title="">Learn more</a>
+				</p>
+			</section>
+			
+			<section id="section2">
+				<h3 class="text_main">
+					<span class="grad_txt">The simplicity of Apple.</span><br/>
+					<span class="grad_txt">In a credit card.</span>
+				</h3>	
+				<p class="desc_main">
+					With Apple Card, we completely reinvented the credit card.
+					Your information lives on your iPhone, beautifully laid out and easy to understand. We eliminated fees and built tools to help you pay less interest. Advanced technologies like Face ID, Touch ID, and Apple Pay give you a new level of privacy and security. And with every purchase you get Daily Cash back. Which all adds up to a healthier financial life. Apple Card. It’s everything a credit card should be.
+				</p>
+			
+				<div id="cards2">
+					<div id="c1" class="card">
+						<ul class="inner">
+							<li class="front">
+								<p class="txt_main">
+									Created by Apple<br/>
+									Powered by iPhone.
+								</p>
+								<span class="btn_plus"><img src="img/card/btn_plus.png" alt=""/></span>
+							</li>
+							<li class="back">
+								<dl>
+									<dt>Built for iPhone</dt>
+									<dd>
+										Apple Card lives on your iPhone, in the Wallet app. You can sign up in as little as a minute and start using it right away for contactless purchases with Apple Pay. Your transactions, payments, and account details are all in one place, where only you can see them. You even make your payments right in the Wallet app — just select your amount, tap, and it’s done.
+									</dd>
+								</dl>
+								<div class="img_phone">
+									<p class="display"><img src="img/card/phone_display.jpg" alt="핸드폰 화면"/></p>
+									<p class="frame"><img src="img/card/hardware_iphone.png" alt="핸드폰 프레임"/></p>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div id="c2" class="card small">
+						<ul class="inner">
+							<li class="front">
+								<div class="txt_main">
+									<p class="t1">No fees.</p>
+									<p class="t2">Not</p>
+									<p class="t3"><span>even</span></p>
+									<p class="t4"><span>hidden</span></p>
+									<p class="t5"><span>ones.</span></p>
+								</div>
+								<span class="btn_plus"><img src="img/card/btn_plus.png" alt=""/></span>
+							</li>
+							<li class="back">
+								<dl>
+									<dt>No Fees</dt>
+									<dd>
+										We want to make it easier to pay down your balance, not harder. So Apple Card doesn’t have any fees. No annual, over-the-limit, foreign-transaction, or late fees.<br/>
+										No fees. Really. And our goal is to provide interest rates that are among the lowest in the industry. Because your credit card should work for you, not against you.
+				
+									</dd>
+								</dl>
+								<span class="btn_plus"><img src="img/card/btn_plus.png" alt=""/></span>
+							</li>
+						</ul>
+					</div>
+					<div id="c3" class="card small">
+						<ul class="inner">
+							<li class="front">
+								<div class="play_area">
+									<video poster="img/card/interest_wheel1.jpg" autoplay="autoplay" muted>
+										<source src="video/card/balance.mp4" type="video/mp4">
+									</video>	
+								</div>
+								<p class="txt_main">
+									The first credit card that actually encourages you to pay less interest.
+								</p>
+							</li>
+							<li class="back">
+								<dl>
+									<dt>No Fees</dt>
+									<dd>
+										We want to make it easier to pay down your balance, not harder. So Apple Card doesn’t have any fees. No annual, over-the-limit, foreign-transaction, or late fees.<br/>
+										No fees. Really. And our goal is to provide interest rates that are among the lowest in the industry. Because your credit card should work for you, not against you.
+											
+									</dd>
+								</dl>
+								<span class="btn_plus"><img src="img/card/btn_plus.png" alt=""/></span>
+							</li>
+						</ul>
+					</div>
+					<div id="c4" class="card">
+						<ul class="inner">
+							<li class="front">
+								<div class="play_area">
+									<video poster="img/card/dollar.jpg" autoplay muted>
+										<source src="video/card/dollar.mp4" type="video/mp4">
+									</video>	
+								</div>
+								<p class="txt_main">
+									Unlimited<br/>
+									Daily Cash back.
+								</p>
+								<p class="txt_sub">
+									<span>Real cash you can use right away.</span>
+								</p>
+								<span class="btn_plus"><img src="img/card/btn_plus.png" alt=""/></span>
+							</li>
+							<li class="back">
+								<dl>
+									<dt>Unlimited Daily Cash</dt>
+									<dd>
+										When you buy something using Apple Card, you get a percentage of your purchase back in Daily Cash. It’s real cash, so unlike rewards, it never expires or loses its value. Your cash is deposited right onto your Apple Cash card in the Wallet app — not a month from now, but every day. And there’s no limit to how much you can get. Use it to buy things in stores, on websites, and in apps. Make a payment on your Apple Card. Pay back a friend in Messages. Or send it straight to your bank account and watch it add up.
+									</dd>
+								</dl>
+								<div class="img_phone">
+									<p class="display"><img src="img/card/phone_display.jpg" alt="핸드폰 화면"/></p>
+									<p class="frame"><img src="img/card/hardware_iphone.png" alt="핸드폰 프레임"/></p>
+								</div>
+								<span class="btn_plus"><img src="img/card/btn_plus.png" alt=""/></span>
+							</li>
+						</ul>
+					</div>
+					<div id="c5" class="card small">
+						<ul class="inner" id="sun">
+							<li class="front">
+								<p class="txt_main">
+									Get 2%<br/>
+									Daily Cash<br/> 
+									back
+								</p>
+								<span class="txt_sub">when you use your iPhone or Apple Watch to pay with Apple Card.</span>
+								<div class="img_area">
+									<p class="hand_card"><img src="img/card/hand_card.png" alt=""/></p>
+									<p class="machine_tab"><img src="img/card/machine_tab.png" alt=""/></p>
+									<p class="shadow"><img src="img/card/shadow.png" alt=""/></p>
+								</div>
+								<span class="btn_plus"><img src="img/card/btn_plus.png" alt=""/></span>
+							</li>
+							<li class="back">
+								<dl>
+									<dt>2% Daily Cash</dt>
+									<dd>
+										The best way to use Apple Card is with Apple Pay — the secure payment technology built into iPhone, Apple Watch, iPad, and Mac and accepted at over 70 percent of merchants in the United States. Apple Pay is a safer way to pay that helps you avoid touching buttons or exchanging cash. And with every purchase you make using your Apple Card with Apple Pay, you get 2% Daily Cash back. No points to calculate. No limits or deadlines. Just real cash that’s ready to spend whenever, wherever, and however you want.
+									</dd>
+								</dl>
+							</li>
+						</ul>
+					</div>
+					<div id="c6" class="card small">
+						<ul class="inner">
+							<li class="front">
+								<p class="txt_main">
+									<span>Shop with</span><br/>
+									<span>Apple or</span><br/>
+									<span>select</span><br/>
+									<span>merchants</span><br/>
+									<span>and get</span><br/>
+									<span>even more</span><br/>
+									<span>Daily Cash.</span>
+								</p>
+								<div class="shops">
+									<p><img src="img/card/shop1.png" alt=""/></p>
+									<p><img src="img/card/shop2.png" alt=""/></p>
+									<p><img src="img/card/shop3.png" alt=""/></p>
+									<p><img src="img/card/shop4.png" alt=""/></p>
+									<p><img src="img/card/shop5.png" alt=""/></p>
+									<p><img src="img/card/shop6.png" alt=""/></p>
+									<p><img src="img/card/shop7.png" alt=""/></p>
+									<p><img src="img/card/shop8.png" alt=""/></p>
+								</div>
+								<span class="btn_plus"><img src="img/icon/btn_plus.png" alt=""/></span>
+							</li>
+							<li class="back">
+								<dl>
+									<dt>3% Daily Cash</dt>
+									<dd>
+										Apple Card gives you unlimited 3% Daily Cash back on everything you buy from Apple — whether it’s a new Mac, an iPhone case, games from the App Store, or even a service like Apple Music or Apple TV+. You also get unlimited 3% Daily Cash back on purchases you make at select merchants when you use Apple Card with Apple Pay.
+									</dd>
+								</dl>
+							</li>
+						</ul>
+					</div>
+					<div id="c7" class="card">
+						<ul class="inner">
+							<li class="front">
+								<div class="play_area">
+									<video poster="img/card/bg_engrave.jpg" autoplay muted>
+										<source src="video/card/titanium.mp4" type="video/mp4">
+									</video>
+								</div>
+								<p class="txt_main">
+									Goodbye, plastic.<br/>
+									Hello, titanium.
+								</p>
+								<span class="btn_plus"><img src="img/card/btn_plus.png" alt=""/></span>
+							</li>
+							<li class="back">
+								<dl>
+									<dt>Titanium Card</dt>
+									<dd>
+										With laser etching and clean styling, Apple Card is designed with the same craftsmanship we bring to all our products. And it’s the only credit card made of titanium — a sustainable metal known for its beauty and durability. When you use the card, you’ll get 1% Daily Cash back on every purchase. Since Mastercard is our global payment network, you can use it all over the world. For apps and websites that don’t take Apple Pay yet, just enter the virtual card number stored securely in your Wallet app. And when you’re using Safari, it even autofills for you.
+									</dd>
+								</dl>
+								<div class="img_phone">
+									<p class="display"><img src="img/card/phone_display.jpg" alt="핸드폰 화면"/></p>
+									<p class="frame"><img src="img/card/hardware_iphone.png" alt="핸드폰 프레임"/></p>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div id="c8" class="card">
+						<ul class="inner">
+							<li class="front">
+								<p class="lock"><img src="img/card/lock.png" alt=""/></p>
+								<span class="txt_sub">Privacy and Security</span>
+								<p class="txt_main">
+									Your card.<br/>
+									Your data.<br/>
+									Your business.
+								</p>
+								<span class="btn_plus"><img src="img/card/btn_plus.png" alt=""/></span>
+							</li>
+							<li class="back">
+								<dl>
+									<dt>Privacy and Security</dt>
+									<dd>
+										Apple takes your privacy and security seriously. It’s not just a philosophy, it’s built into all our products. And Apple Card is no different. With advanced security technologies like Face ID, Touch ID, and unique transaction codes, Apple Card with Apple Pay is designed to make sure you’re the only one who can use it. The titanium card has no visible numbers. Not on the front. Not on the back. Which gives you a whole new level of security. And while Goldman Sachs uses your data to operate Apple Card, your transaction history and spending habits belong to you and you alone. Your data isn’t shared or sold to third parties for marketing or advertising.
+									</dd>
+								</dl>
+								<div class="img_phone">
+									<p class="display"><img src="img/card/phone_display.jpg" alt="핸드폰 화면"/></p>
+									<p class="frame"><img src="img/card/hardware_iphone.png" alt="핸드폰 프레임"/></p>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div id="c9" class="card">
+						<ul class="inner">
+							<li class="front">
+								<p class="txt_sub">Apple Card Monthly Installments</p>
+								<p class="txt_main">
+									Pay for your new Apple products<br/>
+									over time, interest-free.
+								</p>
+								<p class="monthly"><img src="img/card/monthly.jpg" alt=""/></p>
+								<span class="btn_plus"><img src="img/card/btn_plus.png" alt=""/></span>
+							</li>
+							<li class="back">
+								<dl>
+									<dt>Apple Card Monthly Installments</dt>
+									<dd>
+										With Apple Card Monthly Installments, you can buy a new Mac, iPhone, iPad, and more and pay them off with interest-free monthly payments. If you have an eligible device to trade in, you’ll pay even less per month.<br/>
+										You can keep an eye on your installments right alongside your everyday Apple Card purchases in the Wallet app. And you get 3% Daily Cash back on the purchase price of each product, all up front. If you have Apple Card already, there’s no additional application. If you don’t, you can apply in as little as a minute during checkout, from the privacy of your iPhone.
+									</dd>
+								</dl>
+								<div class="img_phone">
+									<p class="display"><img src="img/card/phone_display6.jpg" alt="핸드폰 화면"/></p>
+									<p class="frame"><img src="img/card/hardware_iphone.png" alt="핸드폰 프레임"/></p>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div id="c10" class="card small">
+						<ul class="inner">
+							<li class="front">
+								<p class="txt_main">
+									Tools to help<br/>
+									you make<br/>
+									financially healthy<br/>
+									choices.
+								</p>
+								<div class="bars">
+									<p><span class="bar1"></span></p>
+									<p><span class="bar2"></span></p>
+									<p><span class="bar3"></span></p>
+									<p><span class="bar4"></span></p>
+									<p><span class="bar5"></span></p>
+									<p><span class="bar6"></span></p>
+								</div>
+								<span class="btn_plus"><img src="img/card/btn_plus.png" alt=""/></span>
+							</li>
+							<li class="back">
+								<dl>
+									<dt>Financial Health</dt>
+									<dd>
+										To see how much you’re spending, there’s no need to log in to a separate website or app. Your totals are automatically added up in the Wallet app, ready to view by week or by month. Color-coded categories make it easy to spot trends in your spending so you can decide if you want to change them. And Apple Card uses Maps to pinpoint where you bought something.
+									</dd>
+								</dl>
+							</li>
+						</ul>
+					</div>
+					<div id="c11" class="card small">
+						<ul class="inner">
+							<li class="front">
+								<p class="goldman"><img src="img/card/goldman.jpg" alt=""/></p>
+								<p class="mastercard"><img src="img/card/mastercard.jpg" alt=""/></p>
+								<p class="txt_main">
+									<span>Trusted partners for a different kind of credit card.<span>
+								</p>
+								<span class="btn_plus"><img src="img/card/btn_plus.png" alt=""/></span>
+							</li>
+							<li class="back">
+								<dl>
+									<dt>Financial Health</dt>
+									<dd>
+										To see how much you’re spending, there’s no need to log in to a separate website or app. Your totals are automatically added up in the Wallet app, ready to view by week or by month. Color-coded categories make it easy to spot trends in your spending so you can decide if you want to change them. And Apple Card uses Maps to pinpoint where you bought something.
+									</dd>
+								</dl>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+			<section id="section3">
+				<h2>
+					How does Apple Card Monthly Installments work?
+				</h2>
+				<div class="phone">
+					<p class="frame"><img src="img/hardware_iphone.png" alt=""/></p>
+					<p class="display"><img src="img/phone_display2.png" alt=""/></p>
+				</div>
+				<div>
+					<h2>
+						Apple Card<br/>
+						Monthly<br/>
+						Installments<br/>
+						is a feature of<br/>
+						Apple Card.
+					</h2>
+					<p>
+						Apple Card lives on your iPhone, in the Wallet app. You can sign up in as little as a minute and start using it right away.*
+					</p>
+					<span>
+						To apply, open the Wallet app on your iPhone and tap
+					</span>
+				</div>		
+			</section>
+			
+		</div>
+		<!-- ########## footer ########## -->
+		<footer id="footer">
+			<ul id="footer_nav_menues">
+				<li class="learn_more">
+					<h3>LEARN MORE<span>+</span></h3>
+					<ul>
+						<li><a href="#" title="">iPhone SE</a></li>
+						<li><a href="#" title="">iPad Pro</a></li>
+						<li><a href="#" title="">iPhone Pro11</a></li>
+						<li><a href="#" title="">Apple Watch</a></li>
+					</ul>
+				</li>
+				<li class="nav_menu">
+					<h3>Support<span>+</span></h3>
+					<ul>
+						<li><a href="#" title="">Contact Us</a></li>
+						<li><a href="#" title="">Warranty</a></li>
+						<li><a href="#" title="">User Guide</a></li>
+						<li><a href="#" title="">Scooter safety notice</a></li>
+						<li><a href="#" title="">Android Enterprise Recommended</a></li>
+					</ul>
+				</li>
+				<li class="nav_menu">
+					<h3>ABOUT US<span>+</span></h3>
+					<ul>
+						<li><a href="#" title="">Apple</a></li>
+						<li><a href="#" title="">Press &amp; Media</a></li>
+						<li><a href="#" title="">User Agreement</a></li>
+						<li><a href="#" title="">Privacy Policy</a></li>
+						<li><a href="#" title="">Xiaomi Blog</a></li>
+						<li><a href="#" title="">Investor Relations</a></li>
+						<li><a href="#" title="">Integrity &amp; Compliance</a></li>
+					</ul>
+				</li>
+				<li class="nav_menu">
+					<h3>FOLLOW Apple<span>+</span></h3>
+					<ul>
+						<li><a href="#" title="">Facebook</a></li>
+						<li><a href="#" title="">Youtube</a></li>
+						<li><a href="#" title="">Instagram</a></li>
+						<li><a href="#" title="">Twitter</a></li>
+					</ul>
+				</li>
+			</ul>
+			<div class="footer_copyright">
+				Copyright &copy; 2020 Jisun Kim. All Rights Reserved
+			</div>
+		</footer>
+	</div>
+	<div id="full"></div>
+ </body>
+</html>

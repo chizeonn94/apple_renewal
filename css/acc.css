@@ -1,0 +1,109 @@
+
+	*{margin:0;padding:0;}
+	body{margin:0;padding:0;}
+	li{list-style:none;}
+
+	#wrap{max-width:1920px;width:100%;margin:0 auto;}
+
+	/*################# container #################*/
+	#container{width:100%}
+	/*################# visual #################*/
+	#visual{width:100%;padding-top:60px;background-color:#F2F2F2;}
+	#visual .inner{width:1300px;margin:0 auto;position:relative;}
+	#visual .text_main{position:absolute;top:50%;transform:translatey(-50%);font-size:45px;font-weight:700;float:left;}
+	#visual .img_bg{width:800px;float:right;}
+	#visual .img_bg img{width:100%;vertical-align:middle;}
+	#visual .inner:after{content:"";display:block;clear:both;}
+
+	/*################# bar ####################*/
+
+	#bar{height:50px;border-top:1px solid #ccc;border-bottom:1px solid #ccc;}
+
+	#bar .bar_middle{width:1300px;margin:0 auto;}
+	
+	#bar .bar_middle:after{content:"";display:block;clear:both;}
+
+	#bar .bar_left{width:50%;line-height:50px;float:left;}
+	#bar .bar_left .filterWrap{width:150px;cursor:pointer;}
+	#bar .bar_left .filterWrap:hover{font-weight:700;color:#06c;}
+	
+	#bar .bar_right{width:50%;line-height:50px;text-align:right;float:right;position:relative;cursor:pointer;}
+	#bar .bar_right:after{content:"";display:block;clear:both;}
+	
+	.sortByWrap:after{content:"";display:block;clear:both;}
+	#sortBy{width:250px;float:right;}
+	#sortBy:hover{font-weight:700;color:#06c;}
+	#selectedSortBy{display:inline-block;width:150px;text-align:left;}
+	#sortLists{
+		width:200px;background-color:#fff;
+		padding:0 15px;border:1px solid #ccc;
+		opacity:0;
+		transition:opacity 0.3s;
+		position:absolute;
+		right:0;
+		
+		
+		}
+	
+
+
+	#sortLists li{line-height:45px;text-align:left;border-bottom:1px solid #ccc;}
+	#sortLists li:hover{text-decoration:underline;color:#06c;}
+	#sortLists li:last-child{border-bottom:none;}
+	
+	/*################# center #################*/
+	#center{width:1300px;margin:0 auto;}
+	#center:after{content:"";display:block;clear:both;}
+
+/*################# categories #################*/
+	#categories{width:220px;margin-right:30px;float:left;background-color:#fff;transition:all 0.3s;}
+	
+	#categories .container{width:220px;}
+	#categories .container li{padding:15px 0 15px 10px;border-bottom:1px solid #ccc;cursor:pointer;}
+	#categories .container li:hover{background-color:#06c;color:#fff;}
+	#categories .container li .title_cate{font-size:17px;padding-bottom:10px;}
+	#categories .container li div{max-height:0;overflow:hidden;transition:all 0.5s;}
+	#categories .container li div span{font-size:16px;display:block;line-height:30px;}
+	#categories .container h3{width:100%;}
+	
+	/*기능 class*/
+	.slideDown{max-height:500px !important;}
+	
+/*################# products#################*/
+	
+
+	#boxes{width:1050px;float:left;transition:all 0.3s;}
+	#boxes .box{
+		width:33.3%;box-sizing:border-box;position:relative;float:left;}
+	
+	
+	#boxes .box .img_area{width:100%;height:350px;position:relative;transition:all 0.5s;}
+	
+	#boxes .box .imgs_product{background-color:#fff;width:100%;height:100%;position:relative;}
+	#boxes .box .imgs_product img{position:absolute;width:100%;vertical-align:middle;float:left;}
+	
+	#boxes .box .btns{z-index:10;width:100%;position:absolute;top:50%;transform:translatey(-50%);}
+	#boxes .box .btns p{
+		
+		width:32px;height:32px;line-height:32px;text-indent:4px;
+		border-radius:50%;background-color:#ddd;
+		cursor:pointer;opacity:0;transition:opacity 0.3s;color:#333;
+		
+	}
+	#boxes .box .img_area:hover .btns p{opacity:1;}
+	#boxes .box .btns .btn_prev{float:left;}
+	#boxes .box .btns .btn_next{float:right;text-indent:6px;}
+
+	
+	
+	#boxes .box .desc_product{width:100%;text-align:center;padding:15px 0 30px;}
+	#boxes .box .desc_product .special{font-size:14px;line-height:17px;}
+	#boxes .box .desc_product .name_product{font-weight:700;font-size:20px;cursor:pointer;line-height:35px;}
+	#boxes .box .desc_product .name_product:hover{color:#06c;text-decoration:underline;}
+	#boxes .box .desc_product .price{font-size:18px;line-height:25px;}
+	
+	#boxes .box .colors{margin:0 auto;}
+	#boxes .box .colors li{display:inline-block;width:20px;height:20px;border-radius:50%;box-shadow:-2px -2px 2px rgba(0,0,0,0.3);position:static;}
+	#boxes .box .colors .white{background-color:#fff;}
+	#boxes .box .colors .white{background-color:#000;}
+	#boxes .box .colors .white{background-color:#f00;}

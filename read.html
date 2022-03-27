@@ -1,0 +1,285 @@
+<?php
+	include "00_conn.html";
+	$no = $_GET['no'];
+
+	$sql = "select *from bulletin WHERE no='$no' ";
+	$result = mysqli_query($conn,$sql);
+	$row = mysqli_fetch_array($result);
+
+	session_cache_expire(30);
+	session_start();
+	#echo $_SESSION['email'];
+	
+?>
+<!DOCTYPE html>
+<html lang="ko">
+ <head>
+  <title> new document </title>
+  <meta charset="utf-8"/>
+  <script src="https://kit.fontawesome.com/d5f62a3761.js" crossorigin="anonymous"></script>
+  <link href="css/reset.css" rel="stylesheet" type="text/css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="js/common.js"></script>
+  <style>
+	*{margin:0;padding:0;}
+	li{list-style:none;}
+	form{width:940px;margin:0 auto;padding:200px 0;}
+	form fieldset{border:1px solid #aaa;}
+	form p{height:52px;box-sizing:border-box;border-bottom:1px solid #E0E0E0;}
+	form p select{display:inline-block;width:25%;box-sizing:border-box;padding:6px;}
+	
+	form p label{display:inline-block;width:25%;height: 100%;line-height:32px;box-sizing:border-box;padding:10px 15px;vertical-align:middle;background-color:#F4F4F2;color:#333;font-weight:600;}
+	form p input{box-sizing:border-box;width:25%;padding:6px;text-indent:5px;vertical-align:middle;border:1px solid #ccc;border-radius:5px;margin-left: 6px;}
+
+	#title{display:inline-block;width:40%;}
+
+	.content{height:321px;}
+	#content{display:inline-block;width:40%;height:300px;vertical-align:middle;text-indent:5px;border:1px solid #ccc;border-radius:5px;margin-left: 6px;box-sizing:border-box;padding-left:10px;}
+
+	.terms{width:100%;outline:1px solid #ccc;margin:50px auto 0;box-sizing:border-box;padding:15px;}
+	.terms li:before{content:"*"}
+
+	#btnArea{text-align:right;margin-top:15px;}
+	#btnArea input{width:auto;text-align:center;text-indent:0;padding:6px 15px;}
+	
+  </style>
+ 
+  <script>
+		// edit 눌렀을때 로그인된 아이디가 글쓴사람인지 맞는지 확인한후 맞을경우 edit페이지로 넘어감.
+		function checkAcc(){
+			var pass = prompt("Enter the password");
+			//const email = document.getElementById("email").value;
+			
+			console.log("입력해야할 비밀번호: <?=$row['pass']?>");
+			console.log("내가 입력한거: "+pass);
+			
+		
+		
+			if(pass == "<?=$row['pass']?>" ){
+				/*db타고 가져오는 값은 반드시 더블커텐션 처리하기. 안했더니 undefined라고 떴음.*/
+				return true;
+			}else{
+				alert("Password is not correct");
+			}
+
+			return false;
+		}
+
+		function beforeDelete(){
+			var pass = prompt("Enter the password");
+			
+			if(pass == "<?=$row['pass']?>" ){
+				confirm("Are you sure to delete this post?");
+				return true;
+			}else{
+				alert("Password is not correct");
+			}
+	
+			return false;
+		}
+  </script>
+ </head>
+
+ <body>
+	<div id="wrap">
+		<!--header-->
+		<div id="header">
+			<h1>Apple</h1>
+			<div class="header_inner">
+				<div id="btn_mob_menu">
+					<p>
+						<span>a</span>
+						<span>a</span>
+						<span>a</span>
+					</p>
+				</div>
+				<div id="logo">
+					<a href="#" title="Apple">
+						<img src="img/icon/logo.svg" alt="apple logo"/>
+					</a>
+				</div>
+				<ul id="info_menu">
+					<li class="account"><a href="#none"><img src="img/icon/account.png" alt="icon of account"/></a></li>
+					<li class="magnifier"><a href="#none"><img src="img/icon/magnifier.png" alt="icon of search"/></a></li>
+				</ul>
+				<div class="search_area1">
+					<form id="search_bar1" action="http://www.apple.com/us/search" method="GET">
+						<!-- <img src="img/icon/magnifier.png" alt="image of search"/> -->
+						<input id="submit_btn" type="submit" name="submit_btn" title="button of submit"/>
+						<input id="search_bar_pc" type="text" name="search_bar_pc" title="search_bar_pc" placeholder="Search apple.com" />
+						<input id="close_button" type="button" name="close_button" title="close button" value="x" readonly/>
+					</form>
+					<aside id="quick_link">
+						<h3>QUICK LINK</h3>
+						<ul>
+							<li><a href="airpod.html" title="COVID-19 information">Airpods Pro</a></li>
+							<li><a href="apple_card.html" title="COVID-19 information">Apple Card</a></li>
+							<li><a href="signup.html" title="COVID-19 information">Sign Up</a></li>
+							<li><a href="acc.html" title="COVID-19 information">Accessories</a></li>
+						</ul>
+					</aside>
+				</div>
+				
+				<aside id="accMenu">
+					
+<?php if( empty($_SESSION['email']) ){ ?>
+					<div class="smallMenu"><a href="list.html" title="">Browse bulletin board</a></div>
+					<div class="smallMenu"><a href="signin.html" title="">Sign in</a></div>
+<?php }else{ ?>
+					<div class="smallMenu"><a href='manage.html?email=<?=$_SESSION['email']?>' title="">Manage account</a></div>
+					<div class="smallMenu"><a href="list.html" title="">Bulletin board</a></div>
+					<div class="smallMenu"><a href="signout.html" title="">Sign out</a></div>
+<?php } ?>
+				</aside>
+				<ul id="gnb">
+					<li><a href="Mac">Mac</a></li>
+					<li><a href="Mac">iPad</a></li>
+					<li><a href="Mac">iPhone</a></li>
+					<li><a href="Mac">Watch</a></li>
+					<li><a href="Mac">TV</a></li>
+					<li><a href="Mac">Music</a></li>
+					<li><a href="Mac">Support</a></li>
+				</ul>
+			</div>
+			
+			<div id="gnb2">
+				<div class="search_area2">
+					<form id="search_bar2" action="http://www.apple.com/us/search" method="GET">
+						<img src="img/icon/magnifier.png" alt="image of search"/><input id="search" type="text" name="src" title="search_bar_mob" placeholder="Search apple.com" />
+					</form>
+				</div>
+				<ul>
+					<li><a href="Mac">Mac</a></li>
+					<li><a href="Mac">iPad</a></li>
+					<li><a href="Mac">iPhone</a></li>
+					<li><a href="Mac">Watch</a></li>
+					<li><a href="Mac">TV</a></li>
+					<li><a href="Mac">Music</a></li>
+					<li><a href="Mac">Support</a></li>
+				</ul>
+			</div>
+		</div>
+		<div id="container">
+			<form id="form" action="#" method="post" >
+				<fieldset>
+					
+					<p>
+						<label for="cate">Category</label>
+						<input id="cate" name="cate" value="<?=$row['cate']?>" readonly/>
+				
+					</p>
+					<!-- <p>
+						<label for="phone">Phone</label>
+						<input id="phone" type="tel" name="phone" value="<?=$row['phone']?>" required readonly/>
+					</p> -->
+					<p>
+						<label for="title">Title</label>
+						<input id="title" type="text" name="title" value="<?=$row['title']?>" required readonly/>
+					</p>
+					<p>
+						<label for="name">Name</label>
+						<input id="name" type="text" name="name" value="<?=$row['name']?>" required readonly/>
+					</p>
+					<!-- <p>
+						<label for="email">Email</label>
+						<input id="email" type="email" name="email" value="<?=$row['email']?>" required readonly readonly/>
+					</p> -->
+					<!-- <p>
+						<label for="pass">Password</label>
+						<input id="pass" type="password" name="pass" required/>
+					</p> -->
+					<p class="content">
+						<label for="content">Content</label>
+	<textarea id="content" name="content"readonly>
+	<?=$row['content']?>
+	</textarea>
+					</p>
+				</fieldset>
+				<ul class="terms">
+					<li>
+						본 고객의 소리는 e-mail을 통한 상담으로만 진행됩니다. 전화 상담 요청은 불가하오니 양해 부탁 드립니다.
+					</li>
+					<li>
+						본 고객의 소리는 e-mail을 통한 상담으로만 진행됩니다. 전화 상담 요청은 불가하오니 양해 부탁 드립니다.
+					</li>
+					<li>
+						본 고객의 소리는 e-mail을 통한 상담으로만 진행됩니다. 전화 상담 요청은 불가하오니 양해 부탁 드립니다.
+					</li>
+					<li>
+						본 고객의 소리는 e-mail을 통한 상담으로만 진행됩니다. 전화 상담 요청은 불가하오니 양해 부탁 드립니다.
+					</li>
+
+				</ul>
+				<!-- <p id="btnArea">
+<?php if( !empty($_SESSION['email']) ){ ?>					
+					<a href="edit.html?no=<?=$row['no']?>" title="Edit" onclick="return checkAcc();">
+						<input class="button" type="button" value="Edit"/>
+					</a> 
+					<a href="delete_control.html?no=<?=$row['no']?>" title="Delete" onclick="return beforeDelete();">
+						<input class="button" type="button" value="Delete"/>
+					</a>
+<?php }?>
+					<a href="list.html" title="Lists">
+						<input class="button" type="button" value="Lists"/>
+					</a>
+				</p> -->
+			</form>
+		</div>
+		<!-- ########## footer ########## -->
+		<footer id="footer">
+			<ul id="footer_nav_menues">
+				<li class="learn_more">
+					<h3>LEARN MORE<span>+</span></h3>
+					<ul>
+						<li><a href="#" title="">iPhone SE</a></li>
+						<li><a href="#" title="">iPad Pro</a></li>
+						<li><a href="#" title="">iPhone Pro11</a></li>
+						<li><a href="#" title="">Apple Watch</a></li>
+					</ul>
+				</li>
+				<li class="nav_menu">
+					<h3>Support<span>+</span></h3>
+					<ul>
+						<li><a href="#" title="">Contact Us</a></li>
+						<li><a href="#" title="">Warranty</a></li>
+						<li><a href="#" title="">User Guide</a></li>
+						<li><a href="#" title="">Scooter safety notice</a></li>
+						<li><a href="#" title="">Android Enterprise Recommended</a></li>
+					</ul>
+				</li>
+				<li class="nav_menu">
+					<h3>ABOUT US<span>+</span></h3>
+					<ul>
+						<li><a href="#" title="">Apple</a></li>
+						<li><a href="#" title="">Press &amp; Media</a></li>
+						<li><a href="#" title="">User Agreement</a></li>
+						<li><a href="#" title="">Privacy Policy</a></li>
+						<li><a href="#" title="">Xiaomi Blog</a></li>
+						<li><a href="#" title="">Investor Relations</a></li>
+						<li><a href="#" title="">Integrity &amp; Compliance</a></li>
+					</ul>
+				</li>
+				<li class="nav_menu">
+					<h3>FOLLOW Apple<span>+</span></h3>
+					<ul>
+						<li><a href="#" title="">Facebook</a></li>
+						<li><a href="#" title="">Youtube</a></li>
+						<li><a href="#" title="">Instagram</a></li>
+						<li><a href="#" title="">Twitter</a></li>
+					</ul>
+				</li>
+			</ul>
+			<div class="footer_copyright">
+				Copyright &copy; 2020 Jisun Kim. All Rights Reserved
+			</div>
+		</footer>
+	</div>  
+<?php
+	$upSql = "UPDATE bulletin
+	SET views=views+1 WHERE no='$no' ";
+
+	mysqli_query($conn,$upSql);
+	mysqli_close($conn);
+?>
+ </body>
+</html>

@@ -1,0 +1,2960 @@
+<!DOCTYPE html>
+<html lang="ko">
+ <head>
+  <title>Apple</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/d5f62a3761.js" crossorigin="anonymous"></script>
+  <link href="css/reset.css" rel="stylesheet" type="text/css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <style>
+	/*view*/
+	#view{
+		width:700px;height:600px;overflow:hidden;
+		border-radius:10px;
+		position:fixed;left:50%;top:50%;
+		transform:translate(-50%,-50%);
+	
+		z-index:1;
+		background-color:#000;
+		background-size:100%;
+		
+	}
+	#view .news_img{width:100%;height:100%;position:absolute;filter: blur(10px);-webkit-filter: blur(10px);background-repeat:no-repeat;background-size:100%;}
+	#view .btn_plus{display:block;width:60px;position:absolute;left:28px;top:28px;}
+	#view .btn_plus img{width:100%;}
+	/*#view p img{width:100%;}*/
+
+	#view .news_details_wrap{width:100%;height:100%;position:absolute;color:#fff;}
+	#view .news_details{width:100%;height:100%;position:relative;}
+	#view .news_detail{width:100%;box-sizing:border-box;
+		padding:100px;position:absolute;opacity:0;}
+	#view .news_detail .headline{font-size:40px;line-height:47px;padding-bottom:15px;}
+	#view .news_detail .text{font-size:20px;line-height:25px;}
+	
+	/*full*/	
+	#full{width:100%;height:100%;background-color:rgba(255,255,255,0.5);position:fixed;left:0;top:0;}
+
+	/*##################### header #####################*/
+		#header{width:100%;height:60px;background-color:#212121;position:fixed;z-index:5;}
+		#header h1{position:absolute;left:-9999px;font-size:1px;width:1px;height:1px;overflow:hidden;}
+		.header_inner{width:1300px;margin:0 auto;position:relative;}
+		.header_inner:after{content:"";display:block;clear:both;}
+		.header_inner #logo{width:30px;height:38px;position:absolute;left:0;top:10px;}
+		.header_inner #logo a{display:block;color:#b0b0b0;}
+		.header_inner #logo a:hover{color:#fff;}
+		.header_inner #logo img{width:100%;color:#fff;}
+		
+		
+		#accMenu{background-color:#fff;width:200px;padding:0 15px;border-radius:7px;position: absolute;top: 65px;right:-48px;display:none;}
+		#accMenu .smallMenu{padding:15px 0;border-top:1px solid #ccc;}
+		#accMenu .smallMenu:first-child{border:none;}
+
+		#gnb{text-align:right;height:60px;margin-right:60px;line-height:60px;float:right;}
+		#gnb li{display:inline;}
+		#gnb li a{padding:0 10px;color:#f5f5f7;}
+		#gnb li a:hover{color:#fff;}
+
+
+		#info_menu{text-align:right;line-height:60px;float:right;}
+		#info_menu li{height:20px;padding:20px 0;margin-left:25px;overflow:hidden;float:left;}
+		#info_menu li a{display:block;width:100%;height:100%;}
+		#info_menu li img{height:100%;margin-bottom:30px;}
+	
+
+		.search_area1{width:50%;padding:18px 0;position:absolute;left:50%;transform:translatex(-50%);}
+		#submit_btn{
+			width:21px;
+			height:24px;
+			border:none;
+			color:transparent;
+			background-color:#212121;
+			background-image:url("img/icon/magnifier.png");
+			background-repeat:no-repeat;
+			background-size:100%;
+			vertical-align:middle;margin-right:15px;}
+		#search_bar_pc{height:24px;font-size:18px;background-color:#212121;color:#ccc;border:none;}
+		#close_button{background-color:#212121;border:none;color:#ccc;font-size:20px;float:right;}
+
+		#quick_link{background-color:#fff;transform:translatey(17px);padding:30px;font-size:14px;border-radius:0 0 20px 20px;color:#777;}
+		#quick_link h3{line-height:30px;font-weight:400;}
+	
+		#quick_link ul li{line-height:40px;text-indent:20px;}
+		#quick_link ul li a{color:#777;}
+		#quick_link ul li:hover{background-color:#efefef;}
+		#quick_link ul li:hover a{color:rgba(0,112,201);}
+
+		/*############# 모바일 메뉴버튼 ##############*/
+		#btn_mob_menu{display:none;}
+
+		/*############# 모바일 gnb 메뉴 ##############*/
+		#gnb2{display:none;}
+
+	/*##################### container #####################*/
+		#container{width: 100%;}
+
+		
+		
+	/*############# visuals ##############*/
+		#film_visual{width:100%;overflow:hidden;height:800px;position:relative;}
+		#film_visual .btns{width:100%;position:absolute;top:50%;left:0;transform:translatey(-50%);}
+		#film_visual .btns p{
+			width:60px;height:60px;border-radius:50%;color:white;
+			line-height:60px;text-align:center;cursor:pointer;
+			}
+		#film_visual .btns p img{width:100%;}
+		#film_visual .btns .btn_prev{float:left;}
+		#film_visual .btns .btn_next{float:right;}
+		
+		#visuals{width:300%;}
+		#visuals .visual_area{width:33.333%;float:left;}
+		#visuals:after{content:"";display:block;clear:both;}
+		/*########### text #############*/
+		#visuals .visual_area .main_text{text-shadow:-3px -3px 10px rgba(0,0,0,0.3);}
+		/*########### btn_visual #############*/
+		.btn_visual{width:260px;height:34px;font-size:18px;text-align:center;margin:50px auto 30px;}
+		.btn_visual a{display:block;width:100%;height:100%;text-align:center;font-size:24px;}
+		.btn_visual span:hover {text-decoration:underline;}
+		.btn_visual span{float:left;color:#fff;}
+		.btn_visual i{display:block;width:12px;float:left;padding-left:10px;}
+		.btn_visual i img{width:100%;}
+
+		
+		#visuals .main_text{font-size: 54px;padding:110px 0 30px;}
+		#visuals .text .desc{font-size:24px;}
+		
+		/*높이 똑같이 맞추기*/
+		#visual, #switch, #card{height:800px;overflow:hidden;}
+		
+	/*############# visual ##############*/
+		#visual{
+			width:100%;
+			background-image:linear-gradient(#e66465, #9198e5);
+			/* background-image:url("img/bg/green.png"); */
+			background-size:100% 100%;
+			}
+		#visual .inner{width: 1200px;margin: 0 auto;}
+		#visual .text{width: 800px;text-align: center;color: #fff;margin: 0 auto;}
+		
+		/* #visual .text p{font-size: 24px;} */
+		#visual .phone{
+			position: relative;
+			height: 146px;
+			width: 960px;
+			margin: 0 auto;
+			padding: 90px 0 80px;
+
+			
+		  }
+		
+		#visual .phone .phone_frame{width:958px;top:110px;left:1px;position: absolute;}
+		#visual .phone .phone_display{width:958px;position: absolute;top: 112px;left: 4px;}
+		#visual .phone img{width:100%;}
+
+		#visual .phone2{display:none;}
+		
+	/*############# switch ##############*/
+		#switch{
+			width:100%;
+			background-image:url("img/bg/darkpink.png");
+			background-size:100% 100%;
+			}
+		#switch .inner{width:1200px;margin:0 auto;}
+		#switch .text{width:900px;text-align:center;color:#fff;margin:0 auto;}
+		
+		
+		
+		#switch .apps{width:850px;height:160px;margin:0 auto;position:relative;z-index:1;}
+		#switch .arrow{width:85px; height:100%;position:absolute;animation:arrow 0.7s 1;animation-fill-mode:forwards;animation-delay:1s;animation-play-state:paused;}
+		@keyframes arrow{
+			0%{transform:translatex(0%);}
+			100%{transform:translatex(370%);}
+		}
+
+		#switch .arrow span{display:block;position:relative;width:100%;height:100%;}
+		#switch .arrow span img{display:block;position:absolute;bottom:0;}
+
+		#switch ul{height:100%;overflow:hidden;position:relative;}
+		#switch ul li{width:85px;height:100%; position:absolute;bottom:0;left:50%;transform:translatex(-50%);}
+		#switch ul li span{width:100%;height:100%;display:block;position:relative;}
+		#switch ul li span img{width:85px;height:85px;position:absolute;top:47%;animation:bounce 2s 1;animation-delay:0s;animation-fill-mode:forwards;animation-play-state:paused;}	
+
+		#switch ul li i img{width:85px;height:85px;position:absolute;top:47%;}
+
+		#switch ul .i1{transform:translatex(-499%);animation:a1 0.7s 1;animation-fill-mode:forwards;animation-delay:1s;animation-play-state:paused;}
+		#switch ul .i2{transform:translatex(-351%);animation:a2 0.7s 1;animation-fill-mode:forwards;animation-delay:1s;animation-play-state:paused;}
+		#switch ul .i3{transform:translatex(-203%);animation:a3 0.7s 1;animation-fill-mode:forwards;animation-delay:1s;animation-play-state:paused;}
+
+		#switch ul .i5{transform:translatex(98%);animation:a5 0.7s 1;animation-fill-mode:forwards;animation-delay:1s;animation-play-state:paused;}
+		#switch ul .i6{transform:translatex(246%);animation:a6 0.7s 1;animation-fill-mode:forwards;animation-delay:1s;animation-play-state:paused;}
+		#switch ul .i7{transform:translatex(394%);animation:a7 0.7s 1;animation-fill-mode:forwards;animation-delay:1s;animation-play-state:paused;}
+
+		@keyframes a1{
+			0%{transform:translatex(-499%);}
+			100%{transform:translatex(-50%);}
+		}
+		
+		@keyframes a2{
+			0%{transform:translatex(-300%);}
+			100%{transform:translatex(-50%);}
+		}
+		
+		@keyframes a3{
+			0%{transform:translatex(-100%);}
+			100%{transform:translatex(-50%);}
+		}
+		
+		@keyframes a5{
+			0%{transform:translatex(150%);}
+			100%{transform:translatex(-50%);}
+		}
+		@keyframes a6{
+			0%{transform:translatex(300%);}
+			100%{transform:translatex(-50%);}
+		}
+		@keyframes a7{
+			0%{transform:translatex(400%);}
+			100%{transform:translatex(-50%);}
+		}
+		
+			
+		@keyframes bounce{
+			0%{top:47%;left:-0.8px;}
+			3.3%{top:47%;left:0.8px;}
+			6.6%{top:47%;left:-0.8px;}
+			10%{top:47%;left:0.8px;}
+			13.3%{top:47%;left:-0.8px;}
+			16.6%{top:47%;left:0.8px;}
+			20%{top:47%;left:-0.8px;}
+			23.3%{top:47%;left:0.8px;}
+			26.6%{top:47%;left:-0.8px;}
+			30%{top:47%;left:0.8px;}
+			33.3%{top:47%;left:-0.8px;}
+			36.6%{top:47%;left:0.8px;}
+			40%{top:47%;left:-0.8px;}
+			50%{top:0px;left:0.8px;}
+			53.3%{top:0px;left:-0.8px;}
+			56.6%{top:0px;left:0.8px;}
+			60%{top:0px;left:-0.8px;}
+			63.3%{top:0px;left:0.8px;}
+			66.6%{top:13%;left:-0.8px;}
+			70%{top:23%;left:0.8px;}
+			73.3%{top:33%;left:-0.8px;}
+			76.6%{top:43%;left:0.8px;}
+			80%{top:46%;left:-0.8px;}
+			83.3%{top:47%;left:0.8px;}
+			86.6%{top:47%;left:-0.8px;}
+			90%{top:47%;left:0.8px;}
+			93.3%{top:47%;left:-0.8px;}
+			96.6%{top:47%;left:0.8px;}
+			100%{top:47%;left:0px;}
+		} 
+	
+	/*############# card ##############*/
+		/*
+			클릭시 상세 페이지
+			https://www.apple.com/apple-card/monthly-installments/
+		*/
+		#card{
+			width:100%;
+			background-image:url("img/bg/blue.png");
+			background-size:100% 100%;
+			}
+		#card .inner {width: 1200px;margin: 0 auto;}
+		#card .text{width: 1000px;text-align: center;color: #fff;margin: 0 auto;}
+		
+		#card .img_area{width:722px;height: 500px;position: relative;margin: 0 auto;}
+		#card .phone {width: 330px;height: 503px;}
+		#card .phone_frame{
+			width: 396px;
+			height: 503px;
+			top: 1px;
+			left: 1px;
+			position: absolute;
+			}
+		#card .phone_display{
+			width: 261px;
+			height: 484px;
+			position: absolute;
+			top: 18px;
+			left: 29px;
+			}
+		#card .img_area2{display:none;margin:0 auto;}
+		
+		#card .apple_card {width:350px;position: absolute;top:109px;right:0;}
+		#card img{width:100%;}	
+	/*####################### products ######################*/
+		/*########### btn ##########*/
+		#products .btn1{
+			width:143px;font-size:18px;text-align:center;border-radius:23px;background-color:rgba(0,112,201);padding:10px 7px;margin:0 auto 30px;}
+		/*컬러가 16진법으로 나와있어서 rgba 수치는 몰라서 opacity로 조정함.*/
+		#products .btn1:hover{background-color:rgba(0,112,201,0.9);}
+		
+		#products .btn1 a{color:#fff;}
+		
+		/*#########################*/
+		#products{width: 100%;padding: 50px 0;overflow: hidden;background-color:#F5F5F7;}
+		#products .text h2 {font-size: 48px;}
+		#products .text .desc {font-size: 24px;padding: 20px 0;}
+		#products span{font-size: 20px;}
+
+		#products .inner{width: 1300px;margin: 0 auto;}
+
+		/*########### inner(ul) / product(li) ##########*/
+		#products .inner .product{
+			width: 635px;height: 550px;
+			padding: 50px 0;background-color: #fff;
+			float: left;text-align: center;
+			border-radius:30px;
+			overflow:hidden;
+			box-shadow:5px 5px 10px #ccc;
+			background-color:#fafafa;
+			}
+		#products .inner:after{content:"";display:block;clear:both;}
+		/*############## products / se ############*/
+		#se{margin-right:30px;overflow:hidden;}
+		#se .img{width:374px;height:497px;margin:0 auto;top:1px;left: 50px;position: relative;}
+		#se .img .se_frame{width:100%;position: absolute;}
+		#se .img .se_frame img{width:100%;}
+		#se .img .se_display{width:62%;height:100%;top:3%;left:6%;position: absolute;}
+		#se .img .se_display p{position:relative;width:100%;height:100%;}
+		#se .img .se_display p img{width:100%;position:absolute;left:0;transition:all 0.5s;}
+		#se:hover .img .se_display p img:nth-child(2){opacity:0;}
+	
+
+		/*############## products / pro11 ############*/
+		/*
+		  전체 사용가능 너비: 640px
+		*/
+		#pro11{position:relative;}
+		#pro11 .img {width:1000px;height:370px;overflow:hidden;position: absolute;bottom: 0;}
+		#pro11 .large11{width:153px;float:left;}
+		#pro11 .large11 img{height:370px;position:relative;left: -126px;transition:all 0.3s ease-in-out;}
+		#pro11:hover .large11 img{left: -156px;}
+		#pro11 .phones_by_color{width: 600px;height:370px;float:left;}
+		#pro11 .phones_by_color li{width:77px;float:left;padding-left:20px;transition:all 0.3s ease-in-out;}
+		#pro11:hover .phones_by_color li{padding-left:40px;}
+		
+		#pro11 .phones_by_color img{width: 100%;}
+
+		/*############## products / watch ############*/
+		#products #watches{
+			width:100%;
+			margin: 20px 0;
+			padding:0;
+			height:650px;
+			background-color:#fafafa;
+			transition:all 0.5s ease-in;
+			position:relative;
+		}
+		#watches:hover{background-color:#000 !important;color:#fff;}
+		#watches .text{position: absolute;z-index: 10;left: 50%;bottom: 10%;transform: translate(-50%);}
+		#watches .watch{position:relative;}
+		/* #watch .watch p{position:absolute;}
+		#watches .watch .frame{top:1px;left:1px;} */
+		#watches .screen{width:100%;height:85%;overflow:hidden;position:relative;}
+		#watches .screen img{width:117%;position:absolute;top:0;left:50%;transform:translatex(-50%);transition:all 0.5s ease-in;}
+		#watches:hover .screen img:first-child{opacity:1;}
+		#watches .screen img:first-child{opacity:0;}
+		#watches:hover .screen img:last-child{opacity:0;}
+
+		/*############## products / airpod ############*/
+		#airpod{margin-right:30px;position:relative;margin-bottom:0;}
+		#airpod .img{width:110%;position:absolute;bottom:0;left:-30px;}
+		#airpod .img img{width:100%;vertical-align:middle;}
+
+		/*############## products / ipad ############*/
+		#ipad{margin-bottom:0;}
+		#ipad .img{width: 100%;height:388px;margin:0 auto;position:relative;}
+		
+		#ipad .img_tablet2{width:270px;margin:0 auto;}
+		#ipad .img_tablet2 img{width:100%;}
+		#ipad .writings{overflow:hidden;}
+		#ipad .writings p{
+			position:absolute;opacity:0;
+			animation-duration:1.2s;
+			animation-iteration-count:1;
+			animation-fill-mode:forwards;
+
+		}
+		#ipad .left p{left:33px;animation-name:show_animation_left;animation-play-state: paused;}
+		#ipad .right p{right:33px;animation-name:show_animation_right;animation-play-state: paused;}
+		#ipad:hover .writings p{animation-play-state:running;}
+		#ipad .writings .writing0{top:1px;width:130px;height:80px;animation-delay:0s;}
+		#ipad .writings .writing1{top:140px;width:86px;height:77px;animation-delay:0.3s;}
+		#ipad .writings .writing2{top:270px;width:109px;height:77px;animation-delay:0.6s;}
+		#ipad .writings .writing3{top:1px;width:85px;height:59px;animation-delay:0.9s;}
+		#ipad .writings .writing4{top:140px;width:86px;height:77px;animation-delay:1.2s;}
+		#ipad .writings .writing5{top:270px;width:81px;height:50px;animation-delay:1.5s;}
+		
+		#ipad .img .left p{opacity:0;transform:translatex(-86%);}
+		#ipad .img .right p{opacity:0;transform:translatex(86%);}
+		
+
+		@keyframes show_animation_left{
+			0%{opacity:0;transform:translatex(-86%);}
+			100%{opacity:1;transform:translatex(0%);}
+		}
+		@keyframes show_animation_right{
+			0%{opacity:0;transform:translatex(86%);}
+			100%{opacity:1;transform:translatex(0%);}
+		}
+
+		#ipad .img .text_size{padding-top:3px;}
+
+	/*####################### ads ##########################*/
+		#ads{width:100%;padding:70px 0;background-color:#000;position:relative;}
+
+		/*########### ads / top ###########*/
+		#ads .top{width:1200px;color:#fff;overflow:hidden;padding-bottom:50px;margin:0 auto;}
+
+		/*########### ads / top / text ###########*/
+		#ads .top .text{width:500px;float:left;}
+		#ads .top .text h2{font-size:48px;}
+		#ads .top .text p{font-size:24px;}
+
+		/*########### ads / top / play_area ###########*/
+		#ads .play_area{width:700px;height:400px;float:left;}/*동영상 선택시 덜컹거려서 높이 지정해줌*/
+		#ads .play_area video{width:100%;margin:0 auto;}
+		
+		
+		/*########### ads / ads_list ###########*/
+		.ads_list{width:100%;height:400px;overflow:hidden;}
+		.ads_list ul{
+			width:10000px;height:250px;
+			transform:translatex(0);
+			animation-name:floating;animation-duration:40s;animation-iteration-count:infinite;animation-timing-function:linear;
+			
+			animation-play-state:running;
+			
+		}
+
+		@keyframes floating{
+			0%{transform:translatex(0);}
+			100%{transform:translatex(-3700px);}
+		}
+		.ads_list ul:hover{
+			animation-play-state:paused !important;
+		}
+		
+		.ads_list ul li{
+		width:350px;margin-top:50px;margin-right:20px;height:200px;border-radius:20px;overflow:hidden;float:left;transition:all 0.7s ease-in-out;position:relative;}
+		.ads_list ul li:hover{width:450px;transform:translatey(-40px);height:257px;}
+		
+		
+		.ads_list ul li .img{width:100%;}
+		.ads_list ul li .img img{width:100%;}
+
+		.ads_list ul .list{position:relative;}
+		.ads_list ul .list .btn{
+			opacity:0;
+			width:150px;text-align:center;
+			height:46px;line-height:46px;font-weight:700;
+			border-radius:23px;
+			background-color:#fff;
+			position:absolute;top:50%;left:50%;
+			transform:translate(-50%,0%);
+			transition:all 0.3s ease-out;
+			
+			}
+		.ads_list ul li:hover p{opacity:0.5;}
+		.ads_list ul li:hover .btn{opacity:1;transform:translate(-50%,-50%);}
+
+		.icon_pause_play{width:50px;height:50px;position:absolute;bottom:50px;right:50px;}
+		.icon_pause_play_wrap{width:100%;position:relative;}
+		.icon_pause_play img{width:100%;position:absolute;cursor:pointer;}
+		.icon_pause_play .play{opacity:0;}
+
+	
+
+	/*################ acc ####################*/
+		#acc{width:100%;}
+		/*
+			전체 사용가능 너비:1200px;
+		*/
+		.acc_inner{
+			width: 1300px;
+			margin: 0 auto;
+			padding:70px 0;
+		}
+		/*############# acc / text ############*/
+		.acc_inner .text{
+			width: 100%;
+			text-align: center;
+			padding-bottom:50px;
+		}
+
+		.acc_inner .text h2{font-size:48px;}
+		.acc_inner .text p{font-size:24px;padding-top: 20px;}
+		.acc_inner .text .text_mob{display:none;text-align:left;font-weight:700;}
+
+		/*############# acc / top ############*/
+		.acc_inner .top{width:100%;height:570px;}
+		.acc_inner .top:after{content:"";display:block;clear:both;}
+		/*############# acc / top / left ############*/
+		.acc_inner .top .left{width:800px;height:100%;/* background-color:green; */position:relative;float:left;/* z-index:-1; */}
+		.acc_inner .top .left ul{width:100%;height:100%;}
+		.acc_inner .top .left ul li{width:100%;height:100%;opacity:0;transform:translatex(30%);transition:all 0.3s ease-out;position:absolute;z-index:-1;}
+		.acc_inner .top .left ul #first{opacity:1;transform:translatex(0);}
+		
+		/*img*/
+		.acc_inner .top .left .img{width:40%;margin-left:75px;margin-top:50px;}
+		
+		.acc_inner .top .left .img img{width:100%;}
+		
+		/*desc*/
+		.acc_inner .top .left .desc{width:30%;position:absolute;bottom:100px;left:60%;}
+		
+		.acc_inner .top .left .desc h3{font-size:32px;}
+		.acc_inner .top .left .desc h3 span{display:none;}
+		.acc_inner .top .left .desc .text_mob{display:none;}
+		.acc_inner .top .left .btn{
+			width:143px;font-size:18px;text-align:center;border-radius:23px;background-color:rgba(0,112,201);padding:10px 7px;
+			}
+		
+		.acc_inner .top .left .btn:hover{background-color:rgba(0,112,201,0.9);}
+		.acc_inner .top .left .btn a{color:#fff;}
+		.acc_inner .top .left .btn_common{display:none;}
+		/*############# acc / top / right ############*/
+		.acc_inner .top .right{
+		width:500px;height:100%;
+		float:left;
+		
+		}
+		.acc_inner .top .right .list_title{font-size:24px;padding:10px 0;font-weight:700;margin:0 50px;}
+		.acc_inner .top .right .lists li{width:80%;line-height:74px;margin:0 auto;border-bottom:1px solid #ccc;font-size:20px; cursor:pointer;}
+		.acc_inner .top .right .lists li a{display:block;width:100%;height:100%;color:#0070c9;}
+		.acc_inner .top .right .lists li:hover a{background-color:#0070c9;}
+		.acc_inner .top .right .lists li:hover a{color:#fff;}
+		.acc_inner .top .right .lists li:hover a{color:#fff;}
+		.acc_inner .top .right .lists li:hover span{color:#efefef;}
+		.acc_inner .top .right .lists .li1{border-top:1px solid #ccc;}
+		
+		.acc_inner .top .right .lists li span{color:#777;font-size:15px;float:right;}
+
+		.acc_inner .top .right .lists i{
+			display:block;width:30px;height:30px; line-height:30px; border-radius:15px; margin-top:25px; margin-right:15px;text-align:center;color:#fff;background-color:#777; float:left;}
+		.cards_wrap{display:none;width:100%;}
+		#cards{width:1100px;height:300px;position:relative; margin:100px auto;background-color:lightblue;}
+		.card{
+			width:300px;height:300px;
+			
+			
+			text-align:center;
+			transition:all 0.5s;
+			background-color:gold;
+			position:absolute;
+			left:0; top:0;
+			
+			}
+
+			.first{left:0;}
+			.second{left:400px;}
+			.third{left:800px;}
+			.card .card_inner {width:100%;height:100%;position:relative;}
+			.card .card_inner div{width:100%;height:100%;position:absolute;font-size:30px;}
+			.card .card_inner  .front{background-color:gold;}
+			.card .card_inner .back{background-color:#212121;}
+			.card .card_inner div p{width:30px;height:30px;background-color:brown;}
+
+			#cards:after{content:"";display:block;clear:both;}
+			.card:nth-child(1) .front_back_wrap{transform-origin:center left;}
+			.card:nth-child(2) .front_back_wrap{transform-origin:center;}
+			.card:nth-child(3) .front_back_wrap{transform-origin:center right;}
+	/*############# news ############*/
+		#news{width:100%;overflow:hidden;background-color:#f2f2f2;}
+		.news_inner{width:1300px;margin: 0 auto;padding:80px 0;}
+		
+		/*############ news / top ############ */
+		.news_inner .text{width:100%;text-align:center;padding-bottom:50px;}
+
+		.news_inner .text h2{font-size:48px;}
+		.news_inner .text p{font-size:24px;padding-top: 20px;}
+		/*############ news / cards ############ */
+		.news_inner .cards ul{width:100%;overflow:hidden;}
+		.news_inner .cards ul li {
+			width: 408px;
+			height: 540px;
+			border-radius:7%;
+			overflow:hidden;
+			background-size: 150%;
+			background-position: center center;
+			background-repeat: no-repeat;
+			float: left;
+			position:relative;
+			background-color:rgba(0,0,0,0.2);
+			transition:all 0.3s ease-in;
+		}
+
+		/* .news_inner .cards ul li:before{
+			position:absolute;width:100%;height:100%;background-color:rgba(0,0,0,0.2);content:"";border-radius:7%;} */
+		.news_inner .cards ul li a{display:block;width:100%;height:100%;}
+		.news_inner .cards ul li .news_image{width:100%;height:100%;}
+		.news_inner .cards ul li .news_image img{width:100%;}
+		.news_inner .cards ul li:hover{box-shadow:5px 5px 10px #ccc;}
+
+		.news_inner .cards ul li h3 {
+			color: #fff;
+			
+			font-size: 30px;
+			
+			
+			z-index:1;
+			position:absolute;
+			bottom:77px;
+			left:35px;
+			text-shadow:-3px -3px 15px rgba(0,0,0,0.3);
+		}
+		.news_inner .cards ul li .btn_plus{
+			width:50px;
+			position:absolute;
+			left:14px;bottom:10px;
+			color:#fff;
+			font-size:30px;
+			font-weight:700;
+			padding:5px 10px;
+			}
+		.news_inner .cards .btn_plus img{width:100%;}
+		/* .news_inner .cards ul .li1{background-image: url("img/news/a1.jpg");} */
+		.news_inner .cards ul .li2{margin:0 37px;}
+		/*.news_inner .cards ul .li3{background-image: url("img/news/a3.jpg");}
+		.news_inner .cards ul .li4{background-image: url("img/news/a4.jpg");} */
+	/*##################### footer #####################*/
+		#footer{width:100%;height:450px;background-color:#212121;}
+		#footer a{color:#b0b0b0;}
+		#footer h3{font-size:14px;line-height:40px;color:#b0b0b0;font-weight:700;}
+		#footer h3 span{display:none;}
+		#footer_nav_menues{width:750px;height:350px;padding-top:50px;margin:0 auto;}
+		#footer_nav_menues .learn_more{width:234px;cursor:pointer;float:left;}
+		#footer_nav_menues .learn_more li{font-size:14px;line-height:40px;}
+		#footer_nav_menues .nav_menu{width:172px;float:left;}
+		#footer_nav_menues .nav_menu li{font-size:14px;line-height:40px;}
+
+		.footer_copyright{width:750px;margin:0 auto;border-top:1px solid #b0b0b0;line-height:49px;color:#b0b0b0;font-size:14px;}
+
+		#footer a:hover{color:#fff;}
+		
+		/*############## 반응형 (작은 pc) ###############*/
+		@media all and (min-width:1320px) and (max-width:1919px){
+			.header_inner{width:1000px;}
+			
+			}
+		/*############## 반응형 (작은 pc) ###############*/
+		@media all and (min-width:1025px) and (max-width:1319px){
+			
+			.header_inner{width:900px;}
+			
+
+			#visual .inner{width: 1000px;}
+			/*########### text #############*/
+			#visuals .visual_area .main_text{text-shadow:-3px -3px 10px rgba(0,0,0,0.3);}
+			
+			/*높이 똑같이 맞추기*/
+			#visual, #switch, #card{height:800px;overflow:hidden;}
+			
+			/*############# visual ##############*/
+			
+			
+			
+			
+			
+			
+			/*############# switch ##############*/
+			
+			#switch .inner{width:1000px;}
+			#switch .text{width:800px;text-align:center;color:#fff;margin:0 auto;}
+			
+			
+			
+			
+
+			/*############# card ##############*/
+			
+		
+			#card .inner {width: 1000px;}
+			#card .text{width: 800px;}
+			
+			#products{padding:30px 0;}
+			#products .text h2 {font-size: 40px;}
+			#products .text .desc {font-size: 20px;padding:10px 0 15px;}
+			#products .btn1{
+				width:130px;font-size:16px;
+				padding:7px 5px;margin:0 auto 20px;
+				}
+
+			
+
+			/*########### inner(ul) / product(li) ##########*/
+			#products .inner .product{
+				width: 635px;height: 550px;
+				padding: 50px 0;background-color: #fff;
+				float: left;text-align: center;
+				border-radius:30px;
+				overflow:hidden;
+				box-shadow:5px 5px 10px #ccc;
+				background-color:#fafafa;
+				}
+			#products .inner:after{content:"";display:block;clear:both;}
+
+			#products .inner{width: 1000px;}
+
+			/*########### inner(ul) / product(li) ##########*/
+			#products .inner .product{width: 490px;height: 454px;}
+			
+			/*############## products / se ############*/
+			#se{margin-right:20px;overflow:hidden;}
+			#se .img{width:329px;height:497px;margin:0 auto;top:1px;left:45px;position: relative;}
+			#se .img .se_frame{width:100%;}
+			#se .img .se_frame img{width:100%;}
+			#se .img .se_display{width:62%;top:3%;left:6%;}
+			#se .img .se_display img{width:100%;}
+
+			/*############## products / pro11 ############*/
+			
+			
+			#pro11 .img {width:551px;height:259px;}
+			#pro11 .large11{width:118px;float:left;}
+			#pro11 .large11 img{height:433px;left:-200px;}
+			#pro11:hover .large11 img{left: -220px;}
+			#pro11 .phones_by_color{width: 420px;}
+			#pro11 .phones_by_color li{width:54px;}
+			#pro11:hover .phones_by_color li{padding-left:35px;}
+			
+			#pro11 .phones_by_color img{width: 100%;}
+
+			
+			/*############## products / airpod ############*/
+			#airpod{margin-right:20px;}
+			
+			
+
+			/*############## products / ipad ############*/
+			
+			
+			#ipad .img_tablet2{width:190px;}
+			
+			#ipad .writings p img{width:80%;}
+			
+			#ipad .left p{left:11px;}
+			#ipad .right p{right:33px;}
+			
+			#ipad .writings .writing0{top:1px;}
+			#ipad .writings .writing1{top:102px;}
+			#ipad .writings .writing2{top:188px;}
+			#ipad .writings .writing3{top:1px;}
+			#ipad .writings .writing4{top:102px;}
+			#ipad .writings .writing5{top:188px;}
+			
+			/*############## ads ##############*/
+			#ads{width:100%;padding:70px 0;background-color:#000;position:relative;}
+
+			/*########### ads / top ###########*/
+			#ads .top{width:900px;}
+
+			/*########### ads / top / text ###########*/
+			#ads .top .text{width:400px;float:left;}
+			#ads .top .text h2{font-size:48px;}
+			#ads .top .text p{font-size:24px;}
+
+			/*########### ads / top / play_area ###########*/
+			#ads .play_area{width:500px;height:195px;}
+			#ads .play_area video{width:100%;}
+			
+			
+			/*########### ads / ads_list ###########*/
+		
+			
+			
+			
+			.ads_list ul li{height:198px;}
+			.ads_list ul li:hover{width:370px;transform:translatey(-25px);height:208px;}
+			
+			/*################## acc ##################*/
+			#acc .acc_inner{width: 1000px;}
+			/*############# acc / top ############*/
+			.acc_inner .top{width:100%;height:570px;}
+
+			/*############# acc / top / left ############*/
+			.acc_inner .top .left{width:613px;height:100%;/* background-color:green; */position:relative;float:left;}
+			
+			/*img*/
+			.acc_inner .top .left .img{width:40%;text-align:center;margin-left:75px;margin-top:50px;}
+			
+			
+			
+			/*desc*/
+			.acc_inner .top .left .desc{width:250px;position:absolute;bottom:100px;}
+			.acc_inner .top .left .desc:hover{opacity:1;transform:translatex(0%);}
+			.acc_inner .top .left .desc h3{font-size:32px;}
+			.acc_inner .top .left .desc .btn{
+				width:143px;font-size:18px;text-align:center;border-radius:23px;background-color:rgba(0,112,201);
+				padding:10px 7px;margin-top:20px;	
+				}
+			.acc_inner .top .left .desc .btn:hover{background-color:rgba(0,112,201,0.9);}
+			.acc_inner .top .left .desc .btn a{color:#fff;}
+
+			/*############# acc / top / right ############*/
+			.acc_inner .top .right{width:387px;}
+			.acc_inner .top .right .list_title{font-size:24px;padding:10px 0;font-weight:700;margin:0 50px;}
+			.acc_inner .top .right .lists li{padding:0;}
+			.acc_inner .top .right .lists li:hover{background-color:#0070c9;}
+			.acc_inner .top .right .lists li:hover a{color:#fff;}
+			.acc_inner .top .right .lists li:hover a{color:#fff;}
+			.acc_inner .top .right .lists li:hover span{color:#efefef;}
+			.acc_inner .top .right .lists .li1{border-top:1px solid #ccc;}
+			.acc_inner .top .right .lists li a{display:block;font-size:20px;color:#0070c9;}
+			.acc_inner .top .right .lists li a strong{font-size:18px;}
+			.acc_inner .top .right .lists li a span{display:none;}
+
+			.acc_inner .top .right .lists i{display:block;width:30px;height:30px;border-radius:15px;margin-right:15px;text-align:center;color:#fff;background-color:#777;float:left;}
+			
+			/*########### news ############*/
+			#news	.news_inner{width:1000px;}
+			#news	.news_inner .cards ul li{
+				width: 308px;
+				height: 413px;
+				}
+			.news_inner .cards ul .li2{margin:0 37px;}
+			.news_inner .cards ul li h3{font-size: 22px;bottom:75px;right:10px}
+
+		}  
+		@media all and (min-width:768px) and (max-width:1024px){
+			#film_visual{height:680px;}
+			
+			.header_inner{width:644px;}
+			
+			/*높이 똑같이 맞추기*/
+			#visual, #switch, #card{height:750px;overflow:hidden;}
+			/*inner 너비*/
+			#visuals .inner{width: 720px;margin: 0 auto;}
+			/*text*/
+			#visuals .text{width: 100%;}
+			#visuals .text .main_text{font-size:48px;padding:140px 0 15px;}
+			#visuals .text .desc{font-size: 18px;}
+			#visuals .text .d1{display:none;}
+		
+			/*########### text #############*/
+			#visuals .visual_area .main_text{text-shadow:-3px -3px 10px rgba(0,0,0,0.3);}
+			
+			/*높이 똑같이 맞추기*/
+			#visual, #switch, #card{height:680px;overflow:hidden;}
+			
+			/*############# visual ##############*/
+			
+			#visual .phone{
+			position: relative;
+			height: 146px;
+			width: 960px;
+			margin: 0 auto;
+			padding: 60px 0 40px;
+
+			
+			}
+
+			#visual .phone .phone_frame{width:700px;top:110px;left:1px;position: absolute;}
+			#visual .phone .phone_display{width:700px;position: absolute;top: 112px;left: 4px;}
+			
+			
+			
+			
+			/*############# switch ##############*/
+			#switch .apps{width:730px;height:160px;margin:0 auto;position:relative;z-index:1;}
+			
+			#switch .arrow{width:75px; height:100%;position:absolute;animation:arrow 0.7s 1;animation-fill-mode:forwards;animation-delay:1s;}
+
+			#switch ul{width:730px;height:100%;}
+			#switch ul li{width:75px;height:100%; position:absolute;bottom:0;left:50%;transform:translatex(-50%);}
+			#switch ul li span{
+			width:100%;height:100%;display:block;position:relative;}
+			#switch ul li span img{width:75px;height:75px;position:absolute;top:60%;animation:bounce 2s 1;animation-delay:0s;animation-fill-mode:forwards;}	
+
+			#switch ul li i img{width:75px;height:75px;position:absolute;top:46%;}
+
+			#switch ul .i1{transform:translatex(-485%);animation:a1 0.7s 1;animation-fill-mode:forwards;animation-delay:1s;}
+			#switch ul .i2{transform:translatex(-340%);animation:a2 0.7s 1;animation-fill-mode:forwards;animation-delay:1s;}
+			#switch ul .i3{transform:translatex(-193%);animation:a3 0.7s 1;animation-fill-mode:forwards;animation-delay:1s;}
+
+			#switch ul .i5{transform:translatex(88%);animation:a5 0.7s 1;animation-fill-mode:forwards;animation-delay:1s;}
+			#switch ul .i6{transform:translatex(236%);animation:a6 0.7s 1;animation-fill-mode:forwards;animation-delay:1s;}
+			#switch ul .i7{transform:translatex(385%);animation:a7 0.7s 1;animation-fill-mode:forwards;animation-delay:1s;}
+
+			@keyframes a1{
+				0%{transform:translatex(-485%);}
+				100%{transform:translatex(-50%);}
+			}
+			
+			@keyframes a2{
+				0%{transform:translatex(-340%);}
+				100%{transform:translatex(-50%);}
+			}
+			
+			@keyframes a3{
+				0%{transform:translatex(-100%);}
+				100%{transform:translatex(-50%);}
+			}
+			
+			@keyframes a5{
+				0%{transform:translatex(150%);}
+				100%{transform:translatex(-50%);}
+			}
+			@keyframes a6{
+				0%{transform:translatex(300%);}
+				100%{transform:translatex(-50%);}
+			}
+			@keyframes a7{
+				0%{transform:translatex(400%);}
+				100%{transform:translatex(-50%);}
+			}
+			
+			
+		
+		
+		
+			
+			
+			
+			
+
+			/*############# card ##############*/
+			
+			#products{width: 100%;padding: 30px 0;overflow: hidden;background-color:#F5F5F7;}
+			#products .text h2 {font-size: 32px;}
+			#products .text .desc {font-size: 15px;padding: 10px 0;}
+			#products span{font-size: 16px;}
+
+			#products .btn1{width:125px;font-size:15px;margin:0 auto 13px;padding:7px 5px;}
+
+			#products .inner{width: 750px;margin:0 auto;}
+
+			/*########### inner(ul) / product(li) ##########*/
+			#products .inner .product{width: 365px;height: 350px;padding: 20px 0;}
+			
+			/*############## products / se ############*/
+			#se{margin-right:20px;overflow:hidden;}
+			#se .img{width:262px;height:497px;margin:0 auto;top:1px;left: 31px;position: relative;}
+			#se .img .se_frame{width:100%;}
+			#se .img .se_frame img{width:100%;}
+			#se .img .se_display{width:62%;top:3%;left:6%;}
+			#se .img .se_display img{width:100%;}
+
+			/*############## products / pro11 ############*/
+			
+			
+			#pro11{margin:0}
+			#pro11 .img {width:175%;height:231px;}
+			#pro11 .large11{width:72px;float:left;}
+			#pro11 .large11 img{height:433px;left:-246px;}
+			#pro11:hover .large11 img{left: -260px;}
+			#pro11 .phones_by_color{width: 355px;}
+			#pro11 .phones_by_color li{width:48px;padding-left:10px;}
+			#pro11:hover .phones_by_color li{padding-left:20px;}
+			
+			#pro11 .phones_by_color img{width: 100%;}
+			
+			/*############## products / watches ############*/
+			#watches .text{bottom:30%;}
+			
+			/*############## products / airpod ############*/
+			#airpod{margin-right:20px;}
+			
+			
+
+			/*############## products / ipad ############*/
+			
+			
+			#ipad .img_tablet2{width:166px;}
+			
+			#ipad .writings p img{width:67%;}
+			
+			#ipad .left p{left:3px;}
+			#ipad .right p{right:24px;}
+			
+			#ipad .writings .writing0{top:1px;}
+			#ipad .writings .writing1{top:70px;}
+			#ipad .writings .writing2{top:140px;}
+			#ipad .writings .writing3{top:1px;}
+			#ipad .writings .writing4{top:70px;}
+			#ipad .writings .writing5{top:140px;}
+			
+			/*############## ads ##############*/
+			#ads{width:100%;padding:30px 0;background-color:#000;position:relative;}
+
+			/*########### ads / top ###########*/
+			#ads .top{width:750px;}
+
+			/*########### ads / top / text ###########*/
+			#ads .top .text{width:300px;float:left;box-sizing:border-box;padding-left:30px;}
+			#ads .top .text h2{font-size:40px;}
+			#ads .top .text p{font-size:20px;}
+
+			/*########### ads / top / play_area ###########*/
+			#ads .play_area{width:440px;height:200px;}
+			#ads .play_area video{width:100%;}
+			
+			
+			/*########### ads / ads_list ###########*/
+			.ads_list{width:100%;height:254px;overflow:hidden;}
+			.ads_list ul{
+				
+				width:500000px;height:162px;
+				
+				
+				
+			}
+
+			
+			
+
+			.ads_list ul li{width:250px;margin-top:24px;margin-right:10px;height:140px;border-radius:10px;}
+			.ads_list ul li:hover{width:320px;transform:translatey(-25px);height:180px;}
+
+			.icon_pause_play{width:35px;position:absolute;bottom:19px;right:27px;}
+			
+			/*################## acc ##################*/
+			#acc .acc_inner{width: 100%;padding:40px 0;}
+			.acc_inner .text{
+			width: 100%;
+			text-align: center;
+			padding-bottom:30px;
+			}
+			.acc_inner .text h2{font-size:40px;}
+			.acc_inner .text p{font-size:20px;padding-top: 10px;}
+			.acc_inner .text .text_mob{display:none;text-align:left;font-weight:700;}
+			
+			/*############# acc / top ############*/
+			.acc_inner .top{width:100%;}
+
+			/*############# acc / top / left ############*/
+			.acc_inner .top .left{width:56%;height:100%;/* background-color:green; */position:relative;float:left;}
+			
+			/*img*/
+			.acc_inner .top .left .img{width:56%;text-align:center;margin:0;transform:translatex(30%);transition:all 0.5s ease-out;}
+			.acc_inner .top .left .img:hover{opacity:1;transform:translatex(0%);}
+			.acc_inner .top .left .img img{width:100%;}
+			
+			/*desc*/
+			.acc_inner .top .left .desc{
+				width:60%;position:static;transform:translatex(33%);transition:all 0.5s ease-out;}
+			.acc_inner .top .left .desc .desc_long{display:none;}
+			.acc_inner .top .left .desc h3{font-size:32px;margin-bottom:10px;}
+			.acc_inner .top .left .desc .btn{
+				width:143px;font-size:16px;padding:7px 4px;
+				}
+			
+
+			/*############# acc / top / right ############*/
+			.acc_inner .top .right{width:40%;}
+			.acc_inner .top .right .list_title{font-size:18px;padding:7px 0;font-weight:700;margin:0 50px;}
+			.acc_inner .top .right .lists li{padding:0;width:90%;line-height:65px;}
+			.acc_inner .top .right .lists li:hover{background-color:#0070c9;}
+			.acc_inner .top .right .lists li:hover a{color:#fff;}
+			.acc_inner .top .right .lists li:hover a{color:#fff;}
+			.acc_inner .top .right .lists li:hover span{color:#efefef;}
+			
+			
+			.acc_inner .top .right .lists li a strong{font-size:17px;}
+			.acc_inner .top .right .lists li a span{display:none;}
+
+			.acc_inner .top .right .lists i{display:block;width:30px;height:30px;border-radius:15px;margin-right:15px;text-align:center;color:#fff;background-color:#777;float:left;}
+			
+			/*########### news ############*/
+			#news	.news_inner{width:750px;}
+			#news	.news_inner .cards ul li{
+				width: 243px;
+				height: 368px;
+				}
+			.news_inner .cards ul .li2{margin:0 10px;}
+
+			.news_inner .cards ul li h3 {font-size: 19px;bottom:72px;right:10px;}
+			.news_inner .cards ul li .btn_plus {bottom:0px;}
+		}
+		/*##############  반응형 480 ###############*/
+		@media all and (min-width:481px) and (max-width:767px){
+			#film_visual{height:630px;}
+			
+			.header_inner{width:100%;height:45px;position:relative;}
+			.header_inner #logo{width:20px;height:24px;left:50%;transform:translatex(-50%);top:50%;transform:translatey(-50%);}
+			
+
+			#info_menu{text-align:right;line-height:45px;float:right;}
+			#info_menu li{width:22px;height:20px;padding:0;float:none;overflow:visible;}
+			#info_menu li img{margin-bottom:10px;}
+			#info_menu .magnifier{display:none;}
+			#info_menu .account{position:absolute;top:50%;transform:translatey(-50%);right:3%;}
+			
+			
+			#accMenu{right:10px;}
+
+
+			#gnb{display:none !important;}
+
+			/*############# 모바일 메뉴버튼 ##############*/
+			#btn_mob_menu{display:block;width:40px;height:40px;position:absolute;left:0px;top:50%;transform:translatey(-45%);}
+			#btn_mob_menu p{width:100%;height:100%;overflow:hidden;}
+			#btn_mob_menu span{display:block;text-indent:-9999px;width:50%;height:1px;background-color:#fff;margin:8px auto 0;}
+			
+			/*############# gnb2 메뉴 (모바일버전) ##############*/
+			#gnb2{display:block;overflow:hidden;width:100%;height:0px; background-color:#000;transition:height 0.5s;}
+			#gnb2 ul{width:100%;box-sizing:border-box;padding:0 10%;}
+			#gnb2 li{font-size:17px;line-height:55px;border-bottom:1px solid #555;}
+			#gnb2 li:last-child{border-bottom:none;}
+			#gnb2 a{color:#fff;}
+
+			
+
+			/*모바일용 검색바*/
+			#gnb2 .search_area2{width:100%;border-bottom:1px solid #555;overflow:hidden;}
+			#gnb2 form{width:90%;margin:10px auto;background-color:#333;border-radius:5px;}
+			#gnb2 form img{width:5%;margin:2%;margin-left:4%;vertical-align:middle;}
+			#gnb2 form input{width:80%;border:none;padding:10px 0;text-indent:13px;background:none;font-size:17px;color:#fff;}
+			
+			
+			/*########### btn_visual #############*/
+			.btn_visual{width:auto;margin:16px auto;}
+			.btn_visual a{display:block;font-size:17px;}
+			
+			
+			.btn_visual i{display:block;width:12px;float:left;padding-top:10px;padding-left:7px;}
+			.btn_visual i img{width:100%;}
+
+			
+			#visuals h2{font-size: 40px;padding:110px 0 30px;}
+			
+			/*높이 똑같이 맞추기*/
+			#visual, #switch, #card{height:630px;overflow:hidden;}
+			/*inner 너비*/
+			#visuals .inner{width: 400px;margin: 0 auto;}
+			/*text*/
+			#visuals .text{width: 100%;}
+			#visuals .text .main_text{font-size:40px;padding:86px 0 15px;}
+			#visuals .text .desc{font-size: 18px;}
+			#visuals .text .d1{display:none;}
+
+			/*############# visual ##############*/
+			#visual .phone{display:none;}
+			#visual .phone2{
+				position: relative;
+				height: 400px;
+				width: 110px;
+				margin: 0 auto;
+				display:block;
+			  }
+			
+			#visual .phone2 .phone_frame{width:100%;position: absolute;}
+			#visual .phone2 .phone_display{width:65%;position: absolute;left:31%;top:5%;}
+
+			#visual .phone2  img{width:100%;}
+
+
+			
+			/*############# switch ############*/
+			
+			
+			#switch .text span{display:none;}
+			
+			#switch .apps{width:450px;height:113px;margin:0 auto;position:relative;z-index:1;}
+			#switch .arrow{width:50px; height:100%;position:absolute;animation:arrow 0.7s 1;animation-fill-mode:forwards;animation-delay:1s;}
+		
+
+			#switch .arrow span{display:block;position:relative;width:100%;height:100%;}
+			#switch .arrow span img{display:block;position:absolute;bottom:0;}
+
+			#switch ul{width:100%;height:100%;}
+			#switch ul li{width:50px;height:100%; position:absolute;bottom:0;left:50%;transform:translatex(-50%);}
+			#switch ul li span{
+				width:100%;height:100%;display:block;position:relative;}
+			#switch ul li span img{
+				width:50px;height:50px;position:absolute;top:56%;animation:bounce 2s 1;animation-delay:0s;animation-fill-mode:forwards;}	
+
+			#switch ul li i img{width:50px;height:50px;position:absolute;/* top:75px; */}
+
+			#switch ul .i1{transform:translatex(-419%);/*animation:a1 0.7s 1;animation-fill-mode:forwards;animation-delay:1s; */}
+			#switch ul .i2{transform:translatex(-294%);animation:a2 0.7s 1;animation-fill-mode:forwards;animation-delay:1s;}
+			#switch ul .i3{transform:translatex(-173%);animation:a3 0.7s 1;animation-fill-mode:forwards;animation-delay:1s;}
+
+			#switch ul .i5{transform:translatex(77%);animation:a5 0.7s 1;animation-fill-mode:forwards;animation-delay:1s;}
+			#switch ul .i6{transform:translatex(192%);animation:a6 0.7s 1;animation-fill-mode:forwards;animation-delay:1s;}
+			#switch ul .i7{transform:translatex(309%);animation:a7 0.7s 1;animation-fill-mode:forwards;animation-delay:1s;}
+
+			/*############ card ###########*/	
+			#card .img_area{display:none;}
+		
+			#card .img_area2{display:block;}
+			#card .apple_card {width:430px;position: absolute;top:109px;right:0;}
+			#card img{width:100%;}
+
+			/*############# products ################*/
+			#products{padding: 20px 0;}
+
+			#products .text h2 {font-size: 40px;}
+			#products .text .desc {font-size:20px;padding: 15px 0;}
+			#products span{font-size: 15px;}
+
+			#products .btn1{width:107px;font-size:15px;padding:10px 7px;margin:0 auto 15px;}
+
+			
+			#products .inner{width: 450px;margin: 0 auto;}
+			#products .inner .product{
+			width: 100%;height: 450px;
+			padding: 20px 0;
+			float:none;
+			border-radius:13px;
+			margin-bottom:15px;
+
+			
+			}
+			#se .img{width:334px;left:41px;}
+
+			#pro11 .img {width:175%;height:244px;}
+			#pro11 .large11{width:105px;}
+			#pro11 .large11 img{height:433px;left:-200px;}
+			#pro11:hover .large11 img{left: -227px;}
+			#pro11 .phones_by_color{width:400px;}
+			#pro11 .phones_by_color li{width:51px;padding-left:18px;}
+			#pro11:hover .phones_by_color li{padding-left:25px;}
+			
+			/*############## products / airpod ############*/
+			#watches .text{bottom:40%;}
+			
+			/*############## products / airpod ############*/
+			#airpod{margin-right:0px;}
+			#airpod .img{width:110%;left:-15px;}
+
+			/*############## products / ipad ############*/
+			#ipad .img_tablet2{width:190px;}
+			
+			#ipad .writings p img{width:80%;}
+			
+			#ipad .left p{left:4px;}
+			#ipad .right p{right:21px;}
+			
+			#ipad .writings .writing0{top:1px;}
+			#ipad .writings .writing1{top:95px;}
+			#ipad .writings .writing2{top:170px;}
+			#ipad .writings .writing3{top:1px;}
+			#ipad .writings .writing4{top:95px;}
+			#ipad .writings .writing5{top:175px;}
+
+			#ipad .img .text_size img{width:45px;}
+
+			/*ads*/
+			#ads{padding:30px 0;}
+			#ads .top{width:100%;padding-bottom:0px;}
+
+			/*########### ads / top / text ###########*/
+			#ads .top .text{width:250px;margin:0 auto 30px;float:none;text-align:center;}
+			#ads .top .text h2{font-size:40px;}
+			#ads .top .text p{font-size:20px;}
+
+			/*########### ads / top / play_area ###########*/
+			#ads .play_area{width:450px;height:300px;margin:0 auto;float:none;}
+			
+			
+			
+			/*########### ads / ads_list ###########*/
+			.ads_list{width:100%;height:212px;overflow:hidden;}
+			.ads_list ul{
+				
+				height:139px;
+				
+				
+			}
+
+			@keyframes floating{
+				0%{transform:translatex(0);}
+				100%{transform:translatex(-2400px);}
+			}
+
+			.ads_list ul li{
+				width:230px;margin-top:25px;margin-bottom:25px;margin-right:10px;height:130px;border-radius:10px;overflow:hidden;float:left;transition:all 0.7s ease-in-out;}
+			.ads_list ul li:hover{width:300px;transform:translatey(-20px);height:170px;}
+			
+			
+			
+
+			.ads_list ul .list{position:relative;}
+			.ads_list ul .list .btn{
+				width:100px;
+				height:35px;line-height:35px;font-size:14px;
+				border-radius:18px;
+				}
+			
+
+			.icon_pause_play{width:30px;bottom:0px;right:10px;}
+			
+			/*################## acc ##################*/
+			#acc .acc_inner{width:100%;padding:30px 0 20px;overflow:hidden;}
+			.acc_inner .text{
+			width: 100%;
+			text-align: center;
+			padding-bottom:50px;
+			}
+
+			.acc_inner .text h2{font-size:40px;}
+			.acc_inner .text p{font-size:20px;padding-top: 10px;margin-left:20px;}
+			.acc_inner .text .text_mob{display:block;}
+			/*############# acc / top ############*/
+			.acc_inner .top{width:100%;height:300px;}
+
+			/*############# acc / top / left ############*/
+			.acc_inner .top .left{width:100%;height:100%;float:none;}
+			.acc_inner .top .left ul{width:5000px;margin-left:20px;}
+			.acc_inner .top .left ul li{display:block;opacity:1;position:static;float:left;margin-right:10px;width:260px;transform:translatex(14%);}
+			.acc_inner .top .left ul:after{content:"";display:block;clear:both;}
+			
+			/*img*/
+			.acc_inner .top .left .img{
+				width:60%;height:215px;margin:0 auto;opacity:1;transform:translatex(0%);
+				-webkit-transition-property: none;
+				-moz-transition-property: none;
+				-o-transition-property: none;
+				transition-property: none;
+				}
+			
+			
+			
+			/*desc*/
+			.acc_inner .top .left .desc{
+				width:100%;position:static;bottom:100px;right:67px;opacity:1;transform:translatex(0%);-webkit-transition-property: none;
+				-moz-transition-property: none;
+				-o-transition-property: none;
+				transition-property: none;}
+			
+			.acc_inner .top .left .desc h3{font-size:18px;text-align:center;padding:10px 0 20px;}
+			.acc_inner .top .left .desc h3 span{display:inline-block;}
+			
+			.acc_inner .top .left .desc .desc_long{display:none;}
+			.acc_inner .top .left .btn_common{
+				display:block;width:120px;font-size:16px;border-radius:23px;padding:6px 5px;margin:0 auto;
+				
+				}
+			
+			
+			
+			.acc_inner .top .left ul li .desc .btn{display:none}
+
+			/*############# acc / top / right ############*/
+			.acc_inner .top .right{display:none;}
+			
+		
+			/*############# news ############*/
+			#news{width:100%;}
+			.news_inner{width:100%;margin: 0 auto;padding:30px 0;}
+			/*############ news / top ############ */
+			.news_inner .text{width:100%;padding-bottom:20px;}
+
+			.news_inner .text h2{font-size:40px;}
+			.news_inner .text p{font-size:20px;padding-top: 20px;}
+			/*############ news / cards ############ */
+			.news_inner .cards ul{width:5000px;margin-left:20px;overflow:hidden;}
+			.news_inner .cards ul li {
+				width: 300px;margin:0 auto;
+				height: 300px;
+			}
+			.news_inner .cards ul li h3 {
+				
+				
+				font-size: 20px;
+				
+				
+				bottom:40px;
+				right:20px;
+				
+			}
+			.news_inner .cards ul li .btn_plus{
+				width:50px;
+				position:absolute;
+				left:5px;bottom:5px;
+				color:#fff;
+				font-size:30px;
+				font-weight:700;
+				padding:5px 10px;
+				}
+			.news_inner .cards .btn_plus img{width:100%;}
+			.news_inner .cards ul .li1{background-image: url("img/news/a1.jpg");}
+			.news_inner .cards ul .li2{background-image: url("img/news/a2.jpg");margin:0 20px;;}
+			.news_inner .cards ul .li3{background-image: url("img/news/a3.jpg");}
+			.news_inner .cards ul .li4{background-image: url("img/news/a4.jpg");}
+
+			/*##################### footer #####################*/
+			#footer{width:100%;height:auto;}
+			/*pc버전에서 높이값이 이미 고정픽셀로 셋팅되어있어서 해제하는 방법 몰라서 auto 일단 넣어봄.*/
+			
+			#footer h3{font-size:14px;line-height:40px;color:#b0b0b0;font-weight:700;}
+			#footer h3 span{display:inline-block;float:right;}
+
+			#footer_nav_menues{width:80%;height:auto;padding:20px 0;margin:0 auto;}
+			#footer_nav_menues .learn_more{width:100%;float:none;border-bottom:1px solid #555;}
+			#footer_nav_menues .learn_more li{font-size:14px;line-height:40px;}
+			#footer_nav_menues .nav_menu{width:100%;float:none;border-bottom:1px solid #555;}
+			#footer_nav_menues .nav_menu:last-child{border-bottom:none;}
+			#footer_nav_menues .nav_menu li{font-size:14px;line-height:40px;}
+
+			#footer_nav_menues .learn_more ul, #footer_nav_menues .nav_menu ul {max-height:0px;overflow:hidden;transition:all 0.5s;}
+			
+
+
+			/*############## footer_copyright ##############*/
+			.footer_copyright{display:none;width:100%;margin:0 auto;border-top:1px solid #b0b0b0;line-height:49px;color:#b0b0b0;font-size:14px;}
+			
+			/*기능*/
+			#footer a:hover{color:#fff;}
+		}
+		
+		/*##############  반응형 320 ###############*/
+		@media all and (min-width:320px) and (max-width:480px){
+			#film_visual{height:600px;}
+			
+			.header_inner{width:100%;height:45px;position:relative;}
+			.header_inner #logo{width:20px;height:24px;left:50%;transform:translatex(-50%);top:50%;transform:translatey(-50%);}
+			
+
+			#info_menu{text-align:right;line-height:45px;float:right;}
+			#info_menu li{width:22px;height:20px;padding:0;float:none;overflow:visible;}
+			#info_menu li img{margin-bottom:10px;}
+			#info_menu .magnifier{display:none;}
+			#info_menu .account{position:absolute;top:50%;transform:translatey(-50%);right:3%;}
+			
+			
+			#accMenu{right:10px;}
+
+
+			#gnb{display:none !important;}
+
+			/*############# 모바일 메뉴버튼 ##############*/
+			#btn_mob_menu{display:block;width:40px;height:40px;position:absolute;left:0px;top:50%;transform:translatey(-45%);}
+			#btn_mob_menu p{width:100%;height:100%;overflow:hidden;}
+			#btn_mob_menu span{display:block;text-indent:-9999px;width:50%;height:1px;background-color:#fff;margin:8px auto 0;}
+			
+			/*############# gnb2 메뉴 (모바일버전) ##############*/
+			#gnb2{display:block;overflow:hidden;width:100%;height:0px; background-color:#000;transition:height 0.5s;}
+			#gnb2 ul{width:100%;box-sizing:border-box;padding:0 10%;}
+			#gnb2 li{font-size:17px;line-height:55px;border-bottom:1px solid #555;}
+			#gnb2 li:last-child{border-bottom:none;}
+			#gnb2 a{color:#fff;}
+
+			#header:hover #gnb2{height:100vh;}
+
+			/*모바일용 검색바*/
+			#gnb2 .search_area2{width:100%;border-bottom:1px solid #555;overflow:hidden;}
+			#gnb2 form{width:90%;margin:10px auto;background-color:#333;border-radius:5px;}
+			#gnb2 form img{width:5%;margin:2%;margin-left:4%;vertical-align:middle;}
+			#gnb2 form input{width:80%;border:none;padding:10px 0;text-indent:13px;background:none;font-size:17px;color:#fff;}
+			
+			
+			/*########### btn_visual #############*/
+			.btn_visual{width:auto;margin:16px auto;}
+			.btn_visual a{display:block;font-size:17px;}
+			
+			
+			.btn_visual i{display:block;width:12px;float:left;padding-top:10px;padding-left:7px;}
+			.btn_visual i img{width:100%;}
+
+			
+			#visuals h2{font-size: 40px;padding:110px 0 30px;}
+			
+			/*높이 똑같이 맞추기*/
+			#visual, #switch, #card{height:630px;overflow:hidden;}
+			/*inner 너비*/
+			#visuals .inner{width: 100%;margin: 0 auto;}
+			/*text*/
+			#visuals .text{width: 280px;margin:0 auto;}
+			#visuals .text .main_text{font-size:32px;padding:86px 0 15px;}
+			#visuals .text .desc{font-size: 15px;}
+			#visuals .text .d1{display:none;}
+
+			/*############# visual ##############*/
+			#visual .phone{display:none;}
+			#visual .phone2{
+				position: relative;
+				height: 400px;
+				width: 110px;
+				margin: 0 auto;
+				display:block;
+			  }
+			
+			#visual .phone2 .phone_frame{width:100%;position: absolute;}
+			#visual .phone2 .phone_display{width:65%;position: absolute;left:31%;top:5%;}
+
+			#visual .phone2  img{width:100%;}
+
+
+			
+			/*############# switch ############*/
+			
+			
+			#switch .text span{display:none;}
+			
+			#switch .apps{width:300px;height:90px;margin:0 auto;position:relative;z-index:1;}
+			#switch .arrow{width:30px; height:100%;position:absolute;transform:translatey(20%);animation:arrow 0.7s 1;animation-fill-mode:forwards;animation-delay:1s;}
+			@keyframes arrow{
+				0%{transform:translate(0%,20%);}
+				100%{transform:translate(230%, 20%);}
+			}
+
+			#switch .arrow span{display:block;position:relative;width:100%;height:100%;}
+			#switch .arrow span img{display:block;position:absolute;bottom:0;}
+
+			#switch ul{width:300px;height:100%;}
+			#switch ul li{width:35px;height:100%; position:absolute;bottom:0;left:50%;transform:translatex(-50%);}
+			#switch ul li span{
+			width:100%;height:100%;display:block;position:relative;}
+			#switch ul li span img{width:35px;height:35px;position:absolute;top:60%;animation:bounce 2s 1;animation-delay:0s;animation-fill-mode:forwards;}	
+
+			#switch ul li i img{width:35px;height:35px;position:absolute;top:60%;}
+
+			#switch ul .i1{transform:translatex(-419%);/*animation:a1 0.7s 1;animation-fill-mode:forwards;animation-delay:1s; */}
+			#switch ul .i2{transform:translatex(-294%);animation:a2 0.7s 1;animation-fill-mode:forwards;animation-delay:1s;}
+			#switch ul .i3{transform:translatex(-173%);animation:a3 0.7s 1;animation-fill-mode:forwards;animation-delay:1s;}
+
+			#switch ul .i5{transform:translatex(77%);animation:a5 0.7s 1;animation-fill-mode:forwards;animation-delay:1s;}
+			#switch ul .i6{transform:translatex(192%);animation:a6 0.7s 1;animation-fill-mode:forwards;animation-delay:1s;}
+			#switch ul .i7{transform:translatex(309%);animation:a7 0.7s 1;animation-fill-mode:forwards;animation-delay:1s;}
+
+			/*############# card #############*/
+			
+			
+			
+			#card .img_area{display:none;}
+			
+			#card .img_area2{display:block;width:300px;}
+			
+			#card img{width:100%;}
+
+			@keyframes a1{
+			0%{transform:translatex(-499%);}
+			100%{transform:translatex(-50%);}
+			}
+			
+			@keyframes a2{
+				0%{transform:translatex(-300%);}
+				100%{transform:translatex(-50%);}
+			}
+			
+			@keyframes a3{
+				0%{transform:translatex(-100%);}
+				100%{transform:translatex(-50%);}
+			}
+			
+			@keyframes a5{
+				0%{transform:translatex(150%);}
+				100%{transform:translatex(-50%);}
+			}
+			@keyframes a6{
+				0%{transform:translatex(300%);}
+				100%{transform:translatex(-50%);}
+			}
+			@keyframes a7{
+				0%{transform:translatex(400%);}
+				100%{transform:translatex(-50%);}
+			}
+			
+				
+			@keyframes bounce{
+				0%{top:60%;left:-0.8px;}
+				3.3%{top:60%;left:0.8px;}
+				6.6%{top:60%;left:-0.8px;}
+				10%{top:60%;left:0.8px;}
+				13.3%{top:60%;left:-0.8px;}
+				16.6%{top:60%;left:0.8px;}
+				20%{top:60%;left:-0.8px;}
+				23.3%{top:60%;left:0.8px;}
+				26.6%{top:60%;left:-0.8px;}
+				30%{top:60%;left:0.8px;}
+				33.3%{top:60%;left:-0.8px;}
+				36.6%{top:60%;left:0.8px;}
+				40%{top:60%;left:-0.8px;}
+				50%{top:0%;left:0.8px;}
+				53.3%{top:0%;left:-0.8px;}
+				56.6%{top:0%;left:0.8px;}
+				60%{top:0%;left:-0.8px;}
+				63.3%{top:0%;left:0.8px;}
+				66.6%{top:13%;left:-0.8px;}
+				70%{top:23%;left:0.8px;}
+				73.3%{top:33%;left:-0.8px;}
+				76.6%{top:43%;left:0.8px;}
+				80%{top:46%;left:-0.8px;}
+				83.3%{top:57%;left:0.8px;}
+				86.6%{top:57%;left:-0.8px;}
+				90%{top:60%;left:0.8px;}
+				93.3%{top:60%;left:-0.8px;}
+				96.6%{top:60%;left:0.8px;}
+				100%{top:60%;left:0px;}
+			} 
+
+			/*############# products ################*/
+			#products{padding: 20px 0;}
+
+			#products .text h2 {font-size: 32px;}
+			#products .text .desc {font-size:15px;padding: 10px 0;}
+			#products span{font-size: 15px;}
+
+			#products .btn1{width:107px;font-size:15px;padding:10px 7px;margin:0 auto 15px;}
+
+			
+			#products .inner{width: 300px;margin: 0 auto;}
+			#products .inner .product{
+			width: 100%;height: 350px;
+			padding: 20px 0;
+			float:none;
+			border-radius:13px;
+			margin-bottom:15px;
+			}
+			#se .img{width:261px;left:36px;}
+			#pro11{margin:0}
+			#pro11 .img {width:175%;height:244px;}
+			#pro11 .large11{width:49px;float:left;}
+			#pro11 .large11 img{height:433px;left:-265px;}
+			#pro11:hover .large11 img{left: -280px;}
+			#pro11 .phones_by_color{width: 355px;}
+			#pro11 .phones_by_color li{width:51px;padding-left:10px;}
+			#pro11:hover .phones_by_color li{padding-left:20px;}
+			
+			#pro11 .phones_by_color img{width: 100%;}
+
+			/*############## products / watches ############*/
+			#products #watches{height:390px;}
+			#watches .text{width: 171px;bottom: 33%;}
+			/*############## products / ipad ############*/
+			#ipad .img_tablet2{width:150px;}
+			
+			#ipad .writings p img{width:60%;}
+			
+			#ipad .left p{left:-13px;}
+			#ipad .right p{right:-7px;}
+			
+			#ipad .writings .writing0{top:1px;}
+			#ipad .writings .writing1{top:65px;}
+			#ipad .writings .writing2{top:125px;}
+			#ipad .writings .writing3{top:1px;}
+			#ipad .writings .writing4{top:70px;}
+			#ipad .writings .writing5{top:130px;}
+
+			#ipad .img .text_size img{width:35px;}
+
+			/*ads*/
+			#ads{padding:30px 0;}
+			#ads .top{width:100%;padding-bottom:0px;}
+
+			/*########### ads / top / text ###########*/
+			#ads .top .text{width:250px;margin:0 auto;float:none;text-align:center;}
+			#ads .top .text h2{font-size:32px;}
+			#ads .top .text p{font-size:15px;}
+
+			/*########### ads / top / play_area ###########*/
+			#ads .play_area{width:288px;height:174px;margin:0 auto;float:none;}
+			
+			
+			
+			/*########### ads / ads_list ###########*/
+			.ads_list{width:100%;height:212px;overflow:hidden;}
+			.ads_list ul{
+				
+				height:142px;
+				
+				
+			}
+
+			@keyframes floating{
+				0%{transform:translatex(0);}
+				100%{transform:translatex(-2120px);}
+			}
+			
+
+			.ads_list ul li{
+				width:202px;margin-top:25px;
+				margin-bottom:25px;margin-right:10px;
+				height:114px;border-radius:10px;
+				overflow:hidden;float:left;transition:all 0.7s ease-in-out;
+				}
+			.ads_list ul li a{display:block;width:100%;height:100%;}
+			.ads_list ul li:hover{width:250px;transform:translatey(-25px);height:143px;}
+			
+			.ads_list ul li:hover p{opacity:0.5;}
+			
+
+			.ads_list ul .list{position:relative;}
+			.ads_list ul .list .btn{
+				width:100px;
+				height:35px;line-height:35px;font-size:14px;
+				border-radius:18px;
+				}
+			
+
+			.icon_pause_play{width:30px;bottom:30px;right:20px;}
+			
+			/*################## acc ##################*/
+			#acc .acc_inner{width: 100%;padding:30px 0 20px;overflow:hidden;}
+			.acc_inner .text{
+			width: 100%;
+			text-align: center;
+			padding-bottom:20px;
+			}
+
+			.acc_inner .text h2{font-size:32px;}
+			.acc_inner .text p{font-size:15px;padding-top: 10px;}
+			.acc_inner .text .text_mob{display:block;text-align:left;font-weight:700;margin-left:20%;;}
+			/*############# acc / top ############*/
+			.acc_inner .top{width:100%;height:342px;}
+
+			/*############# acc / top / left ############*/
+			.acc_inner .top .left{width:100%;height:100%;float:none;}
+			.acc_inner .top .left ul{width:5000px;}
+			.acc_inner .top .left ul li{display:block;float:left;}
+			
+			.acc_inner .top .left ul:after{content:"";display:block;clear:both;}
+			/*img*/
+			.acc_inner .top .left .img{
+				width:183px;height:250px;text-align:center;margin:0 auto;opacity:1;transform:translatex(0%);
+				-webkit-transition-property: none;
+				-moz-transition-property: none;
+				-o-transition-property: none;
+				transition-property: none;
+				}
+			
+			
+			
+			/*desc*/
+			.acc_inner .top .left .desc{
+				width:100%;position:static;bottom:100px;right:67px;opacity:1;transform:translatex(0%);-webkit-transition-property: none;
+				-moz-transition-property: none;
+				-o-transition-property: none;
+				transition-property: none;}
+			
+			.acc_inner .top .left .desc h3{font-size:17px;text-align:center;padding:10px 0 20px;}
+			.acc_inner .top .left .desc h3 span{display:inline-block;}
+			
+			.acc_inner .top .left .desc .desc_long{display:none;}
+			.acc_inner .top .left .btn_common{
+				width:117px;font-size:15px;border-radius:23px;padding:10px 7px;margin:0 auto;
+				}
+			.acc_inner .top .left .desc .btn{display:none}
+			.acc_inner .top .left .btn_common{display:block;}
+			
+			
+
+			/*############# acc / top / right ############*/
+			.acc_inner .top .right{display:none;}
+			
+		
+			/*############# news ############*/
+			#news{width:100%;}
+			.news_inner{width:100%;margin: 0 auto;padding:30px 0;}
+			/*############ news / top ############ */
+			.news_inner .text{width:100%;padding-bottom:20px;}
+
+			.news_inner .text h2{font-size:32px;}
+			.news_inner .text p{font-size:15px;padding-top: 20px;}
+			/*############ news / cards ############ */
+			
+			.news_inner .cards ul li {
+				width: 280px;margin:0 auto;
+				height: 370px;
+				float: none;
+				
+				
+				
+			}
+
+			
+
+			
+
+			.news_inner .cards ul li h3 {
+				
+				
+				font-size: 20px;
+				
+				
+				bottom:74px;
+				right:20px;
+				
+			}
+			.news_inner .cards ul li .btn_plus{
+				width:50px;
+				position:absolute;
+				left:5px;bottom:5px;
+				color:#fff;
+				font-size:30px;
+				font-weight:700;
+				padding:5px 10px;
+				}
+			.news_inner .cards .btn_plus img{width:100%;}
+			.news_inner .cards ul .li1{background-image: url("img/news/a1.jpg");}
+			.news_inner .cards ul .li2{background-image: url("img/news/a2.jpg");margin:20px auto;}
+			.news_inner .cards ul .li3{background-image: url("img/news/a3.jpg");}
+			.news_inner .cards ul .li4{background-image: url("img/news/a4.jpg");}
+			
+			#view{width:100%;height:100%;cursor:pointer;}
+			#view .news_detail{padding:50px;}
+			/*##################### footer #####################*/
+			#footer{width:100%;height:auto;}
+			/*pc버전에서 높이값이 이미 고정픽셀로 셋팅되어있어서 해제하는 방법 몰라서 auto 일단 넣어봄.*/
+			
+			#footer h3{font-size:14px;line-height:40px;color:#b0b0b0;font-weight:700;}
+			#footer h3 span{display:inline-block;float:right;}
+
+			#footer_nav_menues{width:80%;height:auto;padding:20px 0;margin:0 auto;}
+			#footer_nav_menues .learn_more{width:100%;float:none;border-bottom:1px solid #555;}
+			#footer_nav_menues .learn_more li{font-size:14px;line-height:40px;}
+			#footer_nav_menues .nav_menu{width:100%;float:none;border-bottom:1px solid #555;}
+			#footer_nav_menues .nav_menu:last-child{border-bottom:none;}
+			#footer_nav_menues .nav_menu li{font-size:14px;line-height:40px;}
+
+			#footer_nav_menues .learn_more ul, #footer_nav_menues .nav_menu ul {max-height:0px;overflow:hidden;/* transition:all 0.5s; */}
+			
+
+
+			/*############## footer_copyright ##############*/
+			.footer_copyright{display:none;width:100%;margin:0 auto;border-top:1px solid #b0b0b0;line-height:49px;color:#b0b0b0;font-size:14px;}
+			
+			/*기능*/
+			#footer a:hover{color:#fff;}
+		}
+  </style>
+  <script src="js/common.js"></script>
+  <script>
+		$(function(){
+			/*###############기능1:돋보기 버튼 클릭시 검색바 나타나기###############*/
+			
+			/*초기화:검색바 일단 숨겨놓기*/
+			$(".search_area1").hide();
+			/*초기화:full 숨겨놓기*/
+			$("#full").hide();
+
+			/*돋보기 클릭시 검색바만 나타나고 다른 메뉴들 다 숨기기*/
+			$("#info_menu .magnifier").click(function(){
+				$("#logo, #info_menu, #gnb").hide(200);
+				$(".search_area1").show(200);
+				$("#full").css({"backgroundColor":"rgba(0,0,0,0.5)"});
+				$("#full").show();
+			});
+
+			/*닫기 버튼 클릭시 숨겨진 메뉴들 나타나고 검색바는 다시 숨기기*/
+			$("#close_button").click(function(){
+				$("#logo, #info_menu, #gnb").show(200);
+				$(".search_area1").hide(200);
+				$("#full").hide();
+			});
+
+			/*계정버튼 클릭시 하위메뉴 나타나게 하기*/
+			var clickedAcc = 0;
+			$("#info_menu .account").click(function(){
+				if(clickedAcc == 0){
+					$("#accMenu").css({"display":"block"});
+					clickedAcc = 1;
+				}else{
+					$("#accMenu").css({"display":"none"});
+					clickedAcc = 0;
+				}
+			});
+
+			/*ads watch now 버튼*/
+			$(".ads_list ul li:eq(0)").click(function(){
+				$("#ads .play_area video").attr("src","video/card/a0.mp4");
+			});
+			$(".ads_list ul li:eq(1)").click(function(){
+				$("#ads .play_area video").attr("src","video/card/a1.mp4");
+			});
+			$(".ads_list ul li:eq(2)").click(function(){
+				$("#ads .play_area video").attr("src","video/card/a2.mp4");
+			});
+			$(".ads_list ul li:eq(3)").click(function(){
+				$("#ads .play_area video").attr("src","video/card/a3.mp4");
+			});
+			$(".ads_list ul li:eq(4)").click(function(){
+				$("#ads .play_area video").attr("src","video/card/a4.mp4");
+			});
+			$(".ads_list ul li:eq(5)").click(function(){
+				$("#ads .play_area video").attr("src","video/card/a5.mp4");
+			});
+			$(".ads_list ul li:eq(6)").click(function(){
+				$("#ads .play_area video").attr("src","video/card/a6.mp4");
+			});
+			$(".ads_list ul li:eq(7)").click(function(){
+				$("#ads .play_area video").attr("src","video/card/a7.mp4");
+			});
+			$(".ads_list ul li:eq(8)").click(function(){
+				$("#ads .play_area video").attr("src","video/card/a8.mp4");
+			});
+			$(".ads_list ul li:eq(9)").click(function(){
+				$("#ads .play_area video").attr("src","video/card/a9.mp4");
+			});
+			
+		
+
+			/*ads 재생,멈춤 버튼*/
+			$(".pause").click(function(){
+				$(this).css({"opacity":"0","zIndex":"0"});
+				$(".icon_pause_play .play").css({"opacity":"1","zIndex":"1"});
+				$(".ads_list ul").css({"animation-play-state":"paused"});
+			});
+
+			$(".play").click(function(){
+				$(this).css({"opacity":"0","zIndex":"0"});
+				$(".icon_pause_play .pause").css({"opacity":"1","zIndex":"1"});
+				$(".ads_list ul").css({"animation-play-state":"running"});
+			});
+
+			/*acc ranking 클릭하면 옆에 이미지나오게 하기*/
+			/*첫번째 li만 나오게하기*/
+			
+			
+			$("#acc .lists li").click(function(){
+
+				$("#acc .left ul li").css({"opacity":"0","transform":"translatex(30%)","zIndex":"-1"});
+			});
+			$("#acc .lists li:eq(0)").click(function(){
+				
+				$("#acc .left ul li:eq(0)").css({"opacity":"1","transform":"translatex(0)","zIndex":"0"});
+			});
+			$("#acc .lists li:eq(1)").click(function(){
+				
+				$("#acc .left ul li:eq(1)").css({"opacity":"1","transform":"translatex(0)","zIndex":"0"});
+			});
+			$("#acc .lists li:eq(2)").click(function(){
+				
+				$("#acc .left ul li:eq(2)").css({"opacity":"1","transform":"translatex(0)","zIndex":"0"});
+			});
+			$("#acc .lists li:eq(3)").click(function(){
+				
+				$("#acc .left ul li:eq(3)").css({"opacity":"1","transform":"translatex(0)","zIndex":"0"});
+			});
+			$("#acc .lists li:eq(4)").click(function(){
+				
+				$("#acc .left ul li:eq(4)").css({"opacity":"1","transform":"translatex(0)","zIndex":"0"});
+			});
+
+			$("#acc .lists li:eq(5)").click(function(){
+				
+				$("#acc .left ul li:eq(5)").css({"opacity":"1","transform":"translatex(0)"});
+			});
+			$("#acc .lists li:eq(6)").click(function(){
+				
+				$("#acc .left ul li:eq(6)").css({"opacity":"1","transform":"translatex(0)"});
+			});
+
+			$("#acc .lists li:eq(7)").click(function(){
+				
+				$("#acc .left ul li:eq(7)").css({"opacity":"1","transform":"translatex(0)"});
+			});
+			$("#acc .lists li:eq(8)").click(function(){
+				$("#acc .left ul li:eq(8)").css({"opacity":"1","transform":"translatex(0)"});
+			});
+			$("#acc .lists li:eq(9)").click(function(){
+				$("#acc .left ul li:eq(9)").css({"opacity":"1","transform":"translatex(0)"});
+			});
+
+			$(".card .front .btn").click(function(){
+				/*초기화*/
+				$("body").css({"opacity":"0.5"});
+				
+				$(".card").css({"transform":"translate(0, 0) scale(1)","zIndex":"0"});
+				$(".card .front").css({"z-index":"0"});
+				$(".card:eq(0)").css({"left":"0","top":"0"});
+				$(".card:eq(1)").css({"left":"400px","top":"0"});
+				$(".card:eq(2)").css({"left":"800px","top":"0"});
+
+				/*해당  card 크기 늘려주기 , 가운데 위치시키기*/
+				$(this).parent().parent().parent().css({"left":"50%","top":"50%",
+				"transform":"translate(-50%, -50%) scale(2)","zIndex":"1","position":"fixed"});
+				/*front면 뒤로 보내고 back앞으로 데려오기*/
+				$(this).parent().siblings().css({"zIndex":"1","opacity":"1"});
+
+			});
+			$(".card .back .btn").click(function(){
+				/*카드들 원래자리로 배치*/
+				$(".card:eq(0)").css({"left":"0","top":"0","position":"absolute"});
+				$(".card:eq(1)").css({"left":"400px","top":"0","position":"absolute"});
+				$(".card:eq(2)").css({"left":"800px","top":"0","position":"absolute"});
+
+				/*해당카드 크기 원래대로 돌려놓기, */
+				$(this).parent().parent().parent().css({"top":"0",
+				"transform":"translate(0, 0) scale(1)"});
+				/*back면 뒤로 보내고 front앞으로 데려오기*/
+				$(this).parent().siblings().css({"zIndex":"1"});
+				$(this).parent().css({"zIndex":"0"});				
+			});
+			
+			/*sliding window*/
+			$("#visuals").css({"marginLeft":"-100%"});
+			$("#visuals").prepend($("#visuals .visual_area:last"));
+
+			/*prev버튼*/
+			$("#film_visual .btns .btn_prev").click(function(){
+				$("#visuals").animate({"marginLeft":"+=100%"},500,"swing",function(){
+					$("#visuals").css({"marginLeft":"-100%"});
+					$("#visuals").prepend($("#visuals .visual_area:last"));
+					$("#switch .arrow").css({"animationPlayState":"running"});
+					$("#switch ul li span img").css({"animationPlayState":"running"});
+					$("#switch ul li").css({"animationPlayState":"running"});
+					
+				});
+				return false;
+			});
+
+			/*next버튼*/
+			$("#film_visual .btns .btn_next").click(function(){
+				$("#visuals").animate({"marginLeft":"-=100%"},500,"swing",function(){
+					$("#visuals").append($("#visuals .visual_area:eq(0)"));
+					$("#visuals").css({"marginLeft":"-100%"});
+					$("#switch .arrow").css({"animationPlayState":"running"});
+					$("#switch ul li span img").css({"animationPlayState":"running"});
+					$("#switch ul li").css({"animationPlayState":"running"});
+				});
+				return false;
+			});
+			
+			/*###############기능1:news 카드 클릭시 뒷면나오게 하기###############*/
+			$("#view, #full").hide();
+			$("#news .cards ul li a").click(function(){
+				// 01) 현재 클릭한 이미지의 번호 가져오기
+				var num = $(this).children().children("img").attr("src").substring(11,12);
+				$("#view .news_detail").css({"opacity":"0"});
+
+				// 02) view 화면에 보여주기
+				//$("#view").html("<p><img src='img/news/a0"+num+".jpg' alt='이미지'/></p>");
+				$("#view .news_img").css({"backgroundImage":"url('img/news/a0"+num+".jpg')"});
+				
+				$("#view, #full").show();
+				$("#view").css({"zIndex":"5"});
+				$("#full").css({"backgroundColor":"rgba(255,255,255,0.5)"});
+				$("#view .news_detail"+num).css({"opacity":"1"});
+				// a태그 막아주기
+				return false;
+			});
+
+			$("#view, #full").click(function(){
+				$("#view, #full").hide();
+			});			
+			
+		
+			
+		});
+  </script>
+ </head>
+ <body>
+    <div id="wrap">
+		<!-- ########## header ########## -->
+		<div id="header">
+			<h1>Apple</h1>
+			<div class="header_inner">
+				<div id="btn_mob_menu">
+					<p>
+						<span>a</span>
+						<span>a</span>
+						<span>a</span>
+					</p>
+				</div>
+				<div id="logo">
+					<a href="index.html" title="Apple">
+						<img src="img/icon/logo.svg" alt="apple logo"/>
+					</a>
+				</div>
+				<ul id="info_menu">
+					<li class="account"><a href="#none" title="account icon"><img src="img/icon/account.png" alt="icon of account"/></a></li>
+					<li class="magnifier"><a href="#none" title="search icon"><img src="img/icon/magnifier.png" alt="icon of search"/></a></li>
+				</ul>
+				<div class="search_area1">
+					<form id="search_bar1" action="http://www.apple.com/us/search" method="GET">
+						<!-- <img src="img/icon/magnifier.png" alt="image of search"/> -->
+						<input id="submit_btn" type="submit" name="submit_btn" title="button of submit"/>
+						<input id="search_bar_pc" type="text" name="search_bar_pc" title="search_bar_pc" placeholder="Search apple.com" />
+						<input id="close_button" type="button" name="close_button" title="close button" value="x" readonly/>
+					</form>
+					<aside id="quick_link">
+						<h3>QUICK LINK</h3>
+						<ul>
+							<li><a href="airpod.html" title="COVID-19 information">Airpods Pro</a></li>
+							<li><a href="apple_card.html" title="COVID-19 information">Apple Card</a></li>
+							<li><a href="signup.html" title="COVID-19 information">Sign Up</a></li>
+							<li><a href="acc.html" title="COVID-19 information">Accessories</a></li>
+							<li><a href="watch.html" title="COVID-19 information">Apple watch</a></li>
+							<li><a href="pro11.html" title="COVID-19 information">iPhone 11</a></li>
+						</ul>
+					</aside>
+				</div>
+				
+				<aside id="accMenu">
+					
+<?php if( empty($_SESSION['email']) ){ ?>
+					<div class="smallMenu"><a href="list.html" title="">Browse bulletin board</a></div>
+					<div class="smallMenu"><a href="signin.html" title="">Sign in</a></div>
+<?php }else{ ?>
+					<div class="smallMenu"><a href='manage.html?email=<?=$_SESSION['email']?>' title="">Manage account</a></div>
+					<div class="smallMenu"><a href="list.html" title="">Bulletin board</a></div>
+					<div class="smallMenu"><a href="signout.html" title="">Sign out</a></div>
+<?php } ?>
+				</aside>
+				<ul id="gnb">
+					<li><a href="airpod.html" title="Mac">Mac</a></li>
+					<li><a href="pad.html" title="iPad">iPad</a></li>
+					<li><a href="pro11.html" title="iPhone">iPhone</a></li>
+					<li><a href="watch.html" title="watch">Watch</a></li>
+					<li><a href="acc.html" title="watch">Acc</a></li>
+					<li><a href="apple_card.html" title="watch">Card</a></li>
+					<li><a href="purchase.html" title="watch">Purchase</a></li>
+				</ul>
+			</div>
+			
+			<div id="gnb2">
+				<div class="search_area2">
+					<form id="search_bar2" action="http://www.apple.com/us/search" method="GET">
+						<img src="img/icon/magnifier.png" alt="image of search"/><input id="search" type="text" name="src" title="search_bar_mob" placeholder="Search apple.com" />
+					</form>
+				</div>
+				<ul>
+					<li><a href="airpod.html" title="Mac">Mac</a></li>
+					<li><a href="pad.html" title="iPad">iPad</a></li>
+					<li><a href="pro11.html" title="iPhone">iPhone</a></li>
+					<li><a href="watch.html" title="watch">Watch</a></li>
+					<li><a href="acc.html" title="watch">Acc</a></li>
+					<li><a href="apple_card.html" title="watch">Card</a></li>
+					<li><a href="purchase.html" title="watch">Purchase</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- ########## container ########## -->
+		<div id="container">
+			<!-- ########## visuals ########## -->
+			<div id="film_visual">
+				<div id="visuals">
+					<!--
+						슬라이드 메뉴
+						참고사이트: https://www.apple.com/lae/switch/
+					-->
+					<div id="visual" class="visual_area">
+						<div class="inner">
+							<div class="text">
+								<h2 class="main_text">Life is easier on iPhone.</h2>
+								<p class="desc d1">And that starts as soon as you turn it on.</p>
+							</div>
+							<div class="phone">
+								<p class="phone_frame">
+									<img src="img/visual/horizon_phone_frame.png" alt="" />
+								</p>
+								<p class="phone_display">
+									<img src="img/visual/horizon_phone_display.png" alt="" />
+								</p>
+							</div>
+							
+							<div class="text">
+								<p class="desc">
+									Get up to $340 in credit toward a new iPhone when you trade in
+									your smartphone at an Apple Store.
+								</p>
+								<!-- <p class="btn_visual"><a href="title"><span>Browse more phones</span><i><img src="img/icon/arrow.png" alt=""/></i></a></p> -->
+							</div>
+							<div class="phone2">
+								<p class="phone_frame">
+									<img src="img/visual/horizon_phone_frame_crop_rotate_remove.png" alt="" />
+								</p>
+								<p class="phone_display">
+									<img src="img/visual/horizon_phone_display_crop_rotate_remove.png" alt="" />
+								</p>
+							</div>
+						</div>
+					</div>
+					<div id="switch" class="visual_area">
+						<div class="inner">
+							<div class="text">
+								<h2 class="main_text">
+									Will it be easy<br/>
+									to switch to iPhone?
+								</h2>
+								<p class="desc">
+									Yes. There's no need to save your stuff before switching from Android.<br/>
+									Just download the Move to iOS app from the Google Play Store and<br/>
+									it securely transfers your content for you — everything from photos and videos to contacts, messages, and Google Apps.<br/> <span>You can even trade in your old smartphone for credit toward an iPhone.1</span>
+								</p>
+							</div>
+							
+						</div>
+						<div class="apps">
+							<p class="arrow">
+								<span><img src="img/visual/arrow.png" alt="arrow"/></span>
+								
+							</p>
+							<ul id="icons">
+								<li class="i1">
+									<span><img src="img/visual/clash.png" alt="clash"/></span>
+								</li>
+								<li class="i2">
+									<span><img src="img/visual/fb.png" alt="fb"/></span>
+								</li>
+								<li class="i3">
+									<span><img src="img/visual/ig.png" alt="ig"/></span>
+								</li>
+								
+								<li class="i5">
+									<span><img src="img/visual/lyft.png" alt="lyft"/></span>
+								</li>
+								<li class="i6">
+									<span><img src="img/visual/netflix.png" alt="netflix"/></span>
+								</li>
+								<li class="i7">
+									<span><img src="img/visual/nyt.png" alt="nyt"/></span>
+								</li>
+
+								<li class="ios">
+									<i><img src="img/visual/ios.png" alt="ios"/></i>
+								</li>
+							</ul>
+						</div>
+						<div class="text">	
+							<!-- <p class="btn_visual"><a href="title"><span>Browse more phones</span><i><img src="img/icon/arrow.png" alt=""/></i></a></p> -->
+						</div>
+					</div>
+					<div id="card" class="visual_area">
+						<!--
+							클릭하면 상세페이지 연결
+							https://www.apple.com/apple-card/monthly-installments/
+						-->
+						<div class="inner">
+							<div class="text">
+								<h2 class="main_text">Cashless made effortless.</h2>
+								<p class="desc">
+									Using Apple Pay with your iPhone or Apple Watch is quick and secure. It's a safer way to pay that helps you avoid touching buttons or exchanging cash.
+								</p>
+							</div>
+							<p class="btn_visual"><a href="apple_card.html" title=""><span>Learn more</span><i><img src="img/icon/arrow.png" alt=""/></i></a></p>
+							<div class="img_area">
+								<div class="phone">
+									<p class="phone_display">
+										<img src="img/visual/phone_display1.jpg" alt="" />
+									</p>
+									<p class="phone_frame">
+										<img src="img/visual/phone_frame.png" alt="" />
+									</p>
+								</div>
+								<p class="apple_card">
+									<img src="img/visual/apple_card5_trim.png" alt="" />
+								</p>
+							</div>
+							<div class="img_area2">
+								<img src="img/card/apple_card_crop.png" alt="img of apple card">
+							</div>
+							
+						</div>
+					</div>
+				</div>
+				<div class="btns">
+					<p class="btn_prev"><img src="img/icon/arrow_left.png" alt="arrow button"/></p>
+					<p class="btn_next"><img src="img/icon/arrow_right.png" alt="arrow button"/></p>
+				</div>
+			
+			</div>
+			
+
+			<!-- ########## products ########## -->
+			<div id="products">
+				<!-- 
+				  참고레이아웃
+				  https://www.apple.com/ios/ios-14-preview/
+				-->
+				<ul class="inner">
+					<!-- se -->
+					<li id="se" class="product">
+						<!-- 넣으면 좋을 비디오 : https://www.apple.com/clips/ -->
+						<div class="text">
+							<h2>iPhone SE</h2>
+							<p class="desc">
+							  Lots to love. Less to spend.
+							</p>
+							<p class="btn1">
+								<a href="se.html" title="">Learn more &gt;</a>
+							</p>
+						</div>
+						<div class="img">
+							<div class="se_display">
+								<p>
+									<img class="d1" src="img/se/se_display1.png" alt="" />
+									<img class="d2" src="img/se/se_display2.png" alt="" />
+								</p>
+							</div>
+							<p class="se_frame">
+							  <img src="img/se/se_frame.png" alt="" />
+							</p>
+						</div>
+					</li>
+					<!-- pro11 -->
+					<li id="pro11" class="product">
+						<div class="text">
+							<h2>iPhone pro11</h2>
+							<p class="desc">
+								Just the right amount of everything.
+							</p>
+							<p class="btn1">
+								<a href="pro11.html" title="">Learn more &gt;</a>
+							</p>
+						</div>
+						<div class="img">
+							<p class="large11">
+								<img src="img/iphone11/large_crop.png" alt="" />
+							</p>
+							<ul class="phones_by_color">
+								<li>
+									<img src="img/iphone11/red.jpg" alt="" />
+								</li>
+								<li>
+									<img src="img/iphone11/yellow.jpg" alt="" />
+								</li>
+								<li>
+									<img src="img/iphone11/green.jpg" alt="" />
+								</li>
+								<li>
+									<img src="img/iphone11/purple.jpg" alt="" />
+								</li>
+								<li>
+									<img src="img/iphone11/white.jpg" alt="" />
+								</li>
+							</ul>
+						</div>
+					</li>
+					<!-- watches -->
+					<li id="watches" class="product">
+						<p class="screen">
+							<img src="img/watch/watches4.png" alt=""/>
+							<img src="img/watch/watches5.png" alt=""/>
+							
+							
+						</p>
+						<div class="text">
+							<h2>watchOS 7</h2>
+							<p class="desc">
+								Take on the day.<br/>
+								Bring on the night.
+							</p>
+							<p class="btn1">
+								<a href="watch.html" title="">Learn more &gt;</a>
+							</p>
+						</div>
+					</li>
+
+					<!-- airpod -->
+					<li id="airpod" class="product">
+						<div class="text">
+							<h2>AirPods Pro</h2>
+							<p class="desc">
+								Everything you hear is unheard of.
+							</p>
+							<p class="btn1">
+								<a href="airpod.html" title="">Learn more &gt;</a>
+							</p>
+						</div>
+						<p class="img">
+							<img src="img/airpods/sequence/woman/0123.jpg" alt="" />
+						</p>
+					</li>
+
+					<!-- ipad -->
+					<li id="ipad" class="product">
+						<div class="text">
+							<h2>iPad Pro</h2>
+							<p class="desc">
+								Your next computer is not a computer.
+							</p>
+							<p class="btn1">
+								<a href="pad.html" title="">Learn more &gt;</a>
+							</p>
+						</div>
+						<div class="img">
+							<div class="writings left">
+								<p class="writing0">
+									<img src="img/pad/writing/w1.png" alt="" />
+								</p>
+								<p class="writing1">
+									<img src="img/pad/writing/w2.png" alt="" />
+								</p>
+								<p class="writing2">
+									<img src="img/pad/writing/w3.png" alt="" />
+								</p>
+							</div>
+							
+							<p class="img_tablet2">
+								<img src="img/pad/tablet1.png" alt="" />
+							</p>
+							<div class="writings right">
+								<p class="writing3">
+									<img src="img/pad/writing/w4.png" alt="" />
+								</p>
+								<p class="writing4">
+									<img src="img/pad/writing/w5.png" alt="" />
+								</p>
+								<p class="writing5">
+									<img src="img/pad/writing/w6.png" alt="" />
+								</p>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			
+			<!-- ########## ads ########## -->
+			<div id="ads">
+				<!-- 
+					참고사이트
+					https://www.apple.com/apple-tv-plus/
+				-->
+				<div class="top">
+					<div class="text">
+						<h2>
+							Apple ads
+						</h2>
+						<p>Watch all the Apple 2020 commercials </p>
+					</div>
+					<div class="play_area">
+						<video autoplay muted>
+							<source src="video/card/a1.mp4" type="video/mp4"/>
+						</video>
+					</div>
+				</div>
+				
+				<div class="ads_list">
+					<ul>
+						<li class="list">
+							<a href="#none" title="첫번째 광고">
+								<p class="img">							
+									<img src="img/poster/a0.jpg" alt=""/>
+								</p>
+								<p class="btn">Watch now</p>
+							</a>
+						</li>
+						<li class="list">
+							<a href="#none" title="첫번째 광고">
+								<p class="img">							
+									<img src="img/poster/a1.jpg" alt=""/>
+								</p>
+								<p class="btn">Watch now</p>
+							</a>
+						</li>
+						<li class="list">
+							<a href="#none" title="첫번째 광고">
+								<p class="img">							
+									<img src="img/poster/a2.jpg" alt=""/>
+								</p>
+								<p class="btn">Watch now</p>
+							</a>
+						</li>
+						<li class="list">
+							<a href="#none" title="첫번째 광고">
+								<p class="img">							
+									<img src="img/poster/a3.jpg" alt=""/>
+								</p>
+								<p class="btn">Watch now</p>
+							</a>
+						</li>
+						<li class="list">
+							<a href="#none" title="첫번째 광고">
+								<p class="img">							
+									<img src="img/poster/a4.jpg" alt=""/>
+								</p>
+								<p class="btn">Watch now</p>
+							</a>
+						</li>
+						<li class="list">
+							<a href="#none" title="첫번째 광고">
+								<p class="img">							
+									<img src="img/poster/a5.jpg" alt=""/>
+								</p>
+								<p class="btn">Watch now</p>
+							</a>
+						</li>
+						<li class="list">
+							<a href="#none" title="첫번째 광고">
+								<p class="img">							
+									<img src="img/poster/a6.jpg" alt=""/>
+								</p>
+								<p class="btn">Watch now</p>
+							</a>
+						</li>
+						<li class="list">
+							<a href="#none" title="첫번째 광고">
+								<p class="img">							
+									<img src="img/poster/a7.jpg" alt=""/>
+								</p>
+								<p class="btn">Watch now</p>
+							</a>
+						</li>
+						<li class="list">
+							<a href="#none" title="첫번째 광고">
+								<p class="img">							
+									<img src="img/poster/a8.jpg" alt=""/>
+								</p>
+								<p class="btn">Watch now</p>
+							</a>
+						</li>
+						<li class="list">
+							<a href="#none" title="첫번째 광고">
+								<p class="img">							
+									<img src="img/poster/a9.jpg" alt=""/>
+								</p>
+								<p class="btn">Watch now</p>
+							</a>
+						</li>
+						<li class="list">
+							<a href="#none" title="첫번째 광고">
+								<p class="img">							
+									<img src="img/poster/a0.jpg" alt=""/>
+								</p>
+								<p class="btn">Watch now</p>
+							</a>
+						</li>
+						<li class="list">
+							<a href="#none" title="첫번째 광고">
+								<p class="img">							
+									<img src="img/poster/a1.jpg" alt=""/>
+								</p>
+								<p class="btn">Watch now</p>
+							</a>
+						</li>
+						<li class="list">
+							<a href="#none" title="첫번째 광고">
+								<p class="img">							
+									<img src="img/poster/a2.jpg" alt=""/>
+								</p>
+								<p class="btn">Watch now</p>
+							</a>
+						</li>
+						<li class="list">
+							<a href="#none" title="첫번째 광고">
+								<p class="img">							
+									<img src="img/poster/a3.jpg" alt=""/>
+								</p>
+								<p class="btn">Watch now</p>
+							</a>
+						</li>
+						<li class="list">
+							<a href="#none" title="첫번째 광고">
+								<p class="img">							
+									<img src="img/poster/a4.jpg" alt=""/>
+								</p>
+								<p class="btn">Watch now</p>
+							</a>
+						</li>
+						<li class="list">
+							<a href="#none" title="첫번째 광고">
+								<p class="img">							
+									<img src="img/poster/a5.jpg" alt=""/>
+								</p>
+								<p class="btn">Watch now</p>
+							</a>
+						</li>
+						<li class="list">
+							<a href="#none" title="첫번째 광고">
+								<p class="img">							
+									<img src="img/poster/a6.jpg" alt=""/>
+								</p>
+								<p class="btn">Watch now</p>
+							</a>
+						</li>
+						<li class="list">
+							<a href="#none" title="첫번째 광고">
+								<p class="img">							
+									<img src="img/poster/a7.jpg" alt=""/>
+								</p>
+								<p class="btn">Watch now</p>
+							</a>
+						</li>
+						<li class="list">
+							<a href="#none" title="첫번째 광고">
+								<p class="img">							
+									<img src="img/poster/a8.jpg" alt=""/>
+								</p>
+								<p class="btn">Watch now</p>
+							</a>
+						</li>
+						<li class="list">
+							<a href="#none" title="첫번째 광고">
+								<p class="img">							
+									<img src="img/poster/a9.jpg" alt=""/>
+								</p>
+								<p class="btn">Watch now</p>
+							</a>
+						</li>
+					</ul>
+				</div>
+
+				<div class="icon_pause_play">
+					<p class="icon_pause_play_wrap">
+						
+						<img class="play" src="img/icon/play_white.svg" alt=""/>
+						<img class="pause" src="img/icon/pause_white.svg" alt=""/>
+					</p>
+				</div>
+			</div>
+
+			<!-- ########## acc ########## -->
+			<div id="acc">
+				<!-- 상세페이지 참고 : https://www.apple.com/shop/accessories/all-accessories -->
+				<div class="acc_inner">
+					<div class="text">
+						<h2>Apple Accessories</h2>
+						<p class="text_pc">The perfect accessories for what's next.</p>
+						<p class="text_mob">Online ranking</p>
+					</div>
+					<div class="top">
+						<div class="left">
+							<ul>
+								<li id="first">
+									<p class="img">
+										<img src="img/acc/trim/a0.png" alt=""/>
+									</p>
+									<div class="desc">
+										<!-- 참고사이트
+											https://searchads.apple.com/ -->
+										<h3><span>1.</span>Beats Studio3 Wireless Over</h3>
+										<p class="desc_long">
+											blocks external noise
+											Beats, Pure ANC adapts to external noise and fit while preserving audio quality
+											Transparency mode helps you stay aware of your surroundings while listening
+										</p>
+										<p class="btn"><a href="purchase.html" title="Learn more">Learn more &gt;</a></p>
+									</div>
+									<p class="btn btn_common"><a href="purchase.html" title="Learn more">Learn more &gt;</a></p>
+								</li>
+								<li>
+									<p class="img">
+										<img src="img/acc/trim/a1.png" alt=""/>
+									</p>
+									<div class="desc">
+										<!-- 참고사이트
+											https://searchads.apple.com/ -->
+										<h3><span>1.</span>Beats Studio3 Wireless Over</h3>
+										<p class="desc_long">
+											blocks external noise
+											Beats, Pure ANC adapts to external noise and fit while preserving audio quality
+											Transparency mode helps you stay aware of your surroundings while listening
+										</p>
+										<p class="btn"><a href="purchase.html" title="Learn more">Learn more &gt;</a></p>
+									</div>
+									<p class="btn btn_common"><a href="purchase.html" title="Learn more">Learn more &gt;</a></p>
+								</li>
+								<li>
+									<p class="img">
+										<img src="img/acc/trim/a2.png" alt=""/>
+									</p>
+									<div class="desc">
+										<!-- 참고사이트
+											https://searchads.apple.com/ -->
+										<h3><span>1.</span>Beats Studio3 Wireless Over</h3>
+										<p class="desc_long">
+											blocks external noise
+											Beats, Pure ANC adapts to external noise and fit while preserving audio quality
+											Transparency mode helps you stay aware of your surroundings while listening
+										</p>
+										<p class="btn"><a href="purchase.html" title="Learn more">Learn more &gt;</a></p>
+									</div>
+									<p class="btn btn_common"><a href="purchase.html" title="Learn more">Learn more &gt;</a></p>
+								</li>
+								<li>
+									<p class="img">
+										<img src="img/acc/trim/a3.png" alt=""/>
+									</p>
+									<div class="desc">
+										<!-- 참고사이트
+											https://searchads.apple.com/ -->
+										<h3><span>1.</span>Beats Studio3 Wireless Over</h3>
+										<p class="desc_long">
+											blocks external noise
+											Beats, Pure ANC adapts to external noise and fit while preserving audio quality
+											Transparency mode helps you stay aware of your surroundings while listening
+										</p>
+										<p class="btn"><a href="purchase.html" title="Learn more" tabindex="-1">Learn more &gt;</a></p>
+									</div>
+									<p class="btn btn_common"><a href="purchase.html" title="Learn more">Learn more &gt;</a></p>
+								</li>
+								<li>
+									<p class="img">
+										<img src="img/acc/trim/a4.png" alt=""/>
+									</p>
+									<div class="desc">
+										<!-- 참고사이트
+											https://searchads.apple.com/ -->
+										<h3><span>1.</span>Beats Studio3 Wireless Over</h3>
+										<p class="desc_long">
+											blocks external noise
+											Beats, Pure ANC adapts to external noise and fit while preserving audio quality
+											Transparency mode helps you stay aware of your surroundings while listening
+										</p>
+										<p class="btn"><a href="purchase.html" title="Learn more" tabindex="-1">Learn more &gt;</a></p>
+									</div>
+									<p class="btn btn_common"><a href="purchase.html" title="Learn more">Learn more &gt;</a></p>
+								</li>
+								<li>
+									<p class="img">
+										<img src="img/acc/trim/a5.png" alt=""/>
+									</p>
+									<div class="desc">
+										<!-- 참고사이트
+											https://searchads.apple.com/ -->
+										<h3><span>1.</span>Beats Studio3 Wireless Over</h3>
+										<p class="desc_long">
+											blocks external noise
+											Beats, Pure ANC adapts to external noise and fit while preserving audio quality
+											Transparency mode helps you stay aware of your surroundings while listening
+										</p>
+										<p class="btn"><a href="purchase.html" title="Learn more">Learn more &gt;</a></p>
+									</div>
+									<p class="btn btn_common"><a href="purchase.html" title="Learn more">Learn more &gt;</a></p>
+								</li>
+								<li>
+									<p class="img">
+										<img src="img/acc/trim/a6.png" alt=""/>
+									</p>
+									<div class="desc">
+										<!-- 참고사이트
+											https://searchads.apple.com/ -->
+										<h3><span>1.</span>Beats Studio3 Wireless Over</h3>
+										<p class="desc_long">
+											blocks external noise
+											Beats, Pure ANC adapts to external noise and fit while preserving audio quality
+											Transparency mode helps you stay aware of your surroundings while listening
+										</p>
+										<p class="btn"><a href="puchase.html" title="Learn more">Learn more &gt;</a></p>
+									</div>
+									<p class="btn btn_common"><a href="puchase.html" title="Learn more">Learn more &gt;</a></p>
+								</li>
+							</ul>
+						</div>
+						<div class="right">
+							<p class="list_title">Online Ranking</p>
+							<ul class="lists">
+								<li class="first">
+									<a href="#none" title="the first ranking" tabindex="0"><strong><i>1</i> blocks external noise</strong><span>Headphones</span></a>
+								</li>
+								<li>
+									<a href="#none" title="the first ranking" tabindex="0"><strong><i>2</i>  iPhone 11 Pro Silicone Case</strong><span>Case</span></a>
+								</li>
+								<li>
+									<a href="#none" title="the first ranking" tabindex="0"><strong><i>3</i>  Magic Keyboard for iPad Pro</strong><span>Keybord</span>
+								</li>
+								<li>
+									<a href="#none" title="the first ranking" tabindex="0"><strong><i>4</i>  Powerbeats Pro</strong><span>Earphones</span></a>
+								</li>
+								<li>
+									<a href="#none" title="the first ranking" tabindex="0"><strong><i>5</i>  Wireless Charging Case</strong><span>Case</span></a>
+								</li>
+								<li>
+									<a href="#none" title="the first ranking" tabindex="0"><strong><i>6</i>  blocks external noise</strong><span>Headphones</span></a>
+								</li>
+								<li>
+									<a href="#none" title="the first ranking" tabindex="0"><strong><i>7</i>  blocks external noise</strong><span>Headphones</span></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- ssssssssssssssssssssssss -->
+			<div class="cards_wrap">
+				<div id="cards">
+					<div class="card first">
+						<div class="card_inner">
+							<div class="back">
+								<h2>back</h2>
+								<p class="btn">+</p>
+							</div>
+							<div class="front">
+								<h2>front</h2>
+								<p class="btn">+</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="card second">
+						<div class="card_inner">
+							<div class="back">
+								<h2>back</h2>
+								<p class="btn">+</p>
+							</div>
+							<div class="front">
+								<h2>front</h2>
+								<p class="btn">+</p>
+							</div>
+						</div>	
+					</div>
+
+					<div class="card third">
+						<div class="card_inner">
+							<div class="back">
+								<h2>back</h2>
+								<p class="btn">+</p>
+							</div>
+							<div class="front">
+								<h2>front</h2>
+								<p class="btn">+</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- ########## news ########## -->
+			<div id="news">
+				<!-- 
+					참고 레이아웃
+					https://www.apple.com/supplier-responsibility/
+					카드부분
+				-->
+				<div class="news_inner">
+					<div class="text">
+						<h2>Apple News</h2>
+						<p>View recent Apple events</p>
+					</div>
+					<div class="cards">
+						<ul>
+							<li class="li1">
+								<a href="#none" titlte="the first card news">
+									<p class="news_image">
+										<img src="img/news/a01.jpg" alt="img of first card news"/>
+									</p>
+									<!-- 
+										참고뉴스
+										https://www.apple.com/newsroom/2019/09/apple-awards-an-additional-250-million-from-advanced-manufacturing-fund-to-corning/
+									-->
+									<h3>
+										Apple awards an additional  million from Advanced Manufacturing Fund to Corning
+									</h3>
+									<span class="btn_plus"><img src="img/icon/btn_plus.png" alt=""/></span>
+								</a>
+							</li>
+							<li class="li2">
+								<a href="#none" titlte="the first card news">
+									<p class="news_image">
+										<img src="img/news/a02.jpg" alt="img of first card news"/>
+									</p>
+									<!-- 
+										참고뉴스
+										https://www.apple.com/newsroom/2019/09/apple-awards-an-additional-250-million-from-advanced-manufacturing-fund-to-corning/
+									-->
+									<h3>
+										Apple to build new campus in Austin and add jobs across the US
+									</h3>
+									<span class="btn_plus"><img src="img/icon/btn_plus.png" alt=""/></span>
+								</a>
+							</li>
+							<li class="li1">
+								<a href="#none" titlte="the first card news">
+									<p class="news_image">
+										<img src="img/news/a03.jpg" alt="img of first card news"/>
+									</p>
+									<!-- 
+										참고뉴스
+										https://www.apple.com/newsroom/2019/09/apple-awards-an-additional-250-million-from-advanced-manufacturing-fund-to-corning/
+									-->
+									<h3>
+										Component manufacturing drives Apple’s US job creation
+									</h3>
+									<span class="btn_plus"><img src="img/icon/btn_plus.png" alt=""/></span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- ########## footer ########## -->
+		<footer id="footer">
+			<ul id="footer_nav_menues">
+				<li class="learn_more">
+					<h3>LEARN MORE<span>+</span></h3>
+					<ul>
+						<li><a href="#" title="">iPhone SE</a></li>
+						<li><a href="#" title="">iPad Pro</a></li>
+						<li><a href="#" title="">iPhone Pro11</a></li>
+						<li><a href="#" title="">Apple Watch</a></li>
+					</ul>
+				</li>
+				<li class="nav_menu">
+					<h3>Support<span>+</span></h3>
+					<ul>
+						<li><a href="#" title="">Contact Us</a></li>
+						<li><a href="#" title="">Warranty</a></li>
+						<li><a href="#" title="">User Guide</a></li>
+						<li><a href="#" title="">Scooter safety notice</a></li>
+						<li><a href="#" title="">Android Enterprise Recommended</a></li>
+					</ul>
+				</li>
+				<li class="nav_menu">
+					<h3>ABOUT US<span>+</span></h3>
+					<ul>
+						<li><a href="#" title="">Apple</a></li>
+						<li><a href="#" title="">Press &amp; Media</a></li>
+						<li><a href="#" title="">User Agreement</a></li>
+						<li><a href="#" title="">Privacy Policy</a></li>
+						<li><a href="#" title="">Xiaomi Blog</a></li>
+						<li><a href="#" title="">Investor Relations</a></li>
+						<li><a href="#" title="">Integrity &amp; Compliance</a></li>
+					</ul>
+				</li>
+				<li class="nav_menu">
+					<h3>FOLLOW Apple<span>+</span></h3>
+					<ul>
+						<li><a href="#" title="">Facebook</a></li>
+						<li><a href="#" title="">Youtube</a></li>
+						<li><a href="#" title="">Instagram</a></li>
+						<li><a href="#" title="">Twitter</a></li>
+					</ul>
+				</li>
+			</ul>
+			<div class="footer_copyright">
+				Copyright &copy; 2020 Jisun Kim. All Rights Reserved
+			</div>
+		</footer>
+    </div>
+	<div id="view">
+		<p class="news_img"></p>
+		<span class="btn_plus"><img src="img/icon/btn_plus.png" alt=""/></span>
+		<div class="news_details_wrap">
+			<div class="news_details">
+				<div class="news_detail news_detail1">
+					<h3 class="headline">
+						Apple awards an additional $250 million
+					</h3>
+					<p class="text">
+						Apple revolutionized personal technology with the introduction of the Macintosh in 1984. Today, Apple leads the world in innovation with iPhone, iPad, Mac, Apple Watch and Apple TV. Apple’s four software platforms — iOS, macOS, watchOS and tvOS — provide seamless experiences across all Apple devices and empower people with breakthrough services including the App Store, Apple Music, Apple Pay and iCloud. Apple’s more than 100,000 employees are dedicated to making the best products on earth, and to leaving the world better than we found it.
+					</p>
+				</div>
+				<div class="news_detail news_detail2">
+					<h3 class="headline">
+						Apple to build new campus in Austin and add jobs across the US
+					</h3>
+					<p class="text">
+						Cupertino, California and Austin, Texas — Apple today announced a major expansion of its operations in Austin, including an investment of $1 billion to build a new campus in North Austin. The company also announced plans to establish new sites in Seattle, San Diego and Culver City and expand in cities across the United States including Pittsburgh, New York and Boulder, Colorado over the next three years, with the potential for additional expansion elsewhere in the US over time.
+					</p>
+				</div>
+				<div class="news_detail news_detail3">
+					<h3 class="headline">
+						Component manufacturing drives Apple’s US job creation
+					</h3>
+					<p class="text">
+						Jackson's new job is one of 500 being created as Finisar brings the Sherman facility back online. The plant will produce vertical-cavity surface-emitting lasers — or VCSELs — for Apple, powering breakthrough features of the latest iPhones and iPads, including Face ID and Animoji. VCSEL wafers are nearly as thin as a human hair and contain hundreds of layers measuring only a few atoms in thickness. They require a highly advanced and precise manufacturing operation, as well as skilled technicians with specialized training.
+					</p>
+				</div>
+			</div>	
+		</div>
+	</div>
+	<div id="full"></div>
+ </body>
+</html>
+	<!-- 
+		애플 예쁜 상세페이지
+		https://www.apple.com/apple-watch-series-3/
+		https://www.apple.com/apple-news/
+		https://www.apple.com/education/k12/
+		https://www.apple.com/lae/iphone/features/
+
+		예쁜 배경색
+		https://developer.apple.com/musickit/
+		https://www.apple.com/apple-card/monthly-installments/
+
+		매장영업 안내 배너 배경색 참고할 사이트
+		https://developer.apple.com/distribute/
+		https://developer.apple.com/app-store/
+
+		아이패드 정적인 페이지 이쁜거
+		https://www.apple.com/ipad-10.2/
+	-->

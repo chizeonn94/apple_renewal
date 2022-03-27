@@ -1,0 +1,346 @@
+	.body2{
+		width:160%;
+		transform:translatex(-25%);overflow-x:hidden;
+		overflow-y: hidden;
+	}
+	.wrap2{
+		
+		width:62.5%;
+		
+		float:left;
+	}
+	.hidden2{
+		width:25% !important;
+		
+	}
+	body{transition:all 0.5s;}
+	#wrap{transition:all 0.5s;}
+	/*##################### hidden  #######################*/
+	#hidden{background-color:#111;;height:100vh;float:left;position:relative;}
+	#hidden:after{content:"";display:block;clear:both;}
+	#hidden .txt{color:#fff;width:300px;font-size:24px;position:absolute;top:45vh;left:10vh;}
+	#hidden .img{width:500px;overflow:hidden;float:right;}
+	#hidden .img img{width:150%;}
+
+	
+	#section3:after{content:"";display:block;clear:both;}
+
+/*##################### section1  #######################*/
+	#section1{width:100%;}
+	#section1 .video_phones{width:700px;margin:0 auto;}
+	#section1 .video_phones video{width:100%;}
+	#section1 .desc{width:700px;margin:0 auto;}
+	#section1 h2{width:100%;font-size:80px;line-height:86px;text-align:center;padding:40px 0;letter-spacing:-0.05em;}
+	#section1 .desc{width:700px;text-align:center;font-size:28px;line-height:30px;font-weight:700;margin:0 auto;color:#777;}
+	#section1 .price{width:100%;text-align:center;padding:50px 0;font-size:21px;line-height:30px;}
+
+/*##################### section2  #######################*/
+	#section2{width:100%;overflow:hidden;height:800px;position:relative;margin:0 auto;}
+	#section2 ul{width:400%;height:100%;}
+
+	#section2 ul .slide{width:25%;height:100%;float:left;}
+	#section2 ul:after{content:"";display:block;clear:both;}
+	#section2 .btn_sliding{position:absolute;top:80%;left:70%;width:100%;}
+	#section2 .btn_sliding p{width:50px;height:50px;line-height:50px;border:3px solid #999;border-radius:50%;font-size:30px;}
+	#section2 .btn_sliding p a{color:#999;}
+	#section2 .btn_sliding p:hover{opacity:0.7;}
+	#section2 .btn_sliding p:hover a{opacity:0.7;}
+	#section2 .btn_sliding .prev{text-indent:8px;float:left;margin-right:15px;}
+	#section2 .btn_sliding .next{text-indent:12px;float:left;}
+	
+	#section2 .selection{position:absolute;top:80%;left:12%;}
+	#section2 .choose_color{width:400px;float:left;}
+	#section2 .choose_color:after{content:"";display:block;clear:both;}
+	#section2 .choose_color p{
+	  width:40px;height:40px;border-radius:50%;
+	  border:1px solid #fff;float:left;margin-right:20px;
+	}
+	#section2 .choose_color p:hover{border-color:#ccc;}
+	#section2 .choose_color p i{
+	  display:block;width:80%;height:80%;margin:10% auto;
+	  border-radius:50%;
+	  box-shadow:2px 2px 5px rgba(0,0,0,0.5);
+	  cursor:pointer;
+	}
+	#section2 .choose_color .purple i{background-color:#D1CDDA;}
+	#section2 .choose_color .yellow i{background-color:#FFE681;}
+	#section2 .choose_color .green i{background-color:#AEE1CD;}
+	#section2 .choose_color .black i{background-color:#1F2020;}
+	#section2 .choose_color .white i{background-color:#F9F6EF;}
+	#section2 .choose_color .red i{background-color:#BA0C2E;}
+	
+	#section2 .text_design{width:966px;overflow:hidden;margin:0 auto;padding-top:100px;font-size:40px;font-weight:700;}
+	#section2 .text_design p{width:500px;}
+	
+	#section2 .browse_phones img{transition:opacity 0.5s;opacity:0;position:absolute;}
+	/*########### slide0 ##########*/
+	#slide0{position:relative;}
+	#slide0 h2{width:996px;margin:0 auto;padding:100px 0 70px;font-size:80px;line-height:86px;letter-spacing:-0.05em;}
+
+	#slide0 .img_frame{width:100%;height:330px;}
+	#slide0 .img_hardwares{
+		width:1180px;
+		overflow:hidden;
+		height:330px;
+		float:right;
+		position:relative;
+		
+		
+	}
+	#slide0 .img_hardwares img{width:180%;opacity:0;position:absolute;}
+	#slide0 .img_hardwares img:first-child{opacity:1;}
+	
+	
+	#slide0 .selection{width:960px;margin:0 auto;}
+	#slide0 .selection:after{content:"";display:block;clear:both;}
+	
+
+	#slide0 .dots{width:100px;margin:0 auto;float:right;}
+	#slide0 .dots li{width:10px;height:10px;background-color:#777;margin-right:20px;border-radius:50%;float:left;}
+	#slide0 .dots li:last-child{margin-right:0;}
+
+	/*########### slide1 ##########*/
+	#slide1{background-color:#111;color:#fff;
+		text-align:center;}
+
+	#slide1 .text_design p{width:auto;}
+	#slide1 .design{width:750px;height:381px;margin:0 auto;position:relative;padding:50px 0 70px;}
+ 
+	#slide1 .design img{width:100%;position:absolute;left:0;opacity:0}
+	#slide1 .design img:first-child{opacity:1;}
+	/*########### slide2 ##########*/
+	#slide2{background-color:#fafafa;position:relative;}
+	#slide2 .big_wrap{width:667px;height:500px;position:absolute;right:0;bottom:0;}
+	#slide2 .big{width:667px;height:500px;overflow:hidden;position:relative;}
+
+	#slide2 .big img{width:100%;opacity:0;position:absolute;}
+	#slide2 .big img:first-child{opacity:1;}
+	/*########### slide3 ##########*/
+	#slide3{background-color:#EBEBEB;position:relative;}
+	#slide3 .back_wrap{width:667px;height:550px;position:absolute;right:0;bottom:0;}
+	#slide3 .back{width:667px;height:550px;overflow:hidden;position:relative;}
+	#slide3 .back img{
+		width:150%;
+		opacity:0;
+		position:absolute;}
+	#slide3 .back img:first-child{opacity:1;}
+	
+	
+/*##################### video_phones #######################*/
+	#video_phones{
+		width:100%	
+	}
+	#video_phones video{width:100%;}
+
+/*##################### section3  #######################*/
+	#section3{width:100%;padding-top:100px;}
+	#section3 #left{width:100%;float:left;overflow:hidden;transition:all 1s;}
+	#section3 .text{width:960px;margin:0 auto;}
+	#section3 h2{font-size:80px;line-height:86px;letter-spacing:-0.05em;}
+	#section3 .desc{
+		width:600px;font-size:20px;font-weight:700;color:#777;
+		padding:40px 0;line-height:26px;letter-spacing:-0.02em;
+	}	
+
+	#section3 .dual_camera{width:100%;position:relative;}
+	#section3 .dual_camera .img_dual_camera{
+		width:70%;
+		height:845px;
+		background-image:url("../img/iphone11/dual_camera.jpg");
+		background-repeat:no-repeat;
+		background-size:1700px;
+		float:right;
+		position:relative;
+	}
+	#section3 .dual_camera:after{content:"";display:block;clear:both;}
+	#section3 .desc_camera{width:374px;position:absolute;top:190px;left:458px;}
+	#section3 .desc_camera li{margin-bottom:172px;}
+	#section3 .desc_camera .detail_title{font-size:40px;font-weight:700;padding:10px 0;letter-spacing:-0.015em;}
+
+	#section3 .desc_camera .desc_lense{font-size:21px;font-weight:700;color:#777;letter-spacing:-0.04em;}
+	#section3 .btn_compare{
+	  font-size:17px;font-weight:700;
+	  position:absolute;bottom:50px;right:50px;
+	}
+
+	#section3 .btn_compare a{
+	  display:block;color:#000;padding:15px 25px;
+	  border:2px solid #000;
+	  border-radius:30px;
+	  transition:all 0.3s;
+	}
+
+	#section3 .btn_compare:hover a{color:#fff;background-color:#000;}
+
+
+/*##################### section4  #######################*/
+	#section4{width:100%;padding:100px 0;margin:0 auto;background-color:#efefef;overflow:hidden;}
+	
+	#section4 img{width:100%;}
+	#section4 .phone{
+		width:912px;
+		height:464px;
+		position:relative;
+		margin:50px auto;
+	}
+	#section4 .phone_frame{
+		width:912px;
+		height:464px;
+		position:absolute;
+		z-index:1;
+	}
+	#section4 .phone_screen{
+		width:844px;
+		height:390px;
+		border:1px solid green;
+		position:absolute;
+		top:37px;
+		left:35px;
+	}
+	#section4 .phone_screen .phone_screen_inner{
+		width:844px;
+		height:390px;
+		background-color:#141414;
+		position:relative;} 
+	#section4 .phone_screen img{width:100%;position:absolute;transition:opacity 0.2s;}
+	#section4 .phone_screen img:first-child{opacity:1;}
+	#section4 .features{width:300px;height:35px;line-height:35px;border-radius:17px;margin:0 auto;background-color:#ccc;}
+	#section4 .features li{width:100px;text-align:center;float:left;}
+	#section4 .features li a{display:block;width:100%;height:100%;color:#000;border-radius:17px;}
+	#section4 .features li:first-child a{background-color:#000;border-radius:17px;color:#fff;}
+	
+
+	
+	#section4 .features li:hover a{color:#fff;}
+	#section4 .desc{font-size:24px;font-weight:700;color:#777;width:960px;margin:0 auto;padding:20px 0;line-height:30px;}
+
+/*##################### scooch  #######################*/
+	#scooch{width:100%;padding:100px 0;}
+	#scooch .ok{width:100%;font-size:62px;font-weight:700;text-align:center;padding-bottom:50px;}
+	#scooch .img_scooch_wrap{width:100%;position:relative;}
+	#scooch .img_scooch{width:800px;margin:0 auto;}
+	#scooch .img_scooch img{width:100%;}
+	#scooch .transparency{position:absolute;opacity:0;}
+
+/*##################### light #######################*/
+	#light{width:100%;background-color:#000;color:#fff;}
+	#light .not_enough{
+		width:1200px;height:1000px;margin:0 auto;
+		background-image:url("../img/iphone11/night_mode.jpg");
+	}
+	#light .not_enough p{font-size:70px;font-weight:700;margin-left:100px;padding-top:500px;}
+	#light .desc_night_mode{width:500px;color:#999;font-weight:700;margin:50px auto;font-size:17px;}
+
+
+	#light .img_night_mode{width:978px;height:656px;margin:0 auto;}
+	#light .img_night_mode li{
+		width:449px;padding:600px 20px 20px 20px;
+		height:36px;float:left;font-size:17px;font-weight:700;background-repeat:no-repeat;}
+	#light .img_night_mode li:first-child{
+		background-image:url("../img/iphone11/night_off.jpg");
+	}
+	#light .img_night_mode li:last-child{
+		background-image:url("../img/iphone11/night_on.jpg");
+	}
+	
+
+/*##################### portrait #######################*/
+	#portrait{
+		width:100%;
+		height:1200px;
+		background-image:url("../img/iphone11/portrait_mode.jpg");
+		background-size:100%;
+		background-repeat:no-repeat;
+	}
+
+	#portrait .title{
+		width:100%;padding-top:900px;font-size:110px;font-weight:700;text-align:center;color:#fff;text-shadow:-4px -4px 15px rgba(0,0,0,0.3);
+	}
+
+/*##################### portraits #######################*/
+	#portraits{
+		width:100%;
+		/* height:1200px; */
+		background-color:#F2F2F2;
+	}
+
+	#portraits .desc_main{
+		width:600px;margin:0 auto;padding:100px 0;
+		font-size:21px;font-weight:700;color:#777;
+	}
+	#portraits .pics{width:980px;height:612px;margin:50px auto;position:relative;}
+	#portraits .pics .p1{position:absolute;top:0;left:0;}
+	#portraits .pics .p2{position:absolute;top:0;right:0;}
+
+	#portraits .pics2{width:980px;height:2205px;margin:50px auto;position:relative;}
+	#portraits .pics2 .p3{
+		width:592px;height:435px;position:absolute;top:0;left:0;}
+	#portraits .pics2 .p4{
+		width:327px;height:435px;position:absolute;top:0;right:0;}
+	#portraits .pics2 .p5{
+		width:327px;height:435px;position:absolute;top:495px;left:0;}
+	#portraits .pics2 .p6{
+		width:592px;height:435px;position:absolute;top:495px;right:0;}
+	#portraits .pics2 .p7{
+		width:592px;height:435px;position:absolute;bottom:780px;left:0;}
+	#portraits .pics2 .p8{
+		width:327px;height:435px;position:absolute;bottom:780px;right:0;}
+	#portraits .pics2 .p9{
+		width:980px;height:720px;position:absolute;bottom:0;right:0;}
+	#portraits .pics_hdr{width:1000px;height:800px;margin:0 auto;}
+	#portraits .pics_hdr img{width:100%;}
+	#portraits .dots{width:70px;margin:0 auto;}
+	#portraits .dots li{width:10px;height:10px;background-color:#efefef;margin-right:10px;border-radius:50%;float:left;}
+	#portraits .dots li:last-child{margin-right:0;}
+	#portraits .text_hdr{width:930px;margin:0 auto;font-size:64px;line-height:70px;padding:100px 0 50px;;letter-spacing:-0.04em;}
+
+/*############### speed_video #################*/
+	#speed_video{width:100%;overflow:hidden;background-color:#fafafa;}
+	#speed_video .quick_take{width:848px;height:478px;margin:0 auto;position:relative;top:-17px;}
+	#speed_video .frame_quick{width:848px;position:absolute;}
+	#speed_video .video_selfie{
+		width:720px;position:absolute;left:64px;
+		}
+	#speed_video .video_selfie video{width:100%;}
+	
+	#speed_video .text_speed{width:529px;margin:0 auto;font-size:64px;}
+	#speed_video .desc_main{
+		width:500px;margin:0 auto;padding:100px 0;
+		font-size:17px;font-weight:700;color:#999;
+	}
+	#speed_video .text_slo{
+		width:930px;margin:0 auto;font-size:64px;
+	}
+	#speed_video .video_area_wrap{position:relative;}
+	#speed_video .video_area{
+		width:1200px;height:800px;overflow:hidden;margin:0 auto;overflow:hidden;position:relative;float:right;
+	}
+	#speed_video .video_area_wrap:after{content:"";display:block;clear:both;}
+	#speed_video .video_area .video_selfie{width:617px;position:absolute;top:102px;left:36px;}
+	#speed_video .video_area .video_selfie video{width:100%;}
+	#speed_video .video_area .phone_hand{position:absolute;}
+
+	#speed_video .video_area_wrap .desc_main{position:absolute;bottom:80px;left:50%;transform:translatex(-50%);}
+	
+
+/*############### chip #################*/
+	#chip{width:100%;overflow:hidden;}
+	#chip .inner{width:980px;padding-top:200px;margin:0 auto;position:relative;}
+	#chip .desc{width:500px;position:absolute;top:200px;right:65px;}
+	#chip .desc .text_main{font-size:80px;line-height:85px;}
+	#chip .desc .text_sub{font-size:20px;padding-top:20px;color:#777;}
+	#chip .img_chips{width:100%;height:1630px;position:relative;}
+	#chip .img_chips p{position:absolute;}
+	#chip .img_chips .chip1{top:520px;left:-700px;}
+	#chip .img_chips .chip2{top:1px;left:2px;}
+	#chip .img_chips .chip3{top:705px;left:2px;}
+	#chip .img_chips .chip4{top:520px;left:372px;}
+	#chip .img_chips .chip5{top:900px;left:372px;}
+	#chip .img_chips .chip6{top:900px;left:754px;}
+	#chip .btn_chip{
+	  width:450px;height:50px;
+	  font-size:20px;
+	  background-color:green;
+	  margin:20px auto;
+	}
+	#chip .btn_chip a{display:block;width:100%;height:100%;line-height:50px;}

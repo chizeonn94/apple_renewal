@@ -1,0 +1,282 @@
+<?php
+	include "00_conn.html";
+	session_cache_expire(30);
+	session_start();
+?>
+<!DOCTYPE html>
+<html lang="ko">
+ <head>
+  <title> new document </title>
+  <meta charset="utf-8"/>
+  <script src="https://kit.fontawesome.com/d5f62a3761.js" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <link href="css/reset.css" rel="stylesheet" type="text/css"/>
+  <style>
+	style>
+	*{margin:0;padding:0;}
+	li{list-style:none;}
+	
+	#header{position:sticky;top:0;}
+	#footer a:hover{color:#fff;}
+	#board{width:100%;height:250px;margin-bottom:100px;overflow:hidden;background-image:url("img/bg/share.jpg");background-size:100%;background-repeat:no-repeat;color:#fff;position:relative;}
+	#board:after{content:"";width:100%;height:100%;position:absolute;top:0;left:0;background-color:rgba(0,0,0,0.5);}
+	#board .hear{width:940px;margin:0 auto;line-height:250px;font-size:45px;position:absolute;z-index:1;left: 50%;transform: translatex(-50%);}
+
+	#form{width:940px;margin:0 auto;}
+	#form fieldset{border:1px solid #aaa;}
+	#form p{height:52px;box-sizing:border-box;border-bottom:1px solid #E0E0E0;}
+	#form p select{display:inline-block;width:25%;box-sizing:border-box;padding:6px;border: 1px solid #ccc;border-radius: 5px;margin-left: 6px;}
+	
+	#form p label{display:inline-block;width:25%;height: 100%;line-height:32px;box-sizing:border-box;padding:10px 15px;vertical-align:middle;background-color:#F4F4F2;color:#333;font-weight:600;}
+	#form p input{box-sizing:border-box;width:25%;padding:6px;text-indent:5px;vertical-align:middle;border:1px solid #ccc;border-radius:5px;margin-left: 6px;}
+
+	#title{display:inline-block;width:40%;}
+
+	.content{height:321px !important;}
+	#content{display:inline-block;width:40%;height:300px;vertical-align:middle;text-indent:5px;border:1px solid #ccc;border-radius:5px;margin-left: 6px;box-sizing:border-box;padding-left:10px;}
+
+	.terms{width:100%;outline:1px solid #ccc;margin:50px auto 0;box-sizing:border-box;padding:15px;}
+	.terms li:before{content:"*"}
+
+	#btnArea{text-align:right;margin-top:15px;}
+	#btnArea input{width:auto !important;text-align:center;text-indent:0 !important;padding:6px 15px !important;cursor:pointer;border-color:#06c !important;color:#06c;background-color:#fff;}
+	#btnArea input:hover{background-color:#06c;color:#fff;}
+	
+  </style>
+  <script src="js/common.js"></script>
+  <script>
+
+	function checkInputs(){
+		
+		const cate = document.getElementById("cate");
+		var selected = cate.options[cate.selectedIndex].value.toLowerCase();
+		console.log(selected);
+	
+		
+	
+		if(selected == "choose category"){
+			alert("Choose category");
+			return false;
+		}
+
+		return true;
+	}
+  </script>
+  <script>
+		$(function(){
+			/*계정버튼 클릭시 하위메뉴 나타나게 하기*/
+			var clickedAcc = 0;
+			$("#info_menu .account").click(function(){
+				if(clickedAcc == 0){
+					$("#accMenu").css({"display":"block"});
+					clickedAcc = 1;
+				}else{
+					$("#accMenu").css({"display":"none"});
+					clickedAcc = 0;
+				}
+			});
+		});
+  </script>
+ </head>
+
+ <body>
+	<div id="wrap">
+		<!-- ########## header ########## -->
+		<div id="header">
+			<h1>Apple</h1>
+			<div class="header_inner">
+				<div id="btn_mob_menu">
+					<p>
+						<span>a</span>
+						<span>a</span>
+						<span>a</span>
+					</p>
+				</div>
+				<div id="logo">
+					<a href="index.html" title="Apple">
+						<img src="img/icon/logo.svg" alt="apple logo"/>
+					</a>
+				</div>
+				<ul id="info_menu">
+					<li class="account"><a href="#none" title="account icon"><img src="img/icon/account.png" alt="icon of account"/></a></li>
+					<li class="magnifier"><a href="#none" title="search icon"><img src="img/icon/magnifier.png" alt="icon of search"/></a></li>
+				</ul>
+				<div class="search_area1">
+					<form id="search_bar1" action="http://www.apple.com/us/search" method="GET">
+						<!-- <img src="img/icon/magnifier.png" alt="image of search"/> -->
+						<input id="submit_btn" type="submit" name="submit_btn" title="button of submit"/>
+						<input id="search_bar_pc" type="text" name="search_bar_pc" title="search_bar_pc" placeholder="Search apple.com" />
+						<input id="close_button" type="button" name="close_button" title="close button" value="x" readonly/>
+					</form>
+					<aside id="quick_link">
+						<h3>QUICK LINK</h3>
+						<ul>
+							<li><a href="airpod.html" title="COVID-19 information">Airpods Pro</a></li>
+							<li><a href="apple_card.html" title="COVID-19 information">Apple Card</a></li>
+							<li><a href="signup.html" title="COVID-19 information">Sign Up</a></li>
+							<li><a href="acc.html" title="COVID-19 information">Accessories</a></li>
+							<li><a href="watch.html" title="COVID-19 information">Apple watch</a></li>
+							<li><a href="pro11.html" title="COVID-19 information">iPhone 11</a></li>
+						</ul>
+					</aside>
+				</div>
+				
+				<aside id="accMenu">
+					
+<?php if( empty($_SESSION['email']) ){ ?>
+					<div class="smallMenu"><a href="list.html" title="">Browse bulletin board</a></div>
+					<div class="smallMenu"><a href="signin.html" title="">Sign in</a></div>
+<?php }else{ ?>
+					<div class="smallMenu"><a href='manage.html?email=<?=$_SESSION['email']?>' title="">Manage account</a></div>
+					<div class="smallMenu"><a href="list.html" title="">Bulletin board</a></div>
+					<div class="smallMenu"><a href="signout.html" title="">Sign out</a></div>
+<?php } ?>
+				</aside>
+				<ul id="gnb">
+					<li><a href="airpod.html" title="Mac">Mac</a></li>
+					<li><a href="pad.html" title="iPad">iPad</a></li>
+					<li><a href="pro11.html" title="iPhone">iPhone</a></li>
+					<li><a href="watch.html" title="watch">Watch</a></li>
+					<li><a href="acc.html" title="watch">Acc</a></li>
+					<li><a href="apple_card.html" title="watch">Card</a></li>
+					<li><a href="purchase.html" title="watch">Purchase</a></li>
+				</ul>
+			</div>
+			
+			<div id="gnb2">
+				<div class="search_area2">
+					<form id="search_bar2" action="http://www.apple.com/us/search" method="GET">
+						<img src="img/icon/magnifier.png" alt="image of search"/><input id="search" type="text" name="src" title="search_bar_mob" placeholder="Search apple.com" />
+					</form>
+				</div>
+				<ul class="terms">
+					<li><a href="airpod.html" title="Mac">Mac</a></li>
+					<li><a href="pad.html" title="iPad">iPad</a></li>
+					<li><a href="pro11.html" title="iPhone">iPhone</a></li>
+					<li><a href="watch.html" title="watch">Watch</a></li>
+					<li><a href="acc.html" title="watch">Acc</a></li>
+					<li><a href="apple_card.html" title="watch">Card</a></li>
+					<li><a href="purchase.html" title="watch">Purchase</a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- ############ container ############# -->
+		<div id="container">
+
+			<div id="board">
+				<h2 class="hear">Apple wants to hear your voice</h2>
+			</div>
+			<form id="form" action="write_control.html" method="post" onSubmit="checkInputs();">
+				<fieldset>
+					<p>
+						<label for="cate">Category</label>
+						<select id="cate" name="cate">
+							<option value="Choose category">Choose category</option>
+							<option value="Product">Product</option>
+							<option value="Complain">Complain</option>
+							<option value="Purchase">Purchase</option>
+						</select>
+					</p>
+					<p>
+						<label for="phone">Phone</label>
+						<input id="phone" type="tel" name="phone" required/>
+					</p>
+					<p>
+						<label for="title">Title</label>
+						<input id="title" type="text" name="title" required/>
+					</p>
+					<p>
+						<label for="name">Name</label>
+						<input id="name" type="text" name="name" required/>
+					</p>
+					<!-- <p>
+						<label for="email">Email</label>
+						<input id="email" type="email" name="email" value="<?=$_SESSION['email']?>" required readonly/>
+					</p> -->
+					<p>
+						<label for="pass">Password</label>
+						<input id="pass" type="password" name="pass" required/>
+					</p>
+					<p class="content">
+						<label for="content">Content</label>
+<textarea id="content" name="content">
+
+</textarea>
+					</p>
+				</fieldset>
+				<ul class="terms">
+					<li>
+						본 고객의 소리는 e-mail을 통한 상담으로만 진행됩니다. 전화 상담 요청은 불가하오니 양해 부탁 드립니다.
+					</li>
+					<li>
+						본 고객의 소리는 e-mail을 통한 상담으로만 진행됩니다. 전화 상담 요청은 불가하오니 양해 부탁 드립니다.
+					</li>
+					<li>
+						본 고객의 소리는 e-mail을 통한 상담으로만 진행됩니다. 전화 상담 요청은 불가하오니 양해 부탁 드립니다.
+					</li>
+					<li>
+						본 고객의 소리는 e-mail을 통한 상담으로만 진행됩니다. 전화 상담 요청은 불가하오니 양해 부탁 드립니다.
+					</li>
+
+				</ul>
+				<p id="btnArea">
+					<input class="button" type="submit" value="Save"/>
+					<a href="list.html" title="Lists">
+						<input class="button" type="button" value="Lists"/>
+					</a>
+				</p>
+				
+			</form>
+		</div>
+		<!-- ########## footer ########## -->
+		<footer id="footer">
+			<ul id="footer_nav_menues">
+				<li class="learn_more">
+					<h3>LEARN MORE<span>+</span></h3>
+					<ul>
+						<li><a href="#" title="">iPhone SE</a></li>
+						<li><a href="#" title="">iPad Pro</a></li>
+						<li><a href="#" title="">iPhone Pro11</a></li>
+						<li><a href="#" title="">Apple Watch</a></li>
+					</ul>
+				</li>
+				<li class="nav_menu">
+					<h3>Support<span>+</span></h3>
+					<ul>
+						<li><a href="#" title="">Contact Us</a></li>
+						<li><a href="#" title="">Warranty</a></li>
+						<li><a href="#" title="">User Guide</a></li>
+						<li><a href="#" title="">Scooter safety notice</a></li>
+						<li><a href="#" title="">Android Enterprise Recommended</a></li>
+					</ul>
+				</li>
+				<li class="nav_menu">
+					<h3>ABOUT US<span>+</span></h3>
+					<ul>
+						<li><a href="#" title="">Apple</a></li>
+						<li><a href="#" title="">Press &amp; Media</a></li>
+						<li><a href="#" title="">User Agreement</a></li>
+						<li><a href="#" title="">Privacy Policy</a></li>
+						<li><a href="#" title="">Xiaomi Blog</a></li>
+						<li><a href="#" title="">Investor Relations</a></li>
+						<li><a href="#" title="">Integrity &amp; Compliance</a></li>
+					</ul>
+				</li>
+				<li class="nav_menu">
+					<h3>FOLLOW Apple<span>+</span></h3>
+					<ul>
+						<li><a href="#" title="">Facebook</a></li>
+						<li><a href="#" title="">Youtube</a></li>
+						<li><a href="#" title="">Instagram</a></li>
+						<li><a href="#" title="">Twitter</a></li>
+					</ul>
+				</li>
+			</ul>
+			<div class="footer_copyright">
+				Copyright &copy; 2020 Jisun Kim. All Rights Reserved
+			</div>
+		</footer>
+	</div>  
+	<div id="full"></div>
+ </body>
+</html>
